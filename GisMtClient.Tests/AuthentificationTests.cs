@@ -20,7 +20,7 @@ namespace GisMtClient.Tests
                 UserID = TestCertificateThumbprint,
             });
 
-            var s = client.Get("auth/cert/key");
+            var s = client.Get("auth/key");
             Assert.NotNull(s);
             Assert.IsTrue(client.IsAuthenticated);
 

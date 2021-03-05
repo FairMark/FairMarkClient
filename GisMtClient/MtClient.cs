@@ -20,7 +20,10 @@ namespace GisMtClient
         /// <summary>
         /// Sandbox API endpoint.
         /// </summary>
-        public const string SandboxApiUrl = "https://demo.lp.crpt.tech/api/v3/";
+        public const string SandboxApiUrl =
+            //"https://demo.lp.crpt.tech/api/v3/";
+            //"https://demo.lp.crpt.tech/api/v3/auth/cert/key";
+            "https://int01.gismt.crpt.tech/api/v3/true-api";
 
         /// <summary>
         /// Production API endpoint.
@@ -360,16 +363,19 @@ namespace GisMtClient
 
         internal AuthResponse Authenticate()
         {
-            return Get<AuthResponse>("auth/cert/key");
+            return Get<AuthResponse>("auth/key");
         }
 
         internal AuthToken GetToken(AuthResponse authResponse, string signedData)
         {
-            return Post<AuthToken>("auth/cert", new
+            var token = Post<AuthToken>("auth/simpleSignIn", new
             {
                 uuid = authResponse.UUID,
                 data = signedData,
             });
+
+            IsAuthenticated = true;
+            return token;
         }
 
         internal void Logout()
