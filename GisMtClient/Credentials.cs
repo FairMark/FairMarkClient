@@ -52,7 +52,7 @@ namespace GisMtClient
             apiClient.SignatureSize = Encoding.UTF8.GetByteCount(signedData);
 
             // get authentication token
-            return apiClient.GetToken(authResponse, signature: signedData);
+            return apiClient.GetToken(authResponse, signedData);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿namespace GisMtClient
-{
-    using DataContracts;
-    using RestSharp;
-    using RestSharp.Authenticators;
+﻿using GisMtClient.DataContracts;
+using RestSharp;
+using RestSharp.Authenticators;
 
+namespace GisMtClient
+{
     /// <summary>
-    /// MDLP REST API authenticator using credentials.
+    /// GIS MT REST API authenticator using credentials.
     /// </summary>
     internal class CredentialsAuthenticator : IAuthenticator
     {
@@ -27,14 +27,14 @@
             NotAuthenticated, InProgress, Authenticated
         }
 
-        private AuthToken AuthToken { get; set; }
+        internal AuthToken AuthToken { get; set; }
 
         private string AuthHeader { get; set; }
 
         public void SetAuthToken(string authToken)
         {
             AuthHeader = string.IsNullOrWhiteSpace(authToken) ?
-                null : "token " + authToken;
+                null : "Bearer " + authToken;
         }
 
         public void Authenticate(IRestClient client, IRestRequest request)
