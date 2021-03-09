@@ -40,6 +40,11 @@ namespace FairMark.TrueApi.Tests
             {
                 // logs out
                 Assert.DoesNotThrow(() => client.Dispose());
+                Assert.IsFalse(client.IsAuthenticated);
+                if (client.Client.Authenticator is CredentialsAuthenticator auth)
+                {
+                    Assert.IsNull(auth.AuthToken);
+                }
             }
         }
     }

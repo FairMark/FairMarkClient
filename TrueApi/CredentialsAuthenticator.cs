@@ -54,5 +54,11 @@ namespace FairMark.TrueApi
                request.AddOrUpdateParameter("Authorization", AuthHeader, ParameterType.HttpHeader);
             }
         }
+
+        public void Logout()
+        {
+            State = AuthState.NotAuthenticated;
+            AuthToken = null;
+        }
     }
 }

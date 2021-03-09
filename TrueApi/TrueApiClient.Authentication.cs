@@ -44,6 +44,7 @@ namespace FairMark.TrueApi
         internal void Logout()
         {
             // Get("logout"); is not supported
+            (Client.Authenticator as CredentialsAuthenticator)?.Logout();
             IsAuthenticated = false;
         }
     }
