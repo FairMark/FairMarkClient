@@ -10,7 +10,7 @@ using RestSharp.Serialization.Json;
 
 namespace FairMark.TrueApi
 {
-    partial class MtClient
+    partial class TrueApiClient
     {
         private const string ApiMethodNameHeaderName = "X-ApiMethodName";
         private const string ApiTimestampParameterName = "X-ApiTimestamp";

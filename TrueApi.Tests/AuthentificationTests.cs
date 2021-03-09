@@ -11,26 +11,35 @@ namespace FairMark.TrueApi.Tests
     public class AuthentificationTests : UnitTestsBase
     {
         [Test]
-        public void MtClientAuthenticates()
+        public void TrueApiClientAuthenticates()
         {
-            var client = new MtClient(MtClient.SandboxApiUrl, new Credentials
+            var client = new TrueApiClient(TrueApiClient.SandboxApiUrl, new Credentials
             {
                 OmsID = OmsID,
                 Connection = Token,
                 UserID = TestCertificateThumbprint,
             });
 
-            var s = client.Get("auth/key");
-            Assert.NotNull(s);
-            Assert.IsTrue(client.IsAuthenticated);
+            try
+            {
+                // authenticates and requests a resource
+                var s = client.Get("auth/key");
+                Assert.NotNull(s);
+                Assert.IsTrue(client.IsAuthenticated);
 
-            if (client.Client.Authenticator is CredentialsAuthenticator auth)
-            {
-                Assert.NotNull(auth.AuthToken);
+                if (client.Client.Authenticator is CredentialsAuthenticator auth)
+                {
+                    Assert.NotNull(auth.AuthToken);
+                }
+                else
+                {
+                    Assert.Fail("Authenticator is missing");
+                }
             }
-            else
+            finally
             {
-                Assert.Fail("Authenticator is missing");
+                // logs out
+                Assert.DoesNotThrow(() => client.Dispose());
             }
         }
     }

@@ -13,7 +13,7 @@ namespace FairMark.TrueApi
     /// True API Exception.
     /// </summary>
     [Serializable]
-    public class GisMtException : Exception
+    public class TrueApiException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MdlpException"/> class.
@@ -22,7 +22,7 @@ namespace FairMark.TrueApi
         /// <param name="message">Error message.</param>
         /// <param name="errorResponse"><see cref="ErrorResponse"/> instance, if available.</param>
         /// <param name="innerException">Inner <see cref="Exception"/> instance.</param>
-        public GisMtException(HttpStatusCode code, string message, ErrorResponse errorResponse, Exception innerException)
+        public TrueApiException(HttpStatusCode code, string message, ErrorResponse errorResponse, Exception innerException)
             : base(GetMessage(code, message), innerException)
         {
             StatusCode = code;
@@ -40,7 +40,7 @@ namespace FairMark.TrueApi
         }
 
         /// <inheritdoc/>
-        protected GisMtException(SerializationInfo info, StreamingContext context)
+        protected TrueApiException(SerializationInfo info, StreamingContext context)
         {
             StatusCode = (HttpStatusCode)info.GetInt32("Code");
             if (info.GetString("Path") != null)

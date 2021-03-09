@@ -33,7 +33,7 @@ namespace FairMark.TrueApi
         /// </summary>
         /// <param name="apiClient">GIS MT client to perform API calls.</param>
         /// <returns><see cref="AuthToken"/> instance.</returns>
-        public AuthToken Authenticate(MtClient apiClient)
+        public AuthToken Authenticate(TrueApiClient apiClient)
         {
             // load the certificate with a private key by userId
             var certificate = apiClient.UserCertificate;

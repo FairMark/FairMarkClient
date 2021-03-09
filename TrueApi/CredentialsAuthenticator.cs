@@ -9,14 +9,14 @@ namespace FairMark.TrueApi
     /// </summary>
     internal class CredentialsAuthenticator : IAuthenticator
     {
-        public CredentialsAuthenticator(MtClient apiClient, Credentials credentials)
+        public CredentialsAuthenticator(TrueApiClient apiClient, Credentials credentials)
         {
             State = AuthState.NotAuthenticated;
             Client = apiClient;
             Credentials = credentials;
         }
 
-        private MtClient Client { get; set; }
+        private TrueApiClient Client { get; set; }
 
         private Credentials Credentials { get; set; }
 

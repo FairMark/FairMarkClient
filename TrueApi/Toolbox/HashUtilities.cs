@@ -1,12 +1,12 @@
-﻿namespace FairMark.TrueApi.Toolbox
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
+namespace FairMark.TrueApi.Toolbox
+{
     /// <summary>
     /// Helper class for working with hashes.
     /// </summary>

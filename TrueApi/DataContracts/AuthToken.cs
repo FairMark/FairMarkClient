@@ -1,11 +1,11 @@
-﻿namespace FairMark.TrueApi.DataContracts
-{
-    using System;
-    using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
+namespace FairMark.TrueApi.DataContracts
+{
     /// <summary>
-    /// MDLP REST API authentication token.
-    /// 6.2.2. Метод для получения ключа сессии
+    /// True API authentication token.
+    /// 1.5.2. Получение ключа сессии при единой аутентификации
     /// </summary>
     [DataContract]
     public class AuthToken
@@ -43,7 +43,7 @@
         /// <summary>
         /// Gets or sets the token lifetime, in minutes.
         /// </summary>
-        [DataMember(Name = "life_time")]
-        public int LifeTime { get; set; }
+        [IgnoreDataMember]
+        public int LifeTime { get; } = (int)TimeSpan.FromHours(10).TotalMinutes;
     }
 }

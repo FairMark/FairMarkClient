@@ -1,12 +1,12 @@
+using System;
+using System.Runtime.CompilerServices;
+////using FairMark.TrueApi.DataContracts;
+using RestSharp;
+using RestSharp.Serialization;
+using ServiceStack.Text;
+
 namespace FairMark.TrueApi.Serialization
 {
-    using System;
-    using System.Runtime.CompilerServices;
-    ////using FairMark.TrueApi.DataContracts;
-    using RestSharp;
-    using RestSharp.Serialization;
-    using ServiceStack.Text;
-
     /// <summary>
     /// ServiceStack.Text.v4.0.33-based serializer.
     /// </summary>

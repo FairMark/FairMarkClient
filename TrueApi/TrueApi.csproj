@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="MtClient.Tracing.cs" />
+    <None Include="TrueApiClient.Tracing.cs" />
   </ItemGroup>
 
   <ItemGroup>

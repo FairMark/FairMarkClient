@@ -15,7 +15,7 @@ namespace FairMark.TrueApi
     /// <summary>
     /// True API Client.
     /// </summary>
-    public partial class MtClient
+    public partial class TrueApiClient
     {
         /// <summary>
         /// Sandbox API endpoint.
@@ -31,21 +31,21 @@ namespace FairMark.TrueApi
         public const string ProductionApiUrl = "https://ismp.crpt.ru/api/v3/";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MtClient"/> class.
+        /// Initializes a new instance of the <see cref="TrueApiClient"/> class.
         /// </summary>
         /// <param name="baseUrl">Base API URL, see <see cref="SandboxApiHttps"/>.</param>
         /// <param name="credentials">Credentials.</param>
-        public MtClient(string baseUrl, Credentials credentials)
+        public TrueApiClient(string baseUrl, Credentials credentials)
             : this(new RestClient(baseUrl), credentials)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MtClient"/> class.
+        /// Initializes a new instance of the <see cref="TrueApiClient"/> class.
         /// </summary>
         /// <param name="client">REST API client, see <see cref="RestSharp"/>.</param>
         /// <param name="credentials">Credentials.</param>
-        public MtClient(IRestClient client, Credentials credentials)
+        public TrueApiClient(IRestClient client, Credentials credentials)
         {
             Credentials = credentials;
             Serializer = new ServiceStackSerializer();
@@ -183,7 +183,7 @@ namespace FairMark.TrueApi
                 }
 
                 // finally, throw it
-                throw new GisMtException(response.StatusCode, errorMessage, errorResponse, response.ErrorException);
+                throw new TrueApiException(response.StatusCode, errorMessage, errorResponse, response.ErrorException);
             }
         }
 
@@ -359,28 +359,6 @@ namespace FairMark.TrueApi
             }
 
             Execute(request, apiMethodName);
-        }
-
-        internal AuthResponse Authenticate()
-        {
-            return Get<AuthResponse>("auth/key");
-        }
-
-        internal AuthToken GetToken(AuthResponse authResponse, string signedData)
-        {
-            var token = Post<AuthToken>("auth/simpleSignIn", new
-            {
-                uuid = authResponse.UUID,
-                data = signedData,
-            });
-
-            IsAuthenticated = true;
-            return token;
-        }
-
-        internal void Logout()
-        {
-            throw new NotImplementedException();
         }
     }
 }
