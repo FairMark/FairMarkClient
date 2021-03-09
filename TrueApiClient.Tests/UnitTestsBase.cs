@@ -1,6 +1,6 @@
-﻿using GisMtClient.Toolbox;
+﻿using FairMark.TrueApiClient.Toolbox;
 
-namespace GisMtClient.Tests
+namespace FairMark.TrueApiClient.Tests
 {
     public class UnitTestsBase
     {

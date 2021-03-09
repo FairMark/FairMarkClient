@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GisMtClient.DataContracts
+namespace FairMark.TrueApiClient.DataContracts
 {
     /// <summary>
     /// Структура, которая содержит поля, встречающиеся в сообщениях об ошибках.

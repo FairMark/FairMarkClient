@@ -5,9 +5,9 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using GisMtClient.DataContracts;
+using FairMark.TrueApiClient.DataContracts;
 
-namespace GisMtClient
+namespace FairMark.TrueApiClient
 {
     /// <summary>
     /// GIS MT REST API Exception.

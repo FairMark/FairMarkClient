@@ -1,8 +1,8 @@
-namespace GisMtClient.Serialization
+namespace FairMark.TrueApiClient.Serialization
 {
     using System;
     using System.Runtime.CompilerServices;
-    ////using GisMtClient.DataContracts;
+    ////using FairMark.TrueApiClient.DataContracts;
     using RestSharp;
     using RestSharp.Serialization;
     using ServiceStack.Text;

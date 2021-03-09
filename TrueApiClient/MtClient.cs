@@ -4,13 +4,13 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
-using GisMtClient.DataContracts;
-using GisMtClient.Serialization;
-using GisMtClient.Toolbox;
+using FairMark.TrueApiClient.DataContracts;
+using FairMark.TrueApiClient.Serialization;
+using FairMark.TrueApiClient.Toolbox;
 using RestSharp;
 using RestSharp.Serialization;
 
-namespace GisMtClient
+namespace FairMark.TrueApiClient
 {
     /// <summary>
     /// GIS MT REST API Client.

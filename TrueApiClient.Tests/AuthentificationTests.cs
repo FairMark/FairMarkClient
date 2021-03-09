@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace GisMtClient.Tests
+namespace FairMark.TrueApiClient.Tests
 {
     [TestFixture]
     public class AuthentificationTests : UnitTestsBase

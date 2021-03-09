@@ -1,8 +1,8 @@
-﻿using GisMtClient.Toolbox;
+﻿using System.Security.Cryptography.X509Certificates;
+using FairMark.TrueApiClient.Toolbox;
 using NUnit.Framework;
-using System.Security.Cryptography.X509Certificates;
 
-namespace GisMtClient.Tests
+namespace FairMark.TrueApiClient.Tests
 {
     [TestFixture]
     public class GostCryptoHelpersTests : UnitTestsBase

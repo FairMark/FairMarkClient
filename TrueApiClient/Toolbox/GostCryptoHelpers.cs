@@ -1,4 +1,4 @@
-﻿namespace GisMtClient.Toolbox
+﻿namespace FairMark.TrueApiClient.Toolbox
 {
     using GostCryptography.Base;
     using GostCryptography.Pkcs;

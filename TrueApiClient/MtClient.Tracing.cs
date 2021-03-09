@@ -4,11 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GisMtClient.Toolbox;
+using FairMark.TrueApiClient.Toolbox;
 using RestSharp;
 using RestSharp.Serialization.Json;
 
-namespace GisMtClient
+namespace FairMark.TrueApiClient
 {
     partial class MtClient
     {

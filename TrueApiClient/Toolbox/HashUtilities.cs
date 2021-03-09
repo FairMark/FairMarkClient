@@ -1,4 +1,4 @@
-﻿namespace GisMtClient.Toolbox
+﻿namespace FairMark.TrueApiClient.Toolbox
 {
     using System;
     using System.Collections.Generic;

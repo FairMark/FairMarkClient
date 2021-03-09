@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace GisMtClient.DataContracts
+namespace FairMark.TrueApiClient.DataContracts
 {
     [DataContract]
     public class AuthResponse

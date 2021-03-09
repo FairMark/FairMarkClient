@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GisMtClient.Toolbox
+namespace FairMark.TrueApiClient.Toolbox
 {
     /// <summary>
     /// Dependency-free JSON formatter.

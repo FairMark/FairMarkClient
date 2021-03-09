@@ -1,8 +1,8 @@
-﻿using GisMtClient.DataContracts;
+﻿using FairMark.TrueApiClient.DataContracts;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace GisMtClient
+namespace FairMark.TrueApiClient
 {
     /// <summary>
     /// GIS MT REST API authenticator using credentials.

@@ -1,4 +1,4 @@
-﻿namespace GisMtClient.DataContracts
+﻿namespace FairMark.TrueApiClient.DataContracts
 {
     using System;
     using System.Runtime.Serialization;

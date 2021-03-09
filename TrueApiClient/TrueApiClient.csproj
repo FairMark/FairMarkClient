@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <AssemblyName>FairMark.TrueApiClient</AssemblyName>
+    <RootNamespace>FairMark.TrueApiClient</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

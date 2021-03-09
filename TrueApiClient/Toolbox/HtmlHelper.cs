@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace GisMtClient.Toolbox
+namespace FairMark.TrueApiClient.Toolbox
 {
     internal static class HtmlHelper
     {

@@ -1,9 +1,9 @@
 ﻿using System.Security;
 using System.Text;
-using GisMtClient.DataContracts;
-using GisMtClient.Toolbox;
+using FairMark.TrueApiClient.DataContracts;
+using FairMark.TrueApiClient.Toolbox;
 
-namespace GisMtClient
+namespace FairMark.TrueApiClient
 {
     /// <summary>
     /// GIS MT Credentials.
