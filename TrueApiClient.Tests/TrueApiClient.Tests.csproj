@@ -19,7 +19,7 @@
   </ItemGroup>
   
   <ItemGroup>
-     <ProjectReference Include="..\GisMtClient\GisMtClient.csproj" />
+     <ProjectReference Include="..\TrueApiClient\TrueApiClient.csproj" />
   </ItemGroup>
   
   <ItemGroup>
