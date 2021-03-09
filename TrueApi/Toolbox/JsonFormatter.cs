@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FairMark.TrueApiClient.Toolbox
+namespace FairMark.TrueApi.Toolbox
 {
     /// <summary>
     /// Dependency-free JSON formatter.

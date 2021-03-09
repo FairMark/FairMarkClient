@@ -1,4 +1,4 @@
-﻿namespace FairMark.TrueApiClient.DataContracts
+﻿namespace FairMark.TrueApi.DataContracts
 {
     using System;
     using System.Runtime.Serialization;

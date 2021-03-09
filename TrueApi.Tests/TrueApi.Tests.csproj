@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>FairMark.TrueApiClient.Tests</AssemblyName>
-    <RootNamespace>FairMark.TrueApiClient.Tests</RootNamespace>
+    <AssemblyName>FairMark.TrueApi.Tests</AssemblyName>
+    <RootNamespace>FairMark.TrueApi.Tests</RootNamespace>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,7 +21,7 @@
   </ItemGroup>
   
   <ItemGroup>
-     <ProjectReference Include="..\TrueApiClient\TrueApiClient.csproj" />
+     <ProjectReference Include="..\TrueApi\TrueApi.csproj" />
   </ItemGroup>
   
   <ItemGroup>

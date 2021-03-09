@@ -1,8 +1,8 @@
-namespace FairMark.TrueApiClient.Serialization
+namespace FairMark.TrueApi.Serialization
 {
     using System;
     using System.Runtime.CompilerServices;
-    ////using FairMark.TrueApiClient.DataContracts;
+    ////using FairMark.TrueApi.DataContracts;
     using RestSharp;
     using RestSharp.Serialization;
     using ServiceStack.Text;

@@ -4,11 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FairMark.TrueApiClient.Toolbox;
+using FairMark.TrueApi.Toolbox;
 using RestSharp;
 using RestSharp.Serialization.Json;
 
-namespace FairMark.TrueApiClient
+namespace FairMark.TrueApi
 {
     partial class MtClient
     {

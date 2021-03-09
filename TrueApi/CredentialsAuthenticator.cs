@@ -1,11 +1,11 @@
-﻿using FairMark.TrueApiClient.DataContracts;
+﻿using FairMark.TrueApi.DataContracts;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace FairMark.TrueApiClient
+namespace FairMark.TrueApi
 {
     /// <summary>
-    /// GIS MT REST API authenticator using credentials.
+    /// True API authenticator using credentials.
     /// </summary>
     internal class CredentialsAuthenticator : IAuthenticator
     {

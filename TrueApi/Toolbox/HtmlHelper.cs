@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace FairMark.TrueApiClient.Toolbox
+namespace FairMark.TrueApi.Toolbox
 {
     internal static class HtmlHelper
     {

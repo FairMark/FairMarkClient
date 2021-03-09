@@ -4,16 +4,16 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
-using FairMark.TrueApiClient.DataContracts;
-using FairMark.TrueApiClient.Serialization;
-using FairMark.TrueApiClient.Toolbox;
+using FairMark.TrueApi.DataContracts;
+using FairMark.TrueApi.Serialization;
+using FairMark.TrueApi.Toolbox;
 using RestSharp;
 using RestSharp.Serialization;
 
-namespace FairMark.TrueApiClient
+namespace FairMark.TrueApi
 {
     /// <summary>
-    /// GIS MT REST API Client.
+    /// True API Client.
     /// </summary>
     public partial class MtClient
     {

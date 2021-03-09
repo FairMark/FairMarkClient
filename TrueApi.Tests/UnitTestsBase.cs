@@ -1,6 +1,6 @@
-﻿using FairMark.TrueApiClient.Toolbox;
+﻿using FairMark.TrueApi.Toolbox;
 
-namespace FairMark.TrueApiClient.Tests
+namespace FairMark.TrueApi.Tests
 {
     public class UnitTestsBase
     {

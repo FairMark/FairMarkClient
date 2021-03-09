@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrueApiClient", "TrueApiClient\TrueApiClient.csproj", "{9E173CD0-F789-4512-873D-02E765FBDF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrueApi", "TrueApi\TrueApi.csproj", "{9E173CD0-F789-4512-873D-02E765FBDF12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueApiClient.Tests", "TrueApiClient.Tests\TrueApiClient.Tests.csproj", "{6811BD91-847C-4DF0-A77C-3B8584889BB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueApi.Tests", "TrueApi.Tests\TrueApi.Tests.csproj", "{6811BD91-847C-4DF0-A77C-3B8584889BB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

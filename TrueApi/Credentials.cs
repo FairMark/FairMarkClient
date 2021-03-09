@@ -1,12 +1,12 @@
 ﻿using System.Security;
 using System.Text;
-using FairMark.TrueApiClient.DataContracts;
-using FairMark.TrueApiClient.Toolbox;
+using FairMark.TrueApi.DataContracts;
+using FairMark.TrueApi.Toolbox;
 
-namespace FairMark.TrueApiClient
+namespace FairMark.TrueApi
 {
     /// <summary>
-    /// GIS MT Credentials.
+    /// True API Credentials.
     /// </summary>
     public class Credentials
     {

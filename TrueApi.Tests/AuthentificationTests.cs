@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace FairMark.TrueApiClient.Tests
+namespace FairMark.TrueApi.Tests
 {
     [TestFixture]
     public class AuthentificationTests : UnitTestsBase

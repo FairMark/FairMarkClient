@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace FairMark.TrueApiClient.DataContracts
+namespace FairMark.TrueApi.DataContracts
 {
     [DataContract]
     public class AuthResponse

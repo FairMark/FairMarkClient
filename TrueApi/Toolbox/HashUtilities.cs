@@ -1,4 +1,4 @@
-﻿namespace FairMark.TrueApiClient.Toolbox
+﻿namespace FairMark.TrueApi.Toolbox
 {
     using System;
     using System.Collections.Generic;

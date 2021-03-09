@@ -5,12 +5,12 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using FairMark.TrueApiClient.DataContracts;
+using FairMark.TrueApi.DataContracts;
 
-namespace FairMark.TrueApiClient
+namespace FairMark.TrueApi
 {
     /// <summary>
-    /// GIS MT REST API Exception.
+    /// True API Exception.
     /// </summary>
     [Serializable]
     public class GisMtException : Exception

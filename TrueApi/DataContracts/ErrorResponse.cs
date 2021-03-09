@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FairMark.TrueApiClient.DataContracts
+namespace FairMark.TrueApi.DataContracts
 {
     /// <summary>
     /// Структура, которая содержит поля, встречающиеся в сообщениях об ошибках.

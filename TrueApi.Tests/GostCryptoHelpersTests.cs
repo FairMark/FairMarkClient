@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using FairMark.TrueApiClient.Toolbox;
+using FairMark.TrueApi.Toolbox;
 using NUnit.Framework;
 
-namespace FairMark.TrueApiClient.Tests
+namespace FairMark.TrueApi.Tests
 {
     [TestFixture]
     public class GostCryptoHelpersTests : UnitTestsBase
