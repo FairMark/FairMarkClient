@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FairMark.TrueApi.DataContracts;
 using NUnit.Framework;
 
 namespace FairMark.TrueApi.Tests

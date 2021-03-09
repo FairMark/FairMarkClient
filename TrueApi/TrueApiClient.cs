@@ -151,9 +151,9 @@ namespace FairMark.TrueApi
                         errorResponse = Serializer.Deserialize<ErrorResponse>(response);
                         contentMessage = string.Join(". ", new[]
                         {
-                            errorResponse.Error,
-                            errorResponse.Message,
-                            errorResponse.Description,
+                            errorResponse.ErrorMessage,
+                            //errorResponse.Message,
+                            //errorResponse.Description,
                         }
                         .Distinct()
                         .Where(m => !string.IsNullOrWhiteSpace(m)));

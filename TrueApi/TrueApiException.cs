@@ -47,12 +47,13 @@ namespace FairMark.TrueApi
             {
                 ErrorResponse = new ErrorResponse
                 {
-                    TimeStamp = info.GetDateTime("TimeStamp"),
-                    StatusCode = info.GetInt32("StatusCode"),
-                    Error = info.GetString("Error"),
-                    Message = info.GetString("Message"),
-                    Path = info.GetString("Path"),
-                    Description = info.GetString("Description"),
+                    ErrorMessage = info.GetString("ErrorMessage"),
+                    //TimeStamp = info.GetDateTime("TimeStamp"),
+                    //StatusCode = info.GetInt32("StatusCode"),
+                    //Error = info.GetString("Error"),
+                    //Message = info.GetString("Message"),
+                    //Path = info.GetString("Path"),
+                    //Description = info.GetString("Description"),
                 };
             }
         }
@@ -75,12 +76,13 @@ namespace FairMark.TrueApi
             info.AddValue("Code", (int)StatusCode);
             if (ErrorResponse != null)
             {
-                info.AddValue("TimeStamp", ErrorResponse.TimeStamp);
-                info.AddValue("StatusCode", ErrorResponse.StatusCode);
-                info.AddValue("Error", ErrorResponse.Error);
-                info.AddValue("Message", ErrorResponse.Message);
-                info.AddValue("Path", ErrorResponse.Path);
-                info.AddValue("Description", ErrorResponse.Description);
+                info.AddValue("ErrorMessage", ErrorResponse.ErrorMessage);
+                //info.AddValue("TimeStamp", ErrorResponse.TimeStamp);
+                //info.AddValue("StatusCode", ErrorResponse.StatusCode);
+                //info.AddValue("Error", ErrorResponse.Error);
+                //info.AddValue("Message", ErrorResponse.Message);
+                //info.AddValue("Path", ErrorResponse.Path);
+                //info.AddValue("Description", ErrorResponse.Description);
             }
         }
     }

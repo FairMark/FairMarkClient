@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace FairMark.TrueApi.DataContracts
 {
@@ -13,52 +8,58 @@ namespace FairMark.TrueApi.DataContracts
     [DataContract]
     public class ErrorResponse
     {
-        // Sometimes error response has this structure: { timestamp, status, error, message, path }
-
-        /// <summary>
-        /// Время ошибки
-        /// </summary>
-        [DataMember(Name = "timestamp")] // "2020-04-13T12:51:22.873+0000",
-        public DateTime TimeStamp { get; set; }
-
-        /// <summary>
-        /// HTTP-статус ошибки, числовой код
-        /// </summary>
-        [DataMember(Name = "status")] // 404,
-        public int StatusCode { get; set; }
-
-        /// <summary>
-        /// HTTP-статус ошибки, текстовое представление
-        /// </summary>
-        [DataMember(Name = "error")] // "Not Found",
-        public string Error { get; set; }
-
         /// <summary>
         /// Сообщение об ошибке, текстовое представление
         /// </summary>
-        [DataMember(Name = "message")] // "Not Found",
-        public string Message { get; set; }
+        [DataMember(Name = "error_message")] // "Для доступа к этому ресурсу требуется полная аутентификация"
+        public string ErrorMessage { get; set; }
 
-        /// <summary>
-        /// Запрошенный путь
-        /// </summary>
-        [DataMember(Name = "path")] // "/api/v1/reestr/shtuchek/dryuchek"
-        public string Path { get; set; }
+        //// Sometimes error response has this structure: { timestamp, status, error, message, path }
 
-        // And sometimes it's like { error_description: "hey" }
+        ///// <summary>
+        ///// Время ошибки
+        ///// </summary>
+        //[DataMember(Name = "timestamp")] // "2020-04-13T12:51:22.873+0000",
+        //public DateTime TimeStamp { get; set; }
 
-        /// <summary>
-        /// Сообщение об ошибке, текстовое представление
-        /// </summary>
-        [DataMember(Name = "error_description")] // "Ошибка такая-то с подробностями",
-        public string Description { get; set; }
+        ///// <summary>
+        ///// HTTP-статус ошибки, числовой код
+        ///// </summary>
+        //[DataMember(Name = "status")] // 404,
+        //public int StatusCode { get; set; }
 
-        // And sometimes it's like { success: false, violations: ["one", "two", "three"] }
+        ///// <summary>
+        ///// HTTP-статус ошибки, текстовое представление
+        ///// </summary>
+        //[DataMember(Name = "error")] // "Not Found",
+        //public string Error { get; set; }
 
-        [DataMember(Name = "success")]
-        public bool Success { get; set; }
+        ///// <summary>
+        ///// Сообщение об ошибке, текстовое представление
+        ///// </summary>
+        //[DataMember(Name = "message")] // "Not Found",
+        //public string Message { get; set; }
 
-        [DataMember(Name = "violations")]
-        public string[] Violations { get; set; }
+        ///// <summary>
+        ///// Запрошенный путь
+        ///// </summary>
+        //[DataMember(Name = "path")] // "/api/v1/reestr/shtuchek/dryuchek"
+        //public string Path { get; set; }
+
+        //// And sometimes it's like { error_description: "hey" }
+
+        ///// <summary>
+        ///// Сообщение об ошибке, текстовое представление
+        ///// </summary>
+        //[DataMember(Name = "error_description")] // "Ошибка такая-то с подробностями",
+        //public string Description { get; set; }
+
+        //// And sometimes it's like { success: false, violations: ["one", "two", "three"] }
+
+        //[DataMember(Name = "success")]
+        //public bool Success { get; set; }
+
+        //[DataMember(Name = "violations")]
+        //public string[] Violations { get; set; }
     }
 }
