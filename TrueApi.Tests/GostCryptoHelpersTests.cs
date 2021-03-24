@@ -30,7 +30,7 @@ namespace FairMark.TrueApi.Tests
         {
             var cert = GetTestCertificate();
             Assert.IsNotNull(cert);
-            Assert.AreEqual(cert.Thumbprint, TestCertificateThumbprint);
+            Assert.AreEqual(cert.Thumbprint.ToUpper(), TestCertificateThumbprint.ToUpper());
         }
 
         [Test]
