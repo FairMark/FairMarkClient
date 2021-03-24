@@ -16,7 +16,7 @@ namespace FairMark.TrueApi.Tests
         {
             var client = new TrueApiClient(TrueApiClient.SandboxApiUrl, new Credentials
             {
-                UserID = TestCertificateThumbprint,
+                CertificateThumbprint = TestCertificateThumbprint,
             });
 
             // test tracing

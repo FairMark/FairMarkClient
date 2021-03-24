@@ -13,7 +13,7 @@ namespace FairMark.TrueApi.Tests
     {
         private TrueApiClient Client { get; } = new TrueApiClient(TrueApiClient.SandboxApiUrl, new Credentials
         {
-            UserID = TestCertificateThumbprint,
+            CertificateThumbprint = TestCertificateThumbprint,
         })
         {
             Tracer = TestContext.Progress.WriteLine,

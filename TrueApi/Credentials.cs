@@ -13,7 +13,7 @@ namespace FairMark.TrueApi
         /// <summary>
         /// Gets or sets the user identity, same as the cryptographic certificate thumbprint.
         /// </summary>
-        public string UserID { get; set; }
+        public string CertificateThumbprint { get; set; }
 
         // <summary>
         // Gets or sets the OMS Identity, taken from the user's profile,
@@ -40,7 +40,7 @@ namespace FairMark.TrueApi
             {
                 throw new SecurityException("GOST-compliant certificate not found. " +
                     "Make sure that the certificate is properly installed and has the associated private key. " +
-                    "Thumbprint or subject name: " + UserID);
+                    "Thumbprint or subject name: " + CertificateThumbprint);
             }
 
             // get authentication code

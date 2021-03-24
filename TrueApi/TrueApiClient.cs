@@ -90,14 +90,16 @@ namespace FairMark.TrueApi
         /// <summary>
         /// X.509 certificate of the resident user (if applicable).
         /// </summary>
-        internal X509Certificate2 UserCertificate
+        public X509Certificate2 UserCertificate
         {
-            set { userCertificate = value; }
+            private set { userCertificate = value; }
             get
             {
                 if (userCertificate == null)
                 {
-                    userCertificate = GostCryptoHelpers.FindCertificate(Credentials.UserID);
+                    userCertificate = GostCryptoHelpers.FindCertificate(Credentials.CertificateThumbprint);
+                    if (userCertificate == null)
+                        userCertificate = GostCryptoHelpers.FindCertificate(Credentials.CertificateThumbprint, StoreName.My, StoreLocation.CurrentUser);
                 }
 
                 return userCertificate;
