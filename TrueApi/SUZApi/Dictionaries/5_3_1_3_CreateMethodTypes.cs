@@ -1,4 +1,4 @@
-﻿namespace FairMark.SUZApi.Dictionaries
+﻿namespace FairMark.SuzApi.Dictionaries
 {
     /// <summary>
     /// Список возможных значений справочника «Способ изготовления» createMethodType
@@ -9,18 +9,22 @@
         /// Самостоятельно
         /// </summary>
         SELF_MADE,
+
         /// <summary>
         /// ЦЭМ
         /// </summary>
         CEM,
+
         /// <summary>
         /// Контрактное производство
         /// </summary>
         CM,
+
         /// <summary>
         /// Логистический склад
         /// </summary>
         CL,
+
         /// <summary>
         /// Комиссионная площадка
         /// </summary>

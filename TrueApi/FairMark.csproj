@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Folder Include="TrueApi\DataContracts\5_1\" />
-    <Folder Include="SUZApi\DataContracts\" />
+    <Folder Include="SuzApi\DataContracts\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

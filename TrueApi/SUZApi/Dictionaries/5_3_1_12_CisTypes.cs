@@ -1,4 +1,4 @@
-﻿namespace FairMark.SUZApi.Dictionaries
+﻿namespace FairMark.SuzApi.Dictionaries
 {
     public enum CisTypes
     {
@@ -6,14 +6,17 @@
         /// Единица товара
         /// </summary>
         UNIT,
+
         /// <summary>
         /// Комплект
         /// </summary>
         BUNDLE,
+
         /// <summary>
         /// Групповая потребительская упаковка
         /// </summary>
         GROUP,
+
         /// <summary>
         /// Набор
         /// </summary>

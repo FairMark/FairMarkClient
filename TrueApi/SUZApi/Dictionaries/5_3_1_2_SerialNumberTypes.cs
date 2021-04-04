@@ -1,4 +1,4 @@
-﻿namespace FairMark.SUZApi.Dictionaries
+﻿namespace FairMark.SuzApi.Dictionaries
 {
     /// <summary>
     /// Возможные значения справочника «Способ формирования индивидуального серийного номера» serialNumberType
@@ -9,6 +9,7 @@
         /// Самостоятельно
         /// </summary>
         SELF_MADE,
+
         /// <summary>
         /// Оператором ГИС МТ
         /// </summary>

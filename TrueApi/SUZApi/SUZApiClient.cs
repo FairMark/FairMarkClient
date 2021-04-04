@@ -1,6 +1,6 @@
-﻿namespace FairMark.SUZApi
+﻿namespace FairMark.SuzApi
 {
-    public partial class SUZApiClient
+    public partial class SuzApiClient
     {
         // Придумать как сделать отдельные адреса для авторизации в СУЗ
         // Я бы сделал абстрактного клиента с методами Get, Get<>, Post и т.д. Дать каждому клиенту наследие от этого класса
@@ -11,6 +11,4 @@
         // postman: SUZ auth/cert/key + SUZ auth/cert
 
     }
-
-
 }
