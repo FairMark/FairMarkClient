@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using FairMark.TrueApi.DataContracts;
-
-namespace FairMark.TrueApi
+﻿namespace FairMark
 {
+    using System;
+    using System.Net;
+    using System.Runtime.Serialization;
+    using TrueApi.DataContracts;
+
     /// <summary>
     /// True API Exception.
     /// </summary>

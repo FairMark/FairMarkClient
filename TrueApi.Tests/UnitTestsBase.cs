@@ -1,7 +1,7 @@
-﻿using FairMark.TrueApi.Toolbox;
-
-namespace FairMark.TrueApi.Tests
+﻿namespace FairMark.TrueApi.Tests
 {
+    using Toolbox;
+
     public class UnitTestsBase
     {
         public const string TestCertificateSubjectName = "КС"; // "ООО \"БЕЛАЯ МЕБЕЛЬ\"";

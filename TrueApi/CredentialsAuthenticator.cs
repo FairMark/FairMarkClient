@@ -1,22 +1,22 @@
-﻿using FairMark.TrueApi.DataContracts;
-using RestSharp;
-using RestSharp.Authenticators;
-
-namespace FairMark.TrueApi
+﻿namespace FairMark
 {
+    using RestSharp;
+    using RestSharp.Authenticators;
+    using TrueApi.DataContracts._1_5;
+
     /// <summary>
     /// True API authenticator using credentials.
     /// </summary>
     internal class CredentialsAuthenticator : IAuthenticator
     {
-        public CredentialsAuthenticator(TrueApiClient apiClient, Credentials credentials)
+        public CredentialsAuthenticator(CommonApiClient apiClient, Credentials credentials)
         {
             State = AuthState.NotAuthenticated;
             Client = apiClient;
             Credentials = credentials;
         }
 
-        private TrueApiClient Client { get; set; }
+        private CommonApiClient Client { get; set; }
 
         private Credentials Credentials { get; set; }
 
@@ -51,7 +51,7 @@ namespace FairMark.TrueApi
             // add authorization header if any
             if (!string.IsNullOrWhiteSpace(AuthHeader))
             {
-               request.AddOrUpdateParameter("Authorization", AuthHeader, ParameterType.HttpHeader);
+                request.AddOrUpdateParameter("Authorization", AuthHeader, ParameterType.HttpHeader);
             }
         }
 

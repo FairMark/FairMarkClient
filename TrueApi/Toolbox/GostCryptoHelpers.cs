@@ -1,12 +1,12 @@
-﻿using System;
-using System.Security.Cryptography.Pkcs;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using GostCryptography.Base;
-using GostCryptography.Pkcs;
-
-namespace FairMark.TrueApi.Toolbox
+﻿namespace FairMark.Toolbox
 {
+    using System;
+    using System.Security.Cryptography.Pkcs;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Text;
+    using GostCryptography.Base;
+    using GostCryptography.Pkcs;
+
     /// <summary>
     /// Cryptographic utilities for GOST provider.
     /// </summary>

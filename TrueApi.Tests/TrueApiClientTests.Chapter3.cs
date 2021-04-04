@@ -8,8 +8,10 @@ using NUnit.Framework;
 
 namespace FairMark.TrueApi.Tests
 {
+    using DataContracts._3_1;
+
     [TestFixture]
-    public class TrueApiClientTests : UnitTestsBase
+    public partial class TrueApiClientTests : UnitTestsBase
     {
         private TrueApiClient Client { get; } = new TrueApiClient(TrueApiClient.SandboxApiUrl, new Credentials
         {
