@@ -1,6 +1,6 @@
-﻿namespace FairMark.SuzApi
+﻿namespace FairMark.OmsApi
 {
-    public partial class SuzApiClient
+    public partial class OmsApiClient
     {
         // Придумать как сделать отдельные адреса для авторизации в СУЗ
         // Я бы сделал абстрактного клиента с методами Get, Get<>, Post и т.д. Дать каждому клиенту наследие от этого класса

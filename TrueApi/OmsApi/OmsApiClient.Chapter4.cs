@@ -1,6 +1,6 @@
-﻿namespace FairMark.SuzApi
+﻿namespace FairMark.OmsApi
 {
-    partial class SuzApiClient
+    partial class OmsApiClient
     {
         // 4.5.1. Метод «Создать заказ на эмиссию кодов маркировки»
         // postman: SUZ milk/orders

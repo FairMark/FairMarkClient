@@ -16,11 +16,6 @@
     <PackageReference Include="ServiceStack.Text" Version="4.0.33" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TrueApi\DataContracts\5_1\" />
-    <Folder Include="SuzApi\DataContracts\" />
-  </ItemGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>True</DebugSymbols>

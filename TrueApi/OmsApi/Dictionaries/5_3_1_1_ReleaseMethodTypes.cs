@@ -1,4 +1,4 @@
-﻿namespace FairMark.SuzApi.Dictionaries
+﻿namespace FairMark.OmsApi.Dictionaries
 {
     /// <summary>
     /// Возможные значения справочника «Способ выпуска товаров в оборот»

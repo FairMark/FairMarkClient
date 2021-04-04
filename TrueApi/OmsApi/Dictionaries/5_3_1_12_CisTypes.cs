@@ -1,4 +1,4 @@
-﻿namespace FairMark.SuzApi.Dictionaries
+﻿namespace FairMark.OmsApi.Dictionaries
 {
     public enum CisTypes
     {
