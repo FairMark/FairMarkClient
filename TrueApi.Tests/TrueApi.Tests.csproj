@@ -21,7 +21,7 @@
   </ItemGroup>
   
   <ItemGroup>
-     <ProjectReference Include="..\TrueApi\TrueApi.csproj" />
+     <ProjectReference Include="..\TrueApi\FairMark.csproj" />
   </ItemGroup>
   
   <ItemGroup>

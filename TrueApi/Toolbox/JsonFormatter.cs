@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FairMark.TrueApi.Toolbox
+﻿namespace FairMark.Toolbox
 {
+    using System;
+    using System.Linq;
+
     /// <summary>
     /// Dependency-free JSON formatter.
     /// </summary>

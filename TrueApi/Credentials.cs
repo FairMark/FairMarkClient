@@ -1,10 +1,10 @@
-﻿using System.Security;
-using System.Text;
-using FairMark.TrueApi.DataContracts;
-using FairMark.TrueApi.Toolbox;
-
-namespace FairMark.TrueApi
+﻿namespace FairMark
 {
+    using System.Security;
+    using System.Text;
+    using Toolbox;
+    using TrueApi.DataContracts._1_5;
+
     /// <summary>
     /// True API Credentials.
     /// </summary>
@@ -32,7 +32,7 @@ namespace FairMark.TrueApi
         /// </summary>
         /// <param name="apiClient">GIS MT client to perform API calls.</param>
         /// <returns><see cref="AuthToken"/> instance.</returns>
-        public AuthToken Authenticate(TrueApiClient apiClient)
+        public AuthToken Authenticate(CommonApiClient apiClient)
         {
             // load the certificate with a private key by userId
             var certificate = apiClient.UserCertificate;
