@@ -1,6 +1,8 @@
 ﻿namespace FairMark.Toolbox
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Cryptography.Pkcs;
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
@@ -31,6 +33,21 @@
         }
 
         /// <summary>
+        /// Cleans up the provided certificate thumbprint: "a2 b1 0f..." -> "a2b10f...".
+        /// </summary>
+        /// <param name="thumbprint">Certificate thumbprint.</param>
+        /// <returns>Cleaned up thumbprint.</returns>
+        public static string CleanupThumbprint(string thumbprint)
+        {
+            if (string.IsNullOrEmpty(thumbprint))
+            {
+                return thumbprint;
+            }
+
+            return new string(thumbprint.Where(char.IsLetterOrDigit).ToArray());
+        }
+
+        /// <summary>
         /// Looks for the GOST certificate with a private key using the subject name or a thumbprint.
         /// Returns null, if certificate is not found, the algorithm isn't GOST-compliant, or the private key is not associated with it.
         /// </summary>
@@ -42,6 +59,9 @@
                 return null;
             }
 
+            // thumbprint match has a priority
+            var thumbprint = CleanupThumbprint(cnameOrThumbprint);
+
             // a thumbprint is a hexadecimal number, compare it case-insensitive
             using (var store = new X509Store(storeName, storeLocation ?? DefaultStoreLocation))
             {
@@ -51,9 +71,16 @@
                 {
                     if (certificate.HasPrivateKey && certificate.IsGost())
                     {
-                        var nameMatches = certificate.SubjectName.Name.IndexOf(cnameOrThumbprint, StringComparison.OrdinalIgnoreCase) >= 0;
-                        var thumbprintMatches = StringComparer.OrdinalIgnoreCase.Equals(certificate.Thumbprint, cnameOrThumbprint);
-                        if (nameMatches || thumbprintMatches)
+                        var thumbprintMatches = StringComparer.OrdinalIgnoreCase.Equals(certificate.Thumbprint, thumbprint);
+                        if (thumbprintMatches)
+                        {
+                            return certificate;
+                        }
+
+                        var subjectName = certificate.GetNameInfo(X509NameType.SimpleName, false);
+                        var nameMatches = subjectName.IndexOf(cnameOrThumbprint, StringComparison.OrdinalIgnoreCase) >= 0 &&
+                            subjectName.Length < cnameOrThumbprint.Length + 5;
+                        if (nameMatches)
                         {
                             return certificate;
                         }

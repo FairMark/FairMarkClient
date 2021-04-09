@@ -13,6 +13,16 @@
         }
 
         [Test]
+        public void CertificateThumbprintIsCleanedUp()
+        {
+            Assert.AreEqual(null, GostCryptoHelpers.CleanupThumbprint(null));
+            Assert.AreEqual(string.Empty, GostCryptoHelpers.CleanupThumbprint(string.Empty));
+            Assert.AreEqual(string.Empty, GostCryptoHelpers.CleanupThumbprint(" \t\v\r\n"));
+            Assert.AreEqual("1234abcd", GostCryptoHelpers.CleanupThumbprint(" 12 34  ab cd   "));
+            Assert.AreEqual(TestCertificateThumbprint, GostCryptoHelpers.CleanupThumbprint(TestCertificateThumbprintCopiedFromTheSnapin));
+        }
+
+        [Test]
         public void GostCryproProviderIsInstalled()
         {
             Assert.IsTrue(GostCryptoHelpers.IsGostCryptoProviderInstalled());
