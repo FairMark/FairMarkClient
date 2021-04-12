@@ -1,11 +1,11 @@
-﻿namespace FairMark.TrueApi.DataContracts._1_5
+﻿namespace FairMark.DataContracts
 {
     using System;
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// True API authentication token.
-    /// 1.5.2. Получение ключа сессии при единой аутентификации
+    /// Fair Mark API authentication token.
+    /// True Api 1.5.2. Получение ключа сессии при единой аутентификации
     /// </summary>
     [DataContract]
     public class AuthToken

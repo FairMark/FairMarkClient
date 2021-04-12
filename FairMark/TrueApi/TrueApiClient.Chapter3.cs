@@ -37,15 +37,5 @@
                 new Parameter("documentId", registrationDocId, ParameterType.UrlSegment),
             });
         }
-
-        /// <summary>
-        /// Invalidating the authentication token is not supported.
-        /// </summary>
-        internal void dLogout()
-        {
-            // Get("logout"); is not supported
-            (Client.Authenticator as CredentialsAuthenticator)?.Logout();
-            IsAuthenticated = false;
-        }
     }
 }

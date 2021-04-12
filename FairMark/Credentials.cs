@@ -2,11 +2,11 @@
 {
     using System.Security;
     using System.Text;
+    using DataContracts;
     using Toolbox;
-    using TrueApi.DataContracts._1_5;
 
     /// <summary>
-    /// True API Credentials.
+    /// Common FairMark credentials for True API, OMS API, etc.
     /// </summary>
     public class Credentials
     {

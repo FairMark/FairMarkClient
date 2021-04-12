@@ -1,8 +1,8 @@
 ﻿namespace FairMark
 {
+    using DataContracts;
     using RestSharp;
     using RestSharp.Authenticators;
-    using TrueApi.DataContracts._1_5;
 
     /// <summary>
     /// True API authenticator using credentials.
@@ -37,7 +37,7 @@
                 null : "Bearer " + authToken;
         }
 
-        public void Authenticate(IRestClient client, IRestRequest request)
+        public virtual void Authenticate(IRestClient client, IRestRequest request)
         {
             // perform authentication request
             if (State == AuthState.NotAuthenticated)
@@ -55,7 +55,7 @@
             }
         }
 
-        public void Logout()
+        public virtual void Logout()
         {
             State = AuthState.NotAuthenticated;
             AuthToken = null;
