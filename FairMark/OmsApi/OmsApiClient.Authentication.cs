@@ -10,31 +10,16 @@ namespace FairMark.OmsApi
 {
     public partial class OmsApiClient
     {
-        /// <summary>
-        /// Authentication Step 1.
-        /// TODO: Ссылка на документацию СУЗ?
-        /// Запрос авторизации при единой аутентификации
-        /// </summary>
+        // TODO: remove this
         internal override AuthResponse Authenticate()
         {
-            return Get<AuthResponse>(AuthUrl + "auth/cert/key");
+            throw new NotSupportedException();
         }
 
-        /// <summary>
-        /// Authentication Step 2.
-        /// TODO: Ссылка на документацию СУЗ?
-        /// Получение ключа сессии при единой аутентификации
-        /// </summary>
+        // TODO: remove this
         internal override AuthToken GetToken(AuthResponse authResponse, string signedData)
         {
-            var token = Post<AuthToken>(AuthUrl + "auth/cert", new
-            {
-                uuid = authResponse.UUID,
-                data = signedData,
-            });
-
-            IsAuthenticated = true;
-            return token;
+            throw new NotSupportedException();
         }
 
         /// <summary>

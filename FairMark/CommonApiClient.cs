@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="baseUrl">Base API URL, see <see cref="SandboxApiHttps"/>.</param>
         /// <param name="credentials">Credentials.</param>
-        public CommonApiClient(string baseUrl, Credentials credentials)
+        public CommonApiClient(string baseUrl, CommonCredentials credentials)
             : this(new RestClient(baseUrl), credentials)
         {
         }
@@ -31,7 +31,7 @@
         /// </summary>
         /// <param name="client">REST API client, see <see cref="RestSharp"/>.</param>
         /// <param name="credentials">Credentials.</param>
-        public CommonApiClient(IRestClient client, Credentials credentials)
+        public CommonApiClient(IRestClient client, CommonCredentials credentials)
         {
             Credentials = credentials;
             Serializer = new ServiceStackSerializer();
@@ -51,7 +51,7 @@
         {
             if (IsAuthenticated)
             {
-                Logout();
+                Authenticator.Logout();
             }
         }
 
@@ -67,7 +67,9 @@
         /// </summary>
         public IRestClient Client { get; private set; }
 
-        private Credentials Credentials { get; set; }
+        private CommonCredentials Credentials { get; set; }
+
+        private CredentialsAuthenticator Authenticator { get; set; }
 
         internal bool IsAuthenticated { get; set; }
 

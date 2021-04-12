@@ -13,7 +13,7 @@ namespace FairMark.TrueApi.Tests
     [TestFixture]
     public partial class TrueApiClientTests : UnitTestsBase
     {
-        private TrueApiClient Client { get; } = new TrueApiClient(TrueApiClient.SandboxApiUrl, new Credentials
+        private TrueApiClient Client { get; } = new TrueApiClient(TrueApiClient.SandboxApiUrl, new TrueApiCredentials
         {
             CertificateThumbprint = TestCertificateThumbprint,
         })

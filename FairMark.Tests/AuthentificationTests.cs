@@ -15,7 +15,7 @@ namespace FairMark.TrueApi.Tests
         [Test]
         public void TrueApiClientAuthenticates()
         {
-            var client = new TrueApiClient(TrueApiClient.SandboxApiUrl, new Credentials
+            var client = new TrueApiClient(TrueApiClient.SandboxApiUrl, new TrueApiCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
             });
@@ -62,9 +62,10 @@ namespace FairMark.TrueApi.Tests
         [Test]
         public void OmsApiClientAuthenticates()
         {
-            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, new Credentials
+            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, new OmsCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
+                OmsConnectionID = TestOmsConnectionID,
             });
 
             // test tracing
@@ -74,7 +75,7 @@ namespace FairMark.TrueApi.Tests
             try
             {
                 // authenticates and requests a resource
-                var s = client.Get("auth/key");
+                var s = client.Get("auth/cert/key");
                 Assert.NotNull(s);
                 Assert.IsTrue(client.IsAuthenticated);
 

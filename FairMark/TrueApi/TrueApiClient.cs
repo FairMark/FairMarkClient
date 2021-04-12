@@ -22,7 +22,7 @@
         /// </summary>
         /// <param name="baseUrl">Base URL of the True API.</param>
         /// <param name="credentials">Authentication credentials.</param>
-        public TrueApiClient(string baseUrl, Credentials credentials)
+        public TrueApiClient(string baseUrl, CommonCredentials credentials)
             : base(baseUrl, credentials)
         {
         }
@@ -32,7 +32,7 @@
         /// </summary>
         /// <param name="restClient">REST client.</param>
         /// <param name="credentials">Authentication credentials.</param>
-        public TrueApiClient(IRestClient restClient, Credentials credentials)
+        public TrueApiClient(IRestClient restClient, CommonCredentials credentials)
             : base(restClient, credentials)
         {
         }

@@ -9,7 +9,7 @@
     /// </summary>
     internal class CredentialsAuthenticator : IAuthenticator
     {
-        public CredentialsAuthenticator(CommonApiClient apiClient, Credentials credentials)
+        public CredentialsAuthenticator(CommonApiClient apiClient, CommonCredentials credentials)
         {
             State = AuthState.NotAuthenticated;
             Client = apiClient;
@@ -18,7 +18,7 @@
 
         private CommonApiClient Client { get; set; }
 
-        private Credentials Credentials { get; set; }
+        private CommonCredentials Credentials { get; set; }
 
         private AuthState State { get; set; }
 
@@ -46,6 +46,7 @@
                 AuthToken = Credentials.Authenticate(Client);
                 SetAuthToken(AuthToken.Token);
                 State = AuthState.Authenticated;
+                Client.IsAuthenticated = true;
             }
 
             // add authorization header if any
@@ -57,8 +58,10 @@
 
         public virtual void Logout()
         {
+            Credentials.Logout(Client);
             State = AuthState.NotAuthenticated;
             AuthToken = null;
+            Client.IsAuthenticated = false;
         }
     }
 }

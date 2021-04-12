@@ -5,6 +5,10 @@ namespace FairMark.OmsApi
     /// <summary>
     /// OMS Cloud API client.
     /// </summary>
+    /// <remarks>
+    /// Документация по API СУЗ Облако:
+    /// https://честныйзнак.рф/upload/iblock/07f/ru_API_OMS-CLOUD.pdf
+    /// </remarks>
     public partial class OmsApiClient : CommonApiClient
     {
         public const string SandboxApiUrl = "https://intuot.crpt.ru:12011/api/v2";
@@ -26,7 +30,7 @@ namespace FairMark.OmsApi
         /// <param name="apiUrl">OMS API endpoint.</param>
         /// <param name="authUrl">OMS Auth endpoint.</param>
         /// <param name="credentials">Authentication credentials.</param>
-        public OmsApiClient(string apiUrl, string authUrl, Credentials credentials)
+        public OmsApiClient(string apiUrl, string authUrl, CommonCredentials credentials)
             : base(apiUrl, credentials)
         {
             AuthUrl = authUrl.AppendMissing("/");
