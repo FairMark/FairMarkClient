@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FairMark.DataContracts;
 using FairMark.Toolbox;
+using RestSharp;
 
 namespace FairMark.OmsApi
 {
@@ -76,12 +77,16 @@ namespace FairMark.OmsApi
         /// </summary>
         private AuthToken GetToken(OmsApiClient omsClient, AuthResponse authResponse, string signedData)
         {
-            var url = $"{omsClient.AuthUrl}auth/cert/{OmsConnectionID}";
+            var url = omsClient.AuthUrl + "auth/cert/{OmsConnectionID}";
 
             return omsClient.Post<AuthToken>(url, new
             {
                 uuid = authResponse.UUID,
                 data = signedData,
+            },
+            new[]
+            {
+                new Parameter("OmsConnectionID", OmsConnectionID, ParameterType.UrlSegment),
             });
         }
 

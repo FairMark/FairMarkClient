@@ -58,7 +58,7 @@ namespace FairMark.TrueApi.Tests
             var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, "milk", new OmsCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
-                OmsID = TestOmsID,
+                OmsID = TestOmsID, // it's case sensitive, to my surprise
                 OmsConnectionID = TestOmsConnectionID,
             });
 
@@ -73,11 +73,17 @@ namespace FairMark.TrueApi.Tests
             try
             {
                 // authenticates and requests a resource
-                //var s = client.Get($"milk/ping?omsId={TestOmsID}");
                 var version = client.GetVersion();
                 Assert.NotNull(version);
+                Assert.NotNull(version.ApiVersion);
+                Assert.NotNull(version.OmsVersion);
                 Assert.IsTrue(client.Authenticator.IsAuthenticated);
                 Assert.NotNull(client.Authenticator.AuthToken);
+
+                // ping/pong
+                var omsId = client.Ping(); // ($"milk/ping?omsId={TestOmsID}");
+                Assert.NotNull(omsId);
+                Assert.AreEqual(omsId, client.OmsCredentials.OmsID);
             }
             finally
             {

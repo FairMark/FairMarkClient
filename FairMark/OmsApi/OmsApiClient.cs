@@ -31,7 +31,7 @@ namespace FairMark.OmsApi
         /// <param name="authUrl">OMS Auth endpoint.</param>
         /// <param name="extension">Extension, such as "milk", "tobacco", etc.</param>
         /// <param name="credentials">Authentication credentials.</param>
-        public OmsApiClient(string apiUrl, string authUrl, string extension, CommonCredentials credentials)
+        public OmsApiClient(string apiUrl, string authUrl, string extension, OmsCredentials credentials)
             : base(apiUrl, credentials)
         {
             AuthUrl = authUrl.AppendMissing("/");
@@ -47,5 +47,10 @@ namespace FairMark.OmsApi
         /// Extension type, such as "milk", "tobacco", etc.
         /// </summary>
         public string Extension { get; set; }
+
+        /// <summary>
+        /// OMS-specific credentials.
+        /// </summary>
+        public OmsCredentials OmsCredentials => (OmsCredentials)Credentials;
     }
 }

@@ -1,4 +1,7 @@
-﻿using FairMark.OmsApi.DataContracts;
+﻿using System;
+using System.Net;
+using FairMark.OmsApi.DataContracts;
+using RestSharp;
 
 namespace FairMark.OmsApi
 {
@@ -45,11 +48,36 @@ namespace FairMark.OmsApi
         //      Тут муть подобная 4.4.6.
 
         /// <summary>
-        /// Gets the current API and OMS versions.
+        /// Ping OMS to check if it's available.
+        /// 4.5.11. Метод «Проверить доступность СУЗ»
         /// </summary>
-        public Version GetVersion()
+        public string Ping()
         {
-            return Get<Version>($"{Extension}/version");
+            var omsId = OmsCredentials.OmsID;
+            var pong = Get<Pong>($"{Extension}/ping", new[]
+            {
+                new Parameter("omsId", omsId, ParameterType.QueryString),
+            });
+
+            // looks like OMS ID is case sensitive
+            if (pong.OmsID != omsId)
+            {
+                throw new FairMarkException(HttpStatusCode.ServiceUnavailable,
+                    "OMS Service seems to be unavailable. " +
+                    $"Unrecognized response: expected {omsId}, got {pong.OmsID}.",
+                    null, null);
+            }
+
+            return pong.OmsID;
+        }
+
+        /// <summary>
+        /// Gets the current API and OMS versions.
+        /// 4.5.13. Метод «Получить версию СУЗ и API»
+        /// </summary>
+        public Versions GetVersion()
+        {
+            return Get<Versions>($"{Extension}/version");
         }
     }
 }

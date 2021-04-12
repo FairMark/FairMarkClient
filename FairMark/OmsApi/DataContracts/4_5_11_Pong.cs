@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace FairMark.OmsApi.DataContracts
 {
+    /// <summary>
+    /// 4.5.11
+    /// </summary>
     [DataContract]
-    public class Version
+    internal class Pong
     {
-        [DataMember(Name = "apiVersion")]
-        public string ApiVersion { get; set; }
-
-        [DataMember(Name = "omsVersion")]
-        public string OmsVersion { get; set; }
+        [DataMember(Name = "omsId")]
+        public string OmsID { get; set; }
     }
 }
