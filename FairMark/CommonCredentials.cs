@@ -1,4 +1,5 @@
-﻿using FairMark.DataContracts;
+﻿using System;
+using FairMark.DataContracts;
 
 namespace FairMark
 {
@@ -26,5 +27,11 @@ namespace FairMark
         /// </summary>
         /// <param name="apiClient">REST API clientn to perform API calls.</param>
         public abstract void Logout(CommonApiClient apiClient);
+
+        /// <summary>
+        /// Formats the authentication header for REST requests.
+        /// </summary>
+        /// <param name="authToken">Authentication token.</param>
+        public abstract Tuple<string, string> FormatAuthHeader(string authToken);
     }
 }

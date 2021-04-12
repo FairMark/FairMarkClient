@@ -51,7 +51,7 @@ namespace FairMark.OmsApi
             apiClient.SignatureSize = Encoding.UTF8.GetByteCount(signedData);
 
             // get authentication token
-            return apiClient.GetToken(authResponse, signedData);
+            return GetToken(omsClient, authResponse, signedData);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace FairMark.OmsApi
         /// </summary>
         private AuthToken GetToken(OmsApiClient omsClient, AuthResponse authResponse, string signedData)
         {
-            var url = omsClient.AuthUrl + "auth/cert/6242a186-970c-4260-9bd9-b8f19ed66d4d";
+            var url = $"{omsClient.AuthUrl}auth/cert/{OmsConnectionID}";
 
             return omsClient.Post<AuthToken>(url, new
             {
@@ -85,6 +85,16 @@ namespace FairMark.OmsApi
         public override void Logout(CommonApiClient client)
         {
             //// Get("logout"); is not supported
+        }
+
+        /// <summary>
+        /// Formats the authentication header.
+        /// </summary>
+        /// <param name="authToken">Authentication token.</param>
+        public override Tuple<string, string> FormatAuthHeader(string authToken)
+        {
+            // OMS API uses simple GUID as a client token
+            return Tuple.Create("clientToken", authToken);
         }
     }
 }

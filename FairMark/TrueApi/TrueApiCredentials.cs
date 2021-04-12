@@ -35,14 +35,14 @@ namespace FairMark.TrueApi
             }
 
             // get authentication code
-            var authResponse = apiClient.Authenticate();
+            var authResponse = Authenticate(trueApiClient);
 
             // compute the signature and save the size
             var signedData = GostCryptoHelpers.ComputeAttachedSignature(certificate, authResponse.Data);
             apiClient.SignatureSize = Encoding.UTF8.GetByteCount(signedData);
 
             // get authentication token
-            return apiClient.GetToken(authResponse, signedData);
+            return GetToken(trueApiClient, authResponse, signedData);
         }
 
         /// <summary>
@@ -73,6 +73,16 @@ namespace FairMark.TrueApi
         public override void Logout(CommonApiClient client)
         {
             //// Get("logout"); is not supported
+        }
+
+        /// <summary>
+        /// Formats the authentication header.
+        /// </summary>
+        /// <param name="authToken">Authentication token.</param>
+        public override Tuple<string, string> FormatAuthHeader(string authToken)
+        {
+            // True API uses JWT bearer token
+            return Tuple.Create("Authorization", $"Bearer {authToken}");
         }
     }
 }

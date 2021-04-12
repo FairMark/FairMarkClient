@@ -34,13 +34,14 @@
         public CommonApiClient(IRestClient client, CommonCredentials credentials)
         {
             Credentials = credentials;
+            Authenticator = new CredentialsAuthenticator(this, credentials);
             Serializer = new ServiceStackSerializer();
             BaseUrl = client.BaseUrl.ToString();
             //Limiter = new RequestRateLimiter();
 
             // set up REST client
             Client = client;
-            Client.Authenticator = new CredentialsAuthenticator(this, credentials);
+            Client.Authenticator = Authenticator;
             Client.Encoding = Encoding.UTF8;
             Client.ThrowOnDeserializationError = false;
             Client.UseSerializer(() => Serializer);
@@ -49,7 +50,7 @@
         /// <inheritdoc/>
         public void Dispose()
         {
-            if (IsAuthenticated)
+            if (Authenticator.IsAuthenticated)
             {
                 Authenticator.Logout();
             }
@@ -67,11 +68,9 @@
         /// </summary>
         public IRestClient Client { get; private set; }
 
-        private CommonCredentials Credentials { get; set; }
+        internal CommonCredentials Credentials { get; set; }
 
-        private CredentialsAuthenticator Authenticator { get; set; }
-
-        internal bool IsAuthenticated { get; set; }
+        internal CredentialsAuthenticator Authenticator { get; set; }
 
         private X509Certificate2 userCertificate;
 

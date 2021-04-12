@@ -22,33 +22,26 @@ namespace FairMark.TrueApi.Tests
 
             // test tracing
             var trace = new StringBuilder();
-            client.Tracer = (f, a) => trace.AppendFormat(f, a);
+            client.Tracer = (f, a) =>
+            {
+                trace.AppendFormat(f, a);
+                TestContext.Progress.WriteLine(f, a);
+            };
 
             try
             {
                 // authenticates and requests a resource
                 var s = client.Get("auth/key");
                 Assert.NotNull(s);
-                Assert.IsTrue(client.IsAuthenticated);
-
-                if (client.Client.Authenticator is CredentialsAuthenticator auth)
-                {
-                    Assert.NotNull(auth.AuthToken);
-                }
-                else
-                {
-                    Assert.Fail("Authenticator is missing");
-                }
+                Assert.IsTrue(client.Authenticator.IsAuthenticated);
+                Assert.NotNull(client.Authenticator.AuthToken);
             }
             finally
             {
                 // logs out
                 Assert.DoesNotThrow(() => client.Dispose());
-                Assert.IsFalse(client.IsAuthenticated);
-                if (client.Client.Authenticator is CredentialsAuthenticator auth)
-                {
-                    Assert.IsNull(auth.AuthToken);
-                }
+                Assert.IsFalse(client.Authenticator.IsAuthenticated);
+                Assert.IsNull(client.Authenticator.AuthToken);
             }
 
             var traceText = trace.ToString();
@@ -70,37 +63,30 @@ namespace FairMark.TrueApi.Tests
 
             // test tracing
             var trace = new StringBuilder();
-            client.Tracer = (f, a) => trace.AppendFormat(f, a);
+            client.Tracer = (f, a) =>
+            {
+                trace.AppendFormat(f, a);
+                TestContext.Progress.WriteLine(f, a);
+            };
 
             try
             {
                 // authenticates and requests a resource
-                var s = client.Get("auth/cert/key");
+                var s = client.Get($"milk/ping?omsId={TestOmsID}");
                 Assert.NotNull(s);
-                Assert.IsTrue(client.IsAuthenticated);
-
-                if (client.Client.Authenticator is CredentialsAuthenticator auth)
-                {
-                    Assert.NotNull(auth.AuthToken);
-                }
-                else
-                {
-                    Assert.Fail("Authenticator is missing");
-                }
+                Assert.IsTrue(client.Authenticator.IsAuthenticated);
+                Assert.NotNull(client.Authenticator.AuthToken);
             }
             finally
             {
                 // logs out
                 Assert.DoesNotThrow(() => client.Dispose());
-                Assert.IsFalse(client.IsAuthenticated);
-                if (client.Client.Authenticator is CredentialsAuthenticator auth)
-                {
-                    Assert.IsNull(auth.AuthToken);
-                }
+                Assert.IsFalse(client.Authenticator.IsAuthenticated);
+                Assert.IsNull(client.Authenticator.AuthToken);
             }
 
             var traceText = trace.ToString();
-            Assert.IsTrue(traceText.Length > 0, "TrueApiClient trace is empty");
+            Assert.IsTrue(traceText.Length > 0, "OmsApiClient trace is empty");
             Assert.IsTrue(traceText.Contains("// Authenticate"));
             Assert.IsTrue(traceText.Contains("// GetToken"));
             Assert.IsTrue(traceText.Contains("-> GET"));

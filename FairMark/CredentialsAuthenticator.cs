@@ -1,11 +1,14 @@
 ﻿namespace FairMark
 {
+    using System;
     using DataContracts;
     using RestSharp;
     using RestSharp.Authenticators;
 
     /// <summary>
-    /// True API authenticator using credentials.
+    /// RestSharp client authenticator.
+    /// Uses credentials to log in to the API and get the auth token.
+    /// Sets the authentication headers on each REST request.
     /// </summary>
     internal class CredentialsAuthenticator : IAuthenticator
     {
@@ -27,14 +30,16 @@
             NotAuthenticated, InProgress, Authenticated
         }
 
+        public bool IsAuthenticated => State == AuthState.Authenticated;
+
         internal AuthToken AuthToken { get; set; }
 
-        private string AuthHeader { get; set; }
+        private Tuple<string, string> AuthHeader { get; set; }
 
-        public void SetAuthToken(string authToken)
+        protected virtual void SetAuthHeader(string authToken)
         {
-            AuthHeader = string.IsNullOrWhiteSpace(authToken) ?
-                null : "Bearer " + authToken;
+            AuthHeader = string.IsNullOrWhiteSpace(authToken) ? null :
+                Credentials.FormatAuthHeader(authToken);
         }
 
         public virtual void Authenticate(IRestClient client, IRestRequest request)
@@ -44,15 +49,14 @@
             {
                 State = AuthState.InProgress;
                 AuthToken = Credentials.Authenticate(Client);
-                SetAuthToken(AuthToken.Token);
+                SetAuthHeader(AuthToken.Token);
                 State = AuthState.Authenticated;
-                Client.IsAuthenticated = true;
             }
 
-            // add authorization header if any
-            if (!string.IsNullOrWhiteSpace(AuthHeader))
+            // add authorization header if specified
+            if (AuthHeader != null)
             {
-                request.AddOrUpdateParameter("Authorization", AuthHeader, ParameterType.HttpHeader);
+                request.AddOrUpdateParameter(AuthHeader.Item1, AuthHeader.Item2, ParameterType.HttpHeader);
             }
         }
 
@@ -61,7 +65,7 @@
             Credentials.Logout(Client);
             State = AuthState.NotAuthenticated;
             AuthToken = null;
-            Client.IsAuthenticated = false;
+            AuthHeader = null;
         }
     }
 }
