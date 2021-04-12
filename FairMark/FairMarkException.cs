@@ -6,19 +6,19 @@
     using TrueApi.DataContracts;
 
     /// <summary>
-    /// True API Exception.
+    /// FairMark API Exception.
     /// </summary>
     [Serializable]
-    public class TrueApiException : Exception
+    public class FairMarkException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MdlpException"/> class.
+        /// Initializes a new instance of the <see cref="FairMarkException"/> class.
         /// </summary>
         /// <param name="code">HTTP status code.</param>
         /// <param name="message">Error message.</param>
         /// <param name="errorResponse"><see cref="ErrorResponse"/> instance, if available.</param>
         /// <param name="innerException">Inner <see cref="Exception"/> instance.</param>
-        public TrueApiException(HttpStatusCode code, string message, ErrorResponse errorResponse, Exception innerException)
+        public FairMarkException(HttpStatusCode code, string message, ErrorResponse errorResponse, Exception innerException)
             : base(GetMessage(code, message), innerException)
         {
             StatusCode = code;
@@ -36,7 +36,7 @@
         }
 
         /// <inheritdoc/>
-        protected TrueApiException(SerializationInfo info, StreamingContext context)
+        protected FairMarkException(SerializationInfo info, StreamingContext context)
         {
             StatusCode = (HttpStatusCode)info.GetInt32("Code");
             if (info.GetString("Path") != null)

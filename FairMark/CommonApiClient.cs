@@ -17,19 +17,6 @@
     public abstract partial class CommonApiClient
     {
         /// <summary>
-        /// Sandbox API endpoint.
-        /// </summary>
-        public const string SandboxApiUrl =
-            //"https://demo.lp.crpt.tech/api/v3/";
-            //"https://demo.lp.crpt.tech/api/v3/auth/cert/key";
-            "https://int01.gismt.crpt.tech/api/v3/true-api";
-
-        /// <summary>
-        /// Production API endpoint.
-        /// </summary>
-        public const string ProductionApiUrl = "https://ismp.crpt.ru/api/v3/";
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="CommonApiClient"/> class.
         /// </summary>
         /// <param name="baseUrl">Base API URL, see <see cref="SandboxApiHttps"/>.</param>
@@ -184,7 +171,7 @@
                 }
 
                 // finally, throw it
-                throw new TrueApiException(response.StatusCode, errorMessage, errorResponse, response.ErrorException);
+                throw new FairMarkException(response.StatusCode, errorMessage, errorResponse, response.ErrorException);
             }
         }
 
