@@ -11,10 +11,11 @@ namespace FairMark.TrueApi.Tests
     [TestFixture]
     public partial class TrueApiClientTests : UnitTestsBase
     {
-        [Test]//, Ignore("Returns Error 400 Bad Request: [OPEN API] Отсутствует провайдер статуса для типа заявки LK_REGISTRATION")]
+        [Test]
         public void Chapter_5_1_2_GetCisesByOrderId()
         {
-            string[] verificationCises = new string[] {
+            var verificationCises = new[]
+            {
                 "0104635785586010215MRZpi",
                 "0104635785586010215O(JSD",
                 "0104635785586010215boSWI",
@@ -24,7 +25,8 @@ namespace FairMark.TrueApi.Tests
                 "0104635785586010215S4PPf",
                 "0104635785586010215BC!FF",
                 "0104635785586010215UrkP'",
-                "0104635785586010215nU:VT"};
+                "0104635785586010215nU:VT"
+            };
 
             var cises = Client.GetCisesByOrderId("a1769132-796e-47cb-8bc5-1053c4d7d6c5");
             Assert.NotNull(cises);

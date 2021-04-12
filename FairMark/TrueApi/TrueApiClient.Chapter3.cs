@@ -3,7 +3,6 @@
     using System;
     using System.Text;
     using DataContracts;
-    using DataContracts._3_1;
     using RestSharp;
     using Toolbox;
 

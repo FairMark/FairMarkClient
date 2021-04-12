@@ -8,8 +8,6 @@ using NUnit.Framework;
 
 namespace FairMark.TrueApi.Tests
 {
-    using DataContracts._3_1;
-
     [TestFixture]
     public partial class TrueApiClientTests : UnitTestsBase
     {
