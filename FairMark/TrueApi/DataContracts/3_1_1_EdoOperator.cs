@@ -1,7 +1,7 @@
-﻿namespace FairMark.TrueApi.DataContracts._3_1
-{
-    using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
+namespace FairMark.TrueApi.DataContracts
+{
     /// <summary>
     /// Оператор электронного документооборота.
     /// 3.1.1. Метод создания заявки на регистрацию УОТ

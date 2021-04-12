@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// 4.5.11
+    /// 4.5.11 Метод «Проверить доступность СУЗ»
     /// </summary>
     [DataContract]
     internal class Pong

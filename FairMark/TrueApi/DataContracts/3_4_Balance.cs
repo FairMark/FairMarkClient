@@ -1,7 +1,7 @@
-﻿namespace FairMark.TrueApi.DataContracts._3_4
-{
-    using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
+namespace FairMark.TrueApi.DataContracts
+{
     [DataContract]
     public class ProductGroupBalance
     {

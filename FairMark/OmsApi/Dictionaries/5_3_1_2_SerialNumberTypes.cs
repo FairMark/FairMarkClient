@@ -3,7 +3,7 @@
     /// <summary>
     /// Возможные значения справочника «Способ формирования индивидуального серийного номера» serialNumberType
     /// </summary>
-    public enum _5_3_1_2_SerialNumberTypes
+    public enum SerialNumberTypes
     {
         /// <summary>
         /// Самостоятельно

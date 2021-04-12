@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace FairMark.OmsApi.DataContracts
 {
+    /// <summary>
+    /// 4.5.13. Метод «Получить версию СУЗ и API»
+    /// </summary>
     [DataContract]
     public class Versions
     {

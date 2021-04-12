@@ -1,7 +1,7 @@
-﻿namespace FairMark.TrueApi.DataContracts._3_1
-{
-    using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
+namespace FairMark.TrueApi.DataContracts
+{
     /// <summary>
     /// Сообщение об ошибке регистрации.
     /// 3.1.2. Метод проверки статуса заявки УОТ на регистрацию по ID заявки

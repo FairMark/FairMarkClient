@@ -11,18 +11,25 @@ namespace FairMark.OmsApi
     /// </remarks>
     public partial class OmsApiClient : CommonApiClient
     {
+        /// <summary>
+        /// Sandbox OMS API URL.
+        /// </summary>
         public const string SandboxApiUrl = "https://intuot.crpt.ru:12011/api/v2";
+
+        /// <summary>
+        /// Sandbox OMS API Authentication URL.
+        /// </summary>
         public const string SandboxAuthUrl = "https://demo.lp.crpt.tech/api/v3";
-        public const string ProductionApiUrl = "";
-        //public const string ProductionAuthUrl = "";
 
-        // Придумать как сделать отдельные адреса для авторизации в СУЗ
-        // Я бы сделал абстрактного клиента с методами Get, Get<>, Post и т.д. Дать каждому клиенту наследие от этого класса
-        // Клиентский токен передаётся в хидере запроса
+        /// <summary>
+        /// TODO: verify: Production OMS API URL.
+        /// </summary>
+        public const string ProductionApiUrl = "https://suzgrid.crpt.ru/api/v2";
 
-        // Наладить получение токена СУЗ
-        // Метод получение данных по заказу
-        // postman: SUZ auth/cert/key + SUZ auth/cert
+        /// <summary>
+        /// TODO: verify: Production OMS API Authentication URL.
+        /// </summary>
+        public const string ProductionAuthUrl = "https://ismp.crpt.ru/api/v3";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OmsApiClient"/> class.

@@ -62,10 +62,8 @@ namespace FairMark.OmsApi
             // looks like OMS ID is case sensitive
             if (pong.OmsID != omsId)
             {
-                throw new FairMarkException(HttpStatusCode.ServiceUnavailable,
-                    "OMS Service seems to be unavailable. " +
-                    $"Unrecognized response: expected {omsId}, got {pong.OmsID}.",
-                    null, null);
+                throw new InvalidOperationException("OMS Service seems to be unavailable. " +
+                    $"Unrecognized response: expected {omsId}, got {pong.OmsID}.");
             }
 
             return pong.OmsID;
