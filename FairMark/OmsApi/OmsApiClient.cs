@@ -29,16 +29,23 @@ namespace FairMark.OmsApi
         /// </summary>
         /// <param name="apiUrl">OMS API endpoint.</param>
         /// <param name="authUrl">OMS Auth endpoint.</param>
+        /// <param name="extension">Extension, such as "milk", "tobacco", etc.</param>
         /// <param name="credentials">Authentication credentials.</param>
-        public OmsApiClient(string apiUrl, string authUrl, CommonCredentials credentials)
+        public OmsApiClient(string apiUrl, string authUrl, string extension, CommonCredentials credentials)
             : base(apiUrl, credentials)
         {
             AuthUrl = authUrl.AppendMissing("/");
+            Extension = extension;
         }
 
         /// <summary>
         /// Authentication endpoint.
         /// </summary>
         public string AuthUrl { get; set; }
+
+        /// <summary>
+        /// Extension type, such as "milk", "tobacco", etc.
+        /// </summary>
+        public string Extension { get; set; }
     }
 }

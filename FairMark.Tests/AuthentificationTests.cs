@@ -55,9 +55,10 @@ namespace FairMark.TrueApi.Tests
         [Test]
         public void OmsApiClientAuthenticates()
         {
-            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, new OmsCredentials
+            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, "milk", new OmsCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
+                OmsID = TestOmsID,
                 OmsConnectionID = TestOmsConnectionID,
             });
 
@@ -72,8 +73,9 @@ namespace FairMark.TrueApi.Tests
             try
             {
                 // authenticates and requests a resource
-                var s = client.Get($"milk/ping?omsId={TestOmsID}");
-                Assert.NotNull(s);
+                //var s = client.Get($"milk/ping?omsId={TestOmsID}");
+                var version = client.GetVersion();
+                Assert.NotNull(version);
                 Assert.IsTrue(client.Authenticator.IsAuthenticated);
                 Assert.NotNull(client.Authenticator.AuthToken);
             }

@@ -12,7 +12,7 @@
     using Toolbox;
 
     /// <summary>
-    /// True API Client.
+    /// Common FairMark client used as a base class for True API, OMS API client, etc.
     /// </summary>
     public abstract partial class CommonApiClient
     {

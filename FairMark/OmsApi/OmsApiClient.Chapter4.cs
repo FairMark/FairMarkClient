@@ -1,4 +1,6 @@
-﻿namespace FairMark.OmsApi
+﻿using FairMark.OmsApi.DataContracts;
+
+namespace FairMark.OmsApi
 {
     partial class OmsApiClient
     {
@@ -41,5 +43,13 @@
         // 4.5.15 Метод «Получить повторно коды маркировки из заказа кодов маркировки»
         // postman: _SUZ 4.5.15. milk/codes/retry
         //      Тут муть подобная 4.4.6.
+
+        /// <summary>
+        /// Gets the current API and OMS versions.
+        /// </summary>
+        public Version GetVersion()
+        {
+            return Get<Version>($"{Extension}/version");
+        }
     }
 }

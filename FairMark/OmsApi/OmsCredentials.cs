@@ -15,6 +15,12 @@ namespace FairMark.OmsApi
     public class OmsCredentials : CommonCredentials
     {
         /// <summary>
+        /// Gets or sets the OMS Identity, taken from the user's profile,
+        /// see https://intuot.crpt.ru:12011/configuration/profile
+        /// </summary>
+        public string OmsID { get; set; }
+
+        /// <summary>
         /// Gets or sets the OMS Connection Identity, taken from the user's profile,
         /// see https://intuot.crpt.ru:12011/configuration/profile
         /// </summary>
