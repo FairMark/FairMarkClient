@@ -1,5 +1,8 @@
 ﻿namespace FairMark.TrueApi.Tests
 {
+    using System;
+    using System.Security.Cryptography.X509Certificates;
+    using NUnit.Framework;
     using Toolbox;
 
     public class UnitTestsBase
@@ -13,8 +16,16 @@
 
         static UnitTestsBase()
         {
-            // make sure that certificates are searched for the current user
-            GostCryptoHelpers.DefaultStoreLocation = System.Security.Cryptography.X509Certificates.StoreLocation.CurrentUser;
+            // detect CI runner environment
+            var ci = Environment.GetEnvironmentVariable("GITLAB_CI") != null;
+            if (ci)
+            {
+                TestContext.Progress.WriteLine("Running unit tests on CI server.");
+            }
+
+            // for continuous integration: use certificates installed on the local machine
+            // for unit tests run inside Visual Studio: use current user's certificates
+            GostCryptoHelpers.DefaultStoreLocation = ci ? StoreLocation.LocalMachine : StoreLocation.CurrentUser;
         }
     }
 }

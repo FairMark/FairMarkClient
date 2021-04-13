@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using FairMark.TrueApi.DataContracts;
@@ -62,8 +63,8 @@ namespace FairMark.TrueApi.Tests
             throw new InvalidOperationException("Registration number not found!");
         }
 
-        [Test] //, Ignore("6102 Returns Error 400 Bad Request: [OPEN API] Отсутствует провайдер статуса для типа заявки LK_REGISTRATION")]
-        public void Chapter_3_1_2_GetRegistrationStatus()
+        [Test]
+        public void Chapter_3_1_2_GetRegistrationStatus_Success()
         {
             var regNumber = BruteForceFindValidRegistrationStatusNumber();
             Assert.That(regNumber, Is.GreaterThan(0));
@@ -74,6 +75,18 @@ namespace FairMark.TrueApi.Tests
             Assert.AreEqual("CHECKED_NOT_OK", status.RegistrationRequestStatus);
             Assert.AreEqual(1, status.Errors.Length);
             Assert.AreEqual("1003: Недопустимый формат значения в поле \"ИНН\" в документе \"Регистрация\".", status.Errors[0].Message);
+        }
+
+        [Test]
+        public void Chapter_3_1_2_GetRegistrationStatus_BadRequest()
+        {
+            var ex = Assert.Throws<FairMarkException>(() =>
+            {
+                Client.GetRegistrationStatus(6102);
+            });
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
+            Assert.AreEqual("[OPEN API] Отсутствует провайдер статуса для типа заявки LK_REGISTRATION", ex.ErrorResponse.ErrorMessage);
         }
     }
 }
