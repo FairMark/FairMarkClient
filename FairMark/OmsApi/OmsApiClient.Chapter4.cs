@@ -37,6 +37,10 @@ namespace FairMark.OmsApi
         public OrderResponse CreateOrder<T>(Order<T> order)
             where T : OrderProduct
         {
+            // TODO: может, брать extension из типа заказа?
+            // Чтобы один клиент мог отправлять заказы разных товарных групп
+            // Order_Milk -> "milk", и так далее
+            // Можно добавить в Order абстрактное readonly-поле Extension
             return Post<OrderResponse>("{extension}/orders", order, new[]
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
@@ -52,8 +56,27 @@ namespace FairMark.OmsApi
         // 4.5.7. Метод «Получить статус массива КМ из заказа»
         // postman: SUZ 4.5.7. milk/buffer/status
 
-        // 4.5.8. Метод «Получить статус заказов»
-        // postman: SUZ 4.5.1. milk/orders
+        /// <summary>
+        /// Get order summaries.
+        /// 4.5.8. Метод «Получить статус заказов»
+        /// </summary>
+        /// <remarks>
+        /// Примечания:
+        /// 1) метод предназначен для восстановления АСУТП после полной потери данных,
+        /// использование предоставляемых им возможностей в штатных процессах работы с
+        /// СУЗ запрещено.
+        /// 2) Обращение к данному методу с одного источника, как и к методу создания
+        /// заказов, возможно не чаще, чем 100 раз в секунду
+        /// postman: SUZ 4.5.1. milk/orders
+        /// </remarks>
+        public OrderSummaries GetOrderSummaries()
+        {
+            return Get<OrderSummaries>("{extension}/orders", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+            });
+        }
 
         // 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
         // postman: _SUZ 4.5.14. milk/codes/blocks

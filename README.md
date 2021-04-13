@@ -1,4 +1,4 @@
-<img alt="FairMark Client Logo" src="https://raw.githubusercontent.com/FairMark/FairMarkClient/master/FairMark.Docs/FairMarkGlitchyLogo.png" width="100" align="none" />
+<img alt="FairMark Client Logo" src="https://raw.githubusercontent.com/FairMark/FairMarkClient/master/FairMark.Docs/FairMarkGlitchyLogo.gif" width="100" />
 
 # FairMark
 

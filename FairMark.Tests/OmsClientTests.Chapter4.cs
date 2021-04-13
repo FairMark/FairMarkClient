@@ -58,6 +58,14 @@ namespace FairMark.TrueApi.Tests
         }
 
         [Test]
+        public void Chapter_4_5_8_GetOrderSummaries()
+        {
+            var summaries = Client.GetOrderSummaries();
+            Assert.IsNotNull(summaries);
+            Assert.IsNotNull(summaries.OrderInfos);
+        }
+
+        [Test]
         public void Chapter_4_5_11_Ping()
         {
             var omsId = Client.Ping();

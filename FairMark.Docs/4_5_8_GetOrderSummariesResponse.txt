@@ -1,0 +1,141 @@
+﻿// GetOrderSummaries
+-> GET https://intuot.crpt.ru:12011/api/v2/milk/orders?omsId=67ad4640-48f4-4eca-886b-517462cf0415
+headers: {
+  X-ApiMethodName = GetOrderSummaries
+  clientToken = 3e026868-6d70-4261-8dda-749fb9dd9c70
+  Accept = application/json, text/json, text/x-json, text/javascript, application/xml, text/xml
+}
+
+<- OK 200 (OK) https://intuot.crpt.ru:12011/api/v2/milk/orders?omsId=67ad4640-48f4-4eca-886b-517462cf0415
+timings: {
+  started: 2021-04-14 02:45:36
+  elapsed: 0:01:52.828
+}
+headers: {
+  Content-Encoding =
+  Pragma = no-cache
+  X-Content-Type-Options = nosniff
+  X-Frame-Options = DENY
+  X-Xss-Protection = 1; mode=block
+  Content-Length = 1071
+  Cache-Control = no-cache, no-store, max-age=0, must-revalidate
+  Content-Type = application/json; charset=UTF-8
+  Date = Tue, 13 Apr 2021 23:47:28 GMT
+  Expires = 0
+  Set-Cookie = targetsrv=http://10.0.25.4:8811; Path=/
+}
+body: {
+  "omsId": "67ad4640-48f4-4eca-886b-517462cf0415",
+  "orderInfos": [
+    {
+      "orderId": "9d420e24-38ea-401c-bf5b-4947bf25384b",
+      "orderStatus": "CREATED",
+      "buffers": [
+        {
+          "leftInBuffer": -1,
+          "poolsExhausted": false,
+          "totalCodes": -1,
+          "unavailableCodes": -1,
+          "availableCodes": -1,
+          "orderId": "9d420e24-38ea-401c-bf5b-4947bf25384b",
+          "gtin": "04635785586010",
+          "totalPassed": -1,
+          "omsId": "67ad4640-48f4-4eca-886b-517462cf0415"
+        }
+      ],
+      "createdTimestamp": 1618349065853
+    },
+    {
+      "orderId": "8dafaa2e-8526-42d4-9159-0917552742b4",
+      "orderStatus": "DECLINED",
+      "buffers": [
+        {
+          "leftInBuffer": -1,
+          "poolsExhausted": false,
+          "totalCodes": -1,
+          "unavailableCodes": -1,
+          "availableCodes": -1,
+          "orderId": "8dafaa2e-8526-42d4-9159-0917552742b4",
+          "gtin": "04635785586010",
+          "totalPassed": -1,
+          "omsId": "67ad4640-48f4-4eca-886b-517462cf0415"
+        }
+      ],
+      "createdTimestamp": 1617980244977,
+      "declineReason": "Signature validation failed: message-digest attribute value does not match calculated value\nSubject: CN=КС, SN=Говоров, G=Константин Александрович, C=RU, ST=Московская, L=Дубна, STREET=Сахарова 4, O=ООО К-Солюшионс, OU=ИТ, T=Инженер, INN=007714833917, EMAILADDRESS=aleksei.kudryakov@k-solutions.ru, Issuer: CN=\"Тестовый подчиненный УЦ ООО \\\"КРИПТО-ПРО\\\" ГОСТ 2012 (УЦ 2.0)\", O=\"ООО \\\"КРИПТО-ПРО\\\"\", STREET=ул. Сущёвский вал д. 18, L=Москва, ST=77 Москва, C=RU, INN=007717107991, ОГРН=1037700085444, EMAILADDRESS=info@cryptopro.ru, CRLs: [http://testca2012.cryptopro.ru/cdp/064b632533662a24381872437a3bb7cbb2cafc73.crl]. Authorities: [URIName: http://testca2012.cryptopro.ru/ocsp/ocsp.srf,URIName: http://testca2012.cryptopro.ru/aia/064b632533662a24381872437a3bb7cbb2cafc73.crt]"
+    },
+    {
+      "orderId": "f71f347f-f24b-4081-973c-151761285535",
+      "orderStatus": "DECLINED",
+      "buffers": [
+        {
+          "leftInBuffer": -1,
+          "poolsExhausted": false,
+          "totalCodes": -1,
+          "unavailableCodes": -1,
+          "availableCodes": -1,
+          "orderId": "f71f347f-f24b-4081-973c-151761285535",
+          "gtin": "04635785586010",
+          "totalPassed": -1,
+          "omsId": "67ad4640-48f4-4eca-886b-517462cf0415"
+        }
+      ],
+      "createdTimestamp": 1617981311744,
+      "declineReason": "Signature validation failed: message-digest attribute value does not match calculated value\nSubject: CN=КС, SN=Говоров, G=Константин Александрович, C=RU, ST=Московская, L=Дубна, STREET=Сахарова 4, O=ООО К-Солюшионс, OU=ИТ, T=Инженер, INN=007714833917, EMAILADDRESS=aleksei.kudryakov@k-solutions.ru, Issuer: CN=\"Тестовый подчиненный УЦ ООО \\\"КРИПТО-ПРО\\\" ГОСТ 2012 (УЦ 2.0)\", O=\"ООО \\\"КРИПТО-ПРО\\\"\", STREET=ул. Сущёвский вал д. 18, L=Москва, ST=77 Москва, C=RU, INN=007717107991, ОГРН=1037700085444, EMAILADDRESS=info@cryptopro.ru, CRLs: [http://testca2012.cryptopro.ru/cdp/064b632533662a24381872437a3bb7cbb2cafc73.crl]. Authorities: [URIName: http://testca2012.cryptopro.ru/ocsp/ocsp.srf,URIName: http://testca2012.cryptopro.ru/aia/064b632533662a24381872437a3bb7cbb2cafc73.crt]"
+    },
+    {
+      "orderId": "20cf2850-e59a-41a8-af55-42353ee7cece",
+      "orderStatus": "CREATED",
+      "buffers": [
+        {
+          "leftInBuffer": -1,
+          "poolsExhausted": false,
+          "totalCodes": -1,
+          "unavailableCodes": -1,
+          "availableCodes": -1,
+          "orderId": "20cf2850-e59a-41a8-af55-42353ee7cece",
+          "gtin": "04635785586010",
+          "totalPassed": -1,
+          "omsId": "67ad4640-48f4-4eca-886b-517462cf0415"
+        }
+      ],
+      "createdTimestamp": 1617368179930
+    },
+    {
+      "orderId": "6ec8ecbb-2642-47f8-a054-31d73da66144",
+      "orderStatus": "CREATED",
+      "buffers": [
+        {
+          "leftInBuffer": -1,
+          "poolsExhausted": false,
+          "totalCodes": -1,
+          "unavailableCodes": -1,
+          "availableCodes": -1,
+          "orderId": "6ec8ecbb-2642-47f8-a054-31d73da66144",
+          "gtin": "04635785586010",
+          "totalPassed": -1,
+          "omsId": "67ad4640-48f4-4eca-886b-517462cf0415"
+        }
+      ],
+      "createdTimestamp": 1617543918700
+    },
+    {
+      "orderId": "774a5846-37cc-41f6-87cf-36a6df84f453",
+      "orderStatus": "CREATED",
+      "buffers": [
+        {
+          "leftInBuffer": -1,
+          "poolsExhausted": false,
+          "totalCodes": -1,
+          "unavailableCodes": -1,
+          "availableCodes": -1,
+          "orderId": "774a5846-37cc-41f6-87cf-36a6df84f453",
+          "gtin": "04635785586010",
+          "totalPassed": -1,
+          "omsId": "67ad4640-48f4-4eca-886b-517462cf0415"
+        }
+      ],
+      "createdTimestamp": 1617544958702
+    }
+  ]
+}
