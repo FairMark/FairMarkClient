@@ -13,7 +13,7 @@ namespace FairMark.OmsApi.DataContracts
     /// 4.5.1.1.1 Расширения для табачной промышленности, Таблица 8.
     /// </summary>
     [DataContract]
-    public class Order_Tobacco : Order
+    public class Order_Tobacco : Order<OrderProduct_Tobacco>
     {
         /// <summary>
         /// Идентификатор производства. (Глобальный номер места нахождения)

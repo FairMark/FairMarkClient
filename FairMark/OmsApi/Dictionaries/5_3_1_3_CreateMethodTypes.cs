@@ -3,31 +3,31 @@
     /// <summary>
     /// Список возможных значений справочника «Способ изготовления» createMethodType
     /// </summary>
-    public enum CreateMethodTypes
+    public static class CreateMethodTypes
     {
         /// <summary>
         /// Самостоятельно
         /// </summary>
-        SELF_MADE,
+        public const string SELF_MADE = nameof(SELF_MADE);
 
         /// <summary>
         /// ЦЭМ
         /// </summary>
-        CEM,
+        public const string CEM = nameof(CEM);
 
         /// <summary>
         /// Контрактное производство
         /// </summary>
-        CM,
+        public const string CM = nameof(CM);
 
         /// <summary>
         /// Логистический склад
         /// </summary>
-        CL,
+        public const string CL = nameof(CL);
 
         /// <summary>
         /// Комиссионная площадка
         /// </summary>
-        CA
+        public const string CA = nameof(CA);
     }
 }

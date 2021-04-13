@@ -32,8 +32,10 @@ namespace FairMark.OmsApi
         ///      полученным серийным номером (см.раздел 5.3.1.13).
         ///  Примечание: поле «stickerId» заполняется при создании заказа в рамках процесса дистрибуции.
         /// </remarks>
+        /// <typeparam name="T">The type of the product.</typeparam>
         /// <param name="order">Code emission order.</param>
-        public OrderResponse CreateOrder(Order order)
+        public OrderResponse CreateOrder<T>(Order<T> order)
+            where T : OrderProduct
         {
             return Post<OrderResponse>("{extension}/orders", order, new[]
             {

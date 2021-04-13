@@ -1,0 +1,58 @@
+﻿// CreateOrder
+-> POST https://intuot.crpt.ru:12011/api/v2/milk/orders?omsId=67ad4640-48f4-4eca-886b-517462cf0415
+headers: {
+  X-ApiMethodName = CreateOrder
+  clientToken = 63810c34-9d72-4f56-9c17-253c1e53b84d
+  Accept = application/json, text/json, text/x-json, text/javascript, application/xml, text/xml
+  Content-type = application/json
+}
+body: {
+  "contactPerson": "Говоров К.А.",
+  "releaseMethodType": "PRODUCTION",
+  "createMethodType": "CM",
+  "productionOrderId": "efa002c4-aaf1-4862-93c8-823b7e7468ad",
+  "products": [
+    {
+      "gtin": "04635785586010",
+      "quantity": 5,
+      "serialNumberType": "SELF_MADE",
+      "serialNumbers": [
+        "asdf7",
+        "asdf8",
+        "asdf9",
+        "asdfa",
+        "asdfb"
+      ],
+      "templateId": 20,
+      "stickerId": "19"
+    }
+  ],
+  "serviceProviderId": "156893d9-42d9-4753-9a19-bdbf182c7851"
+}
+
+<- OK 200 (OK) https://intuot.crpt.ru:12011/api/v2/milk/orders?omsId=67ad4640-48f4-4eca-886b-517462cf0415
+timings: {
+  started: 2021-04-14 00:24:19
+  elapsed: 0:00:06.844
+}
+headers: {
+  Pragma = no-cache
+  X-Content-Type-Options = nosniff
+  X-Frame-Options = DENY
+  X-Xss-Protection = 1; mode=block
+  Content-Length = 132
+  Cache-Control = no-cache, no-store, max-age=0, must-revalidate
+  Content-Type = application/json; charset=UTF-8
+  Date = Tue, 13 Apr 2021 21:24:26 GMT
+  Expires = 0
+  Set-Cookie = targetsrv=http://10.0.25.4:8811; Path=/
+}
+body: {
+  "omsId": "67ad4640-48f4-4eca-886b-517462cf0415",
+  "orderId": "9d420e24-38ea-401c-bf5b-4947bf25384b",
+  "expectedCompleteTimestamp": 120000
+}
+
+Order placed: 9d420e24-38ea-401c-bf5b-4947bf25384b
+Expected to be ready in: 120000
+NUnit Adapter 3.16.1.0: Test execution complete

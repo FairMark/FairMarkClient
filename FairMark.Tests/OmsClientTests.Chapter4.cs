@@ -26,11 +26,11 @@ namespace FairMark.TrueApi.Tests
         [Test, Explicit("OMS API has restrictions on emission orders")]
         public void Chapter_4_5_1_CreateOrder()
         {
-            var order = new Order
+            var order = new Order_Milk
             {
-                Products = new List<OrderProduct>
+                Products = new List<OrderProduct_Milk>
                 {
-                    new OrderProduct
+                    new OrderProduct_Milk
                     {
                         Gtin = "04635785586010",
                         Quantity = 5,
@@ -42,8 +42,19 @@ namespace FairMark.TrueApi.Tests
                         TemplateID = 20,
                         StickerID = "19", // is it a string?
                     },
-                }
+                },
+                ContactPerson = "Говоров К.А.",
+                ReleaseMethodType = ReleaseMethodTypes.PRODUCTION,
+                CreateMethodType = CreateMethodTypes.CM,
+                ServiceProviderID = "156893d9-42d9-4753-9a19-bdbf182c7851",
+                ProductionOrderID = "efa002c4-aaf1-4862-93c8-823b7e7468ad",
             };
+
+            // Order placed: 9d420e24-38ea-401c-bf5b-4947bf25384b
+            // Expected to be ready in: 120000
+            var res = Client.CreateOrder(order);
+            TestContext.Progress.WriteLine($"Order placed: {res.OrderID}");
+            TestContext.Progress.WriteLine($"Expected to be ready in: {res.ExpectedCompleteTimestamp}");
         }
 
         [Test]
