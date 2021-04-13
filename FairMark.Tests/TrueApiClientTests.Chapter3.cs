@@ -42,11 +42,38 @@ namespace FairMark.TrueApi.Tests
             TestContext.Progress.WriteLine($"Registration request id = {docId}");
         }
 
-        [Test, Ignore("Returns Error 400 Bad Request: [OPEN API] Отсутствует провайдер статуса для типа заявки LK_REGISTRATION")]
+        private int BruteForceFindValidRegistrationStatusNumber()
+        {
+            foreach (var i in Enumerable.Range(636, 10)) // Range(0, 1000)
+             {
+                try
+                {
+                    var status = Client.GetRegistrationStatus(i);
+                    Assert.NotNull(status);
+                    TestContext.Progress.WriteLine($"OK: {i}");
+                    return i;
+                }
+                catch
+                {
+                    TestContext.Progress.WriteLine($"Error: {i}");
+                }
+            }
+
+            throw new InvalidOperationException("Registration number not found!");
+        }
+
+        [Test] //, Ignore("6102 Returns Error 400 Bad Request: [OPEN API] Отсутствует провайдер статуса для типа заявки LK_REGISTRATION")]
         public void Chapter_3_1_2_GetRegistrationStatus()
         {
-            var status = Client.GetRegistrationStatus(6102);
+            var regNumber = BruteForceFindValidRegistrationStatusNumber();
+            Assert.That(regNumber, Is.GreaterThan(0));
+
+            var status = Client.GetRegistrationStatus(637);
             Assert.NotNull(status);
+
+            Assert.AreEqual("CHECKED_NOT_OK", status.RegistrationRequestStatus);
+            Assert.AreEqual(1, status.Errors.Length);
+            Assert.AreEqual("1003: Недопустимый формат значения в поле \"ИНН\" в документе \"Регистрация\".", status.Errors[0].Message);
         }
     }
 }
