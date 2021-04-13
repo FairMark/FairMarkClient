@@ -1,0 +1,46 @@
+variables:
+  GIT_CLEAN_FLAGS: none # disable git clean on every stage
+  CODECOV_TOKEN: "c01ca799-5c1f-4647-9743-7d6e8b3fb0f8"
+
+stages:
+  - build
+  - unit tests
+
+build:
+  stage: build
+  before_script:
+    - git clean -ffdx -e $MIRROR_DIR/
+  script:
+    - dotnet build FairMark
+    - dotnet build FairMark.Tests
+    - dotnet pack FairMark
+  artifacts:
+    paths:
+      - FairMark\bin\Debug\*.nupkg
+
+unit_tests:
+  stage: unit tests
+  before_script:
+    - echo "Normal build -- running unit tests with coverage..."
+    - chcp 65001
+    # uncomment to install the required tools --
+    # dotnet tool install -g trx2junit
+    # choco install opencover.portable
+    # choco install codecov
+  script:
+    # original test command line --
+    # dotnet test --logger "trx;LogFileName=TestResults.trx"
+    # don't use -returntargetcode for now
+    # 'OpenCover.Console.exe -register:administrator -target:dotnet.exe -targetargs:"test --logger=trx;LogFileName=TestResults.trx" -filter:"+[*]* -[*Test*]*" -output:MdlpCoverage.xml'
+    # codecov -f "MdlpCoverage.xml"
+    - Scripts\Coverage.ps1
+    - TrxerConsole.exe FairMark.Tests\TestResults\TestResults.trx
+    - copy "FairMark.Tests\TestResults\TestResults.trx.html" "$ULTIMA_REPORT_UPLOAD_PATH\FairMark.html"
+  artifacts:
+    paths:
+      - FairMark.Tests\TestResults\TestResults.trx
+      - FairMark.Tests\TestResults\TestResults.xml
+    reports:
+      junit:
+        - FairMark.Tests\TestResults\TestResults.xml
+    expire_in: 1 day
