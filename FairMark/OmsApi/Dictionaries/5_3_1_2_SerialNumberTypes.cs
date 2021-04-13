@@ -3,16 +3,16 @@
     /// <summary>
     /// Возможные значения справочника «Способ формирования индивидуального серийного номера» serialNumberType
     /// </summary>
-    public enum SerialNumberTypes
+    public class SerialNumberTypes
     {
         /// <summary>
         /// Самостоятельно
         /// </summary>
-        SELF_MADE,
+        public const string SELF_MADE = "SELF_MADE";
 
         /// <summary>
         /// Оператором ГИС МТ
         /// </summary>
-        OPERATOR
+        public const string OPERATOR = "OPERATOR";
     }
 }
