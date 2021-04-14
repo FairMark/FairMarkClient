@@ -1,4 +1,4 @@
-﻿namespace FairMark.OmsApi.Dictionaries
+﻿namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
     /// Список возможных значений справочника «Способ изготовления» createMethodType

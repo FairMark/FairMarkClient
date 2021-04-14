@@ -41,6 +41,8 @@ namespace FairMark.OmsApi
             // Чтобы один клиент мог отправлять заказы разных товарных групп
             // Order_Milk -> "milk", и так далее
             // Можно добавить в Order абстрактное readonly-поле Extension
+            // TODO: автоматом подписывать заказ открепленной подписью,
+            // передавать подпись в заголовке X-Signature (см. п. 2.3.1.)
             return Post<OrderResponse>("{extension}/orders", order, new[]
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),

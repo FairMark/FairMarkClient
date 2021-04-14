@@ -1,25 +1,28 @@
-﻿namespace FairMark.OmsApi.Dictionaries
+﻿namespace FairMark.OmsApi.DataContracts
 {
-    public enum CisTypes
+    /// <summary>
+    /// 5.3.1.12. Справочник «Типы КМ» (cisType)
+    /// </summary>
+    public static class CisTypes
     {
         /// <summary>
         /// Единица товара
         /// </summary>
-        UNIT,
+        public const string UNIT = nameof(UNIT);
 
         /// <summary>
         /// Комплект
         /// </summary>
-        BUNDLE,
+        public const string BUNDLE = nameof(UNIT);
 
         /// <summary>
         /// Групповая потребительская упаковка
         /// </summary>
-        GROUP,
+        public const string GROUP = nameof(UNIT);
 
         /// <summary>
         /// Набор
         /// </summary>
-        SET
+        public const string SET = nameof(UNIT);
     }
 }
