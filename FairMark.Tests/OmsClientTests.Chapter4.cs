@@ -44,15 +44,20 @@ namespace FairMark.TrueApi.Tests
                 },
                 ContactPerson = "Говоров К.А.",
                 ReleaseMethodType = ReleaseMethodTypes.PRODUCTION,
-                CreateMethodType = CreateMethodTypes.CM,
-                ServiceProviderID = "156893d9-42d9-4753-9a19-bdbf182c7851",
                 ProductionOrderID = "efa002c4-aaf1-4862-93c8-823b7e7468ad",
+
+                // пример для самостоятельного производства
+                CreateMethodType = CreateMethodTypes.SELF_MADE,
+
+                // пример для контрактного производства: надо указать ServiceProviderID
+                //CreateMethodType = CreateMethodTypes.CM,
+                //ServiceProviderID = "156893d9-42d9-4753-9a19-bdbf182c7851",
             };
 
-            // Order placed: 9d420e24-38ea-401c-bf5b-4947bf25384b
+            // Unsigned order placed: 9d420e24-38ea-401c-bf5b-4947bf25384b
             // Expected to be ready in: 120000
             var res = Client.CreateOrder(order);
-            TestContext.Progress.WriteLine($"Order placed: {res.OrderID}");
+            TestContext.Progress.WriteLine($"Signed order placed: {res.OrderID}");
             TestContext.Progress.WriteLine($"Expected to be ready in: {res.ExpectedCompleteTimestamp}");
         }
 

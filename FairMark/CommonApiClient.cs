@@ -108,23 +108,39 @@
                 request.AddHeader(ApiMethodNameHeaderName, apiMethodName);
             }
 
+            // sign the request using detached signature
+            if (signed)
+            {
+                SignRequest(request);
+            }
+
             // trace requests and responses
             if (Tracer != null)
             {
-                request.OnBeforeRequest = http => Trace(http, request);
-                request.OnBeforeDeserialization = resp => Trace(resp);
+                request.OnBeforeRequest += http => Trace(http, request);
+                request.OnBeforeDeserialization += resp => Trace(resp);
             }
-
-            // sign the request using detached signature
-            SignRequest(request);
         }
 
         protected virtual void SignRequest(IRestRequest request)
         {
-            var data = request.Method == Method.GET ? request.Resource : GetBodyText(request.Body);
-            var cert = UserCertificate;
-            var signature = GostCryptoHelpers.ComputeDetachedSignature(cert, data);
-            request.Parameters.Add(new Parameter("X-Signature", signature, ParameterType.HttpHeader));
+            // we can sign the request when it's already prepared
+            // because otherwise we don't have the serialized body
+            // that's why we have to do it in OnBeforeRequest handler
+            request.OnBeforeRequest += (IHttp http) =>
+            {
+                var data = request.Method == Method.GET ? request.Resource : GetBodyText(request.Body);
+                var cert = UserCertificate;
+                var signature = GostCryptoHelpers.ComputeDetachedSignature(cert, data);
+
+                // won't be added to headers because the request is already prepared
+                // we add parameter just for the tracing:
+                request.Parameters.Add(new Parameter("X-Signature", signature, ParameterType.HttpHeader));
+
+                var header = new HttpHeader("X-Signature", signature);
+                http.Headers.Add(header);
+            };
+
         }
 
         private void ThrowOnFailure(IRestResponse response)
