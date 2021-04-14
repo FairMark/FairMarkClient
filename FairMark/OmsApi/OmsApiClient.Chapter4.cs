@@ -57,7 +57,7 @@ namespace FairMark.OmsApi
         // postman: SUZ 4.5.7. milk/buffer/status
 
         /// <summary>
-        /// Get order summaries.
+        /// Get orders.
         /// 4.5.8. Метод «Получить статус заказов»
         /// </summary>
         /// <remarks>
@@ -69,7 +69,7 @@ namespace FairMark.OmsApi
         /// заказов, возможно не чаще, чем 100 раз в секунду
         /// postman: SUZ 4.5.1. milk/orders
         /// </remarks>
-        public OrderSummaries GetOrderSummaries()
+        public OrderSummaries GetOrders()
         {
             return Get<OrderSummaries>("{extension}/orders", new[]
             {

@@ -58,11 +58,11 @@ namespace FairMark.TrueApi.Tests
         }
 
         [Test]
-        public void Chapter_4_5_8_GetOrderSummaries()
+        public void Chapter_4_5_8_GetOrders()
         {
-            var summaries = Client.GetOrderSummaries();
-            Assert.IsNotNull(summaries);
-            Assert.IsNotNull(summaries.OrderInfos);
+            var orders = Client.GetOrders();
+            Assert.IsNotNull(orders);
+            Assert.IsNotNull(orders.OrderInfos);
         }
 
         [Test]
