@@ -66,8 +66,11 @@ namespace FairMark.OmsApi.DataContracts
         /// <remarks>
         /// Примечание: поле «stickerId» заполняется при создании
         /// заказа в рамках процесса дистрибуции.
+        /// В документации противоречие: тип указан как String,
+        /// а в примерах передается значение Integer.
+        /// Сделал тип Integer, по аналогии с полем TemplateID.
         /// </remarks>
         [DataMember(Name = "stickerId", IsRequired = false)]
-        public string StickerID { get; set; }
+        public int StickerID { get; set; }
     }
 }

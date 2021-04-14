@@ -36,10 +36,10 @@ namespace FairMark.TrueApi.Tests
                         SerialNumberType = SerialNumberTypes.SELF_MADE,
                         SerialNumbers = new List<string>
                         {
-                            "asdf7", "asdf8", "asdf9", "asdfa", "asdfb"
+                            "asdfc", "asdfd", "asdfe", "asdff", "asdf0"
                         },
                         TemplateID = 20,
-                        StickerID = "19", // is it a string?
+                        StickerID = 19, // or is it a string?
                     },
                 },
                 ContactPerson = "Говоров К.А.",
@@ -59,7 +59,9 @@ namespace FairMark.TrueApi.Tests
         [Test]
         public void Chapter_4_5_8_GetOrders()
         {
-            // 
+            // В документации говорится: использование предоставляемых этим методом
+            // возможностей в штатных процессах работы с СУЗ запрещено.
+            // Видимо, имеется в виду, что часто его вызывать нельзя.
             var orders = Client.GetOrders();
             Assert.IsNotNull(orders);
             Assert.IsNotNull(orders.OrderInfos);

@@ -34,7 +34,8 @@ namespace FairMark.OmsApi
         /// </remarks>
         /// <typeparam name="T">The type of the product.</typeparam>
         /// <param name="order">Code emission order.</param>
-        public OrderResponse CreateOrder<T>(Order<T> order)
+        /// <param name="signed">Sign the order automatically.</param>
+        public OrderResponse CreateOrder<T>(Order<T> order, bool signed = true)
             where T : OrderProduct
         {
             // TODO: может, брать extension из типа заказа?
@@ -47,7 +48,8 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-            });
+            },
+            signed: true);
         }
 
         // 4.5.6. Метод «Получить КМ из заказа»

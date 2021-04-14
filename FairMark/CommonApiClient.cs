@@ -98,7 +98,7 @@
         /// </summary>
         public int SignatureSize { get; set; }
 
-        private void PrepareRequest(IRestRequest request, string apiMethodName)
+        private void PrepareRequest(IRestRequest request, string apiMethodName, bool signed)
         {
             // use request parameters to store additional properties, not really used by the requests
             request.AddParameter(ApiTimestampParameterName, DateTime.Now.Ticks, ParameterType.UrlSegment);
@@ -114,6 +114,17 @@
                 request.OnBeforeRequest = http => Trace(http, request);
                 request.OnBeforeDeserialization = resp => Trace(resp);
             }
+
+            // sign the request using detached signature
+            SignRequest(request);
+        }
+
+        protected virtual void SignRequest(IRestRequest request)
+        {
+            var data = request.Method == Method.GET ? request.Resource : GetBodyText(request.Body);
+            var cert = UserCertificate;
+            var signature = GostCryptoHelpers.ComputeDetachedSignature(cert, data);
+            request.Parameters.Add(new Parameter("X-Signature", signature, ParameterType.HttpHeader));
         }
 
         private void ThrowOnFailure(IRestResponse response)
@@ -182,9 +193,10 @@
         /// <typeparam name="T">Response type.</typeparam>
         /// <param name="request">The request to execute.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        internal T Execute<T>(IRestRequest request, string apiMethodName)
+        /// <param name="signed">Sign the request path or body (for POST requests).</param>
+        internal T Execute<T>(IRestRequest request, string apiMethodName, bool signed)
         {
-            PrepareRequest(request, apiMethodName);
+            PrepareRequest(request, apiMethodName, signed);
             var response = Client.Execute<T>(request);
             ThrowOnFailure(response);
             return response.Data;
@@ -195,9 +207,10 @@
         /// </summary>
         /// <param name="request">The request to execute.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        internal void Execute(IRestRequest request, string apiMethodName)
+        /// <param name="signed">Sign the request path or body automatically.</param>
+        internal void Execute(IRestRequest request, string apiMethodName, bool signed)
         {
-            PrepareRequest(request, apiMethodName);
+            PrepareRequest(request, apiMethodName, signed);
             var response = Client.Execute(request);
 
             // there is no body deserialization step, so we need to trace
@@ -210,9 +223,10 @@
         /// </summary>
         /// <param name="request">The request to execute.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        internal string ExecuteString(IRestRequest request, string apiMethodName)
+        /// <param name="signed">Sign the request path or body automatically.</param>
+        internal string ExecuteString(IRestRequest request, string apiMethodName, bool signed)
         {
-            PrepareRequest(request, apiMethodName);
+            PrepareRequest(request, apiMethodName, signed);
             var response = Client.Execute(request);
 
             // there is no body deserialization step, so we need to trace
@@ -227,8 +241,9 @@
         /// <typeparam name="T">Response type.</typeparam>
         /// <param name="url">Resource url.</param>
         /// <param name="parameters">IRestRequest parameters.</param>
+        /// <param name="signed">Sign the request path automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public T Get<T>(string url, Parameter[] parameters = null, [CallerMemberName] string apiMethodName = null)
+        public T Get<T>(string url, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.GET, DataFormat.Json);
             if (!parameters.IsNullOrEmpty())
@@ -236,7 +251,7 @@
                 request.AddOrUpdateParameters(parameters);
             }
 
-            return Execute<T>(request, apiMethodName);
+            return Execute<T>(request, apiMethodName, signed);
         }
 
         /// <summary>
@@ -245,7 +260,8 @@
         /// <param name="url">Resource url.</param>
         /// <param name="parameters">IRestRequest parameters.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public string Get(string url, Parameter[] parameters = null, [CallerMemberName] string apiMethodName = null)
+        /// <param name="signed">Sign the request path automatically.</param>
+        public string Get(string url, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.GET, DataFormat.Json);
             if (!parameters.IsNullOrEmpty())
@@ -253,7 +269,7 @@
                 request.AddOrUpdateParameters(parameters);
             }
 
-            return ExecuteString(request, apiMethodName);
+            return ExecuteString(request, apiMethodName, signed);
         }
 
         /// <summary>
@@ -263,8 +279,9 @@
         /// <param name="url">Resource url.</param>
         /// <param name="body">Request body, to be serialized as JSON.</param>
         /// <param name="parameters">IRestRequest parameters.</param>
+        /// <param name="signed">Sign the request body automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public T Post<T>(string url, object body, Parameter[] parameters = null, [CallerMemberName] string apiMethodName = null)
+        public T Post<T>(string url, object body, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.POST, DataFormat.Json);
             request.AddJsonBody(body);
@@ -273,7 +290,7 @@
                 request.AddOrUpdateParameters(parameters);
             }
 
-            return Execute<T>(request, apiMethodName);
+            return Execute<T>(request, apiMethodName, signed);
         }
 
         /// <summary>
@@ -282,8 +299,9 @@
         /// <param name="url">Resource url.</param>
         /// <param name="body">Request body, to be serialized as JSON.</param>
         /// <param name="parameters">IRestRequest parameters.</param>
+        /// <param name="signed">Sign the request body automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public void Post(string url, object body, Parameter[] parameters = null, [CallerMemberName] string apiMethodName = null)
+        public void Post(string url, object body, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.POST, DataFormat.Json);
             request.AddJsonBody(body);
@@ -292,7 +310,7 @@
                 request.AddOrUpdateParameters(parameters);
             }
 
-            Execute(request, apiMethodName);
+            Execute(request, apiMethodName, signed);
         }
 
         /// <summary>
@@ -301,8 +319,9 @@
         /// <param name="url">Resource url.</param>
         /// <param name="body">Request body, to be serialized as JSON.</param>
         /// <param name="parameters">IRestRequest parameters.</param>
+        /// <param name="signed">Sign the request body automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public void Put(string url, object body, Parameter[] parameters = null, [CallerMemberName] string apiMethodName = null)
+        public void Put(string url, object body, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.PUT, DataFormat.Json);
             request.AddJsonBody(body);
@@ -311,7 +330,7 @@
                 request.AddOrUpdateParameters(parameters);
             }
 
-            Execute(request, apiMethodName);
+            Execute(request, apiMethodName, signed);
         }
 
         /// <summary>
@@ -319,12 +338,13 @@
         /// </summary>
         /// <param name="url">Resource url.</param>
         /// <param name="body">Request body, serialized as string.</param>
+        /// <param name="signed">Sign the request body automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public void Put(string url, string body, [CallerMemberName] string apiMethodName = null)
+        public void Put(string url, string body, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.PUT, DataFormat.None);
             request.AddParameter(string.Empty, body, ParameterType.RequestBody);
-            Execute(request, apiMethodName);
+            Execute(request, apiMethodName, signed);
         }
 
         /// <summary>
@@ -333,8 +353,9 @@
         /// <param name="url">Resource url.</param>
         /// <param name="body">Request body, serialized as string.</param>
         /// <param name="parameters">IRestRequest parameters.</param>
+        /// <param name="signed">Sign the request body automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        public void Delete(string url, object body, Parameter[] parameters = null, [CallerMemberName] string apiMethodName = null)
+        public void Delete(string url, object body, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             var request = new RestRequest(url, Method.DELETE, DataFormat.Json);
             if (body != null)
@@ -347,7 +368,7 @@
                 request.AddOrUpdateParameters(parameters);
             }
 
-            Execute(request, apiMethodName);
+            Execute(request, apiMethodName, signed);
         }
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using FairMark.Toolbox;
+using RestSharp;
+using RestSharp.Serialization.Json;
+
 namespace FairMark
 {
-    using RestSharp;
-    using RestSharp.Serialization.Json;
-    using Toolbox;
-
     public partial class CommonApiClient
     {
         private const string ApiMethodNameHeaderName = "X-ApiMethodName";
@@ -63,6 +63,16 @@ namespace FairMark
         private static bool IsJson(string contentType) =>
             contentType != null && contentType.IndexOf("json", StringComparison.OrdinalIgnoreCase) >= 0;
 
+        internal static string GetBodyText(RequestBody body)
+        {
+            if (IsEmpty(body))
+            {
+                return string.Empty;
+            }
+
+            return body.Value + string.Empty;
+        }
+
         internal static string FormatBody(RequestBody body)
         {
             if (IsEmpty(body))
@@ -70,7 +80,7 @@ namespace FairMark
                 return string.Empty;
             }
 
-            var bodyValue = body.Value + string.Empty;
+            var bodyValue = GetBodyText(body);
             if (IsJson(body.ContentType))
             {
                 bodyValue = JsonFormatter.FormatJson(bodyValue);
