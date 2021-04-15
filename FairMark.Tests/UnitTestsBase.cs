@@ -65,7 +65,7 @@
             }
             catch (Exception ex)
             {
-                TestContext.Progress.Write($"Error loading setting file {name}: {ex}");
+                TestContext.Progress.Write($"Error loading setting file {name}: {ex.Message}");
                 return null;
             }
         }
@@ -77,21 +77,5 @@
         protected static void SaveOmsApiToken(string token) => SaveSetting(nameof(OmsApiClient), token);
 
         protected static string LoadOmsApiToken() => LoadSetting(nameof(OmsApiClient));
-
-        [Test]
-        public void TestSaveLoadSettings()
-        {
-            Assert.DoesNotThrow(() =>
-            {
-                var unknownSetting = LoadSetting("Unknown");
-                Assert.IsNull(unknownSetting);
-
-                var value = Guid.NewGuid().ToString();
-                SaveSetting("TestSetting", value);
-
-                var loaded = LoadSetting("TestSetting");
-                Assert.AreEqual(value, loaded);
-            });
-        }
     }
 }

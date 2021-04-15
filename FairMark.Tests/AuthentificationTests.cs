@@ -13,6 +13,22 @@ namespace FairMark.TrueApi.Tests
     public class AuthentificationTests : UnitTestsBase
     {
         [Test]
+        public void TestSaveLoadSettings()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var unknownSetting = LoadSetting("Unknown");
+                Assert.IsNull(unknownSetting);
+
+                var value = Guid.NewGuid().ToString();
+                SaveSetting("TestSetting", value);
+
+                var loaded = LoadSetting("TestSetting");
+                Assert.AreEqual(value, loaded);
+            });
+        }
+
+        [Test]
         public void TrueApiClientAuthenticatesUsingCertificate()
         {
             AuthenticateTrueApiClient();
