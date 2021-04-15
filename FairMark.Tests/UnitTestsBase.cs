@@ -11,6 +11,7 @@
     [TestFixture]
     public class UnitTestsBase
     {
+        public const string TestSettingPath = @"c:\Temp\FairMarkClient";
         public const string TestCertificateSubjectName = "КС"; // "ООО \"БЕЛАЯ МЕБЕЛЬ\"";
         public const string TestCertificateThumbprintCopiedFromTheSnapin = "‎aa 04 44 c6 d4 72 20 d9 e7 75 58 e8 8c 76 35 43 cd 97 73 e2";
         public const string TestCertificateThumbprint = "aa0444c6d47220d9e77558e88c763543cd9773e2";
@@ -36,8 +37,14 @@
         {
             try
             {
-                using (var store = IsolatedStorageFile.GetUserStoreForAssembly())
-                using (var stream = store.CreateFile(name))
+                // Make sure that the CI server reuses
+                // the same authentication tokens I'm getting
+                // when I'm executing the unit tests manually
+                Directory.CreateDirectory(TestSettingPath);
+
+                //using (var store = IsolatedStorageFile.GetUserStoreForAssembly())
+                //using (var stream = store.CreateFile(name))
+                using (var stream = File.Create(Path.Combine(TestSettingPath, name)))
                 using (var writer = new StreamWriter(stream))
                 {
                     writer.Write(value);
@@ -54,8 +61,9 @@
         {
             try
             {
-                using (var store = IsolatedStorageFile.GetUserStoreForAssembly())
-                using (var stream = store.OpenFile(name, FileMode.Open, FileAccess.Read))
+                //using (var store = IsolatedStorageFile.GetUserStoreForAssembly())
+                //using (var stream = store.OpenFile(name, FileMode.Open, FileAccess.Read))
+                using (var stream = File.OpenRead(Path.Combine(TestSettingPath, name)))
                 using (var reader = new StreamReader(stream))
                 {
                     var result = reader.ReadToEnd();
