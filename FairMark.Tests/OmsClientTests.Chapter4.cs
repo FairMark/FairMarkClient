@@ -7,7 +7,7 @@ using FairMark.OmsApi;
 using FairMark.OmsApi.DataContracts;
 using NUnit.Framework;
 
-namespace FairMark.TrueApi.Tests
+namespace FairMark.Tests
 {
     [TestFixture]
     public partial class OmsClientTests : UnitTestsBase
@@ -59,6 +59,7 @@ namespace FairMark.TrueApi.Tests
             };
 
             // Unsigned order placed: 9d420e24-38ea-401c-bf5b-4947bf25384b
+            // Signed order placed: 836cc65b-6b89-40f2-b074-0bcd22b998cd
             // Expected to be ready in: 120000
             var res = Client.CreateOrder(order);
             TestContext.Progress.WriteLine($"Signed order placed: {res.OrderID}");

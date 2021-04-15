@@ -1,9 +1,9 @@
-﻿namespace FairMark.TrueApi.Tests
-{
-    using System.Security.Cryptography.X509Certificates;
-    using NUnit.Framework;
-    using Toolbox;
+﻿using System.Security.Cryptography.X509Certificates;
+using NUnit.Framework;
+using FairMark.Toolbox;
 
+namespace FairMark.Tests
+{
     [TestFixture]
     public class GostCryptoHelpersTests : UnitTestsBase
     {

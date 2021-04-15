@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyName>FairMark.TrueApi.Tests</AssemblyName>
-    <RootNamespace>FairMark.TrueApi.Tests</RootNamespace>
+    <AssemblyName>FairMark.Tests</AssemblyName>
+    <RootNamespace>FairMark.Tests</RootNamespace>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FairMark.OmsApi;
+using FairMark.TrueApi;
 using FairMark.TrueApi.DataContracts;
 using NUnit.Framework;
 
-namespace FairMark.TrueApi.Tests
+namespace FairMark.Tests
 {
     [TestFixture]
     public class AuthentificationTests : UnitTestsBase

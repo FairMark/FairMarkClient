@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FairMark.TrueApi.DataContracts;
 using NUnit.Framework;
 
-namespace FairMark.TrueApi.Tests
+namespace FairMark.Tests
 {
     [TestFixture]
     public partial class TrueApiClientTests : UnitTestsBase

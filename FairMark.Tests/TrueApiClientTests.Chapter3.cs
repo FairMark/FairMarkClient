@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using FairMark.TrueApi;
 using FairMark.TrueApi.DataContracts;
 using NUnit.Framework;
 
-namespace FairMark.TrueApi.Tests
+namespace FairMark.Tests
 {
     [TestFixture]
     public partial class TrueApiClientTests : UnitTestsBase

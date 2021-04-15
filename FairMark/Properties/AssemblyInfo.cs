@@ -1,4 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("FairMark.TrueApi.Tests")]
+[assembly: InternalsVisibleTo("FairMark.Tests")]
 
