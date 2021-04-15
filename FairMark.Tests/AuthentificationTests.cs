@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FairMark.OmsApi;
+using FairMark.OmsApi.DataContracts;
 using FairMark.TrueApi;
 using FairMark.TrueApi.DataContracts;
 using NUnit.Framework;
@@ -97,7 +98,7 @@ namespace FairMark.Tests
 
         private void AuthenticateOmsApiClient(string savedToken = null)
         {
-            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, "milk", new OmsCredentials
+            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, ProductGroups.milk, new OmsCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
                 OmsID = TestOmsID, // it's case sensitive, to my surprise

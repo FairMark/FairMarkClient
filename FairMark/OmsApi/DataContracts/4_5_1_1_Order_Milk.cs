@@ -12,6 +12,10 @@ namespace FairMark.OmsApi.DataContracts
     /// 4.5.1. Метод «Создать заказ на эмиссию кодов маркировки»
     /// 4.5.1.1.8 Расширения для производителей молока, Таблица 21.
     /// </summary>
+    /// <remarks>
+    /// Примечание*: значения «REMAINS», «REMARK» справочника «Способ выпуска
+    /// товаров в оборот» не применимы для категории товаров «Молочная продукция».
+    /// </remarks>
     [DataContract]
     public class Order_Milk : Order<OrderProduct_Milk>
     {

@@ -12,7 +12,7 @@ namespace FairMark.Tests
     [TestFixture]
     public partial class OmsClientTests : UnitTestsBase
     {
-        private OmsApiClient Client { get; } = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, "milk", new OmsCredentials
+        private OmsApiClient Client { get; } = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, ProductGroups.milk, new OmsCredentials
         {
             CertificateThumbprint = TestCertificateThumbprint,
             OmsID = TestOmsID, // it's case sensitive, to my surprise
