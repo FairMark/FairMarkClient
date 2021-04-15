@@ -82,6 +82,9 @@ namespace FairMark.TrueApi.Tests
             var omsId = Client.Ping();
             Assert.NotNull(omsId);
             Assert.AreEqual(omsId, TestOmsID);
+
+            // make sure that the last OMS auth token is saved
+            SaveOmsApiToken(Client.Authenticator.AuthToken.Token);
         }
 
         [Test]
