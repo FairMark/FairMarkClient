@@ -41,6 +41,13 @@ namespace FairMark.OmsApi
                 throw new InvalidOperationException("OmsCredentials requires OmsApiClient.");
             }
 
+            // check if the token is already available
+            var authToken = CheckSessionToken(omsClient);
+            if (authToken != null)
+            {
+                return authToken;
+            }
+
             // load the certificate with a private key by userId
             var certificate = apiClient.UserCertificate;
             if (certificate == null)
@@ -59,6 +66,32 @@ namespace FairMark.OmsApi
 
             // get authentication token
             return GetToken(omsClient, authResponse, signedData);
+        }
+
+        private AuthToken CheckSessionToken(OmsApiClient omsClient)
+        {
+            if (string.IsNullOrWhiteSpace(SessionToken))
+            {
+                // session token is not specified
+                return null;
+            }
+
+            try
+            {
+                // try calling a simple authenticated API method
+                var authHeader = FormatAuthHeader(SessionToken);
+                var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
+                var result = omsClient.GetVersion(header);
+                return new AuthToken
+                {
+                    Token = SessionToken,
+                };
+            }
+            catch
+            {
+                // session token is not valid
+                return null;
+            }
         }
 
         /// <summary>

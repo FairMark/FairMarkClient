@@ -116,9 +116,10 @@ namespace FairMark.OmsApi
         /// Gets the current API and OMS versions.
         /// 4.5.13. Метод «Получить версию СУЗ и API»
         /// </summary>
-        public Versions GetVersion()
+        /// <param name="parameters">Optional RestSharp parameters.</param>
+        public Versions GetVersion(params Parameter[] parameters)
         {
-            return Get<Versions>($"{Extension}/version");
+            return Get<Versions>($"{Extension}/version", parameters);
         }
     }
 }

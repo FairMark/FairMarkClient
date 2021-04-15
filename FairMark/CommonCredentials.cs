@@ -16,6 +16,15 @@ namespace FairMark
         public string CertificateThumbprint { get; set; }
 
         /// <summary>
+        /// Gets of sets the session token, if the client has already authorized.
+        /// </summary>
+        /// <remarks>
+        /// If session token is specified, the client will try to skip the authentication process.
+        /// If session token is not specified or is not valid, the client will proceed to log in as usual.
+        /// </remarks>
+        public string SessionToken { get; set; }
+
+        /// <summary>
         /// Performs authentication, returns access token with a limited lifetime.
         /// </summary>
         /// <param name="apiClient">REST API client to perform API calls.</param>

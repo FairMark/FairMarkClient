@@ -18,6 +18,7 @@ namespace FairMark.TrueApi.Tests
             var client = new TrueApiClient(TrueApiClient.SandboxApiUrl, new TrueApiCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
+                SessionToken = LoadTrueApiToken(),
             });
 
             // test tracing
@@ -35,6 +36,9 @@ namespace FairMark.TrueApi.Tests
                 Assert.NotNull(s);
                 Assert.IsTrue(client.Authenticator.IsAuthenticated);
                 Assert.NotNull(client.Authenticator.AuthToken);
+
+                // save the token for later reuse
+                SaveTrueApiToken(client.Authenticator.AuthToken.Token);
             }
             finally
             {
@@ -46,8 +50,7 @@ namespace FairMark.TrueApi.Tests
 
             var traceText = trace.ToString();
             Assert.IsTrue(traceText.Length > 0, "TrueApiClient trace is empty");
-            Assert.IsTrue(traceText.Contains("// Authenticate"));
-            Assert.IsTrue(traceText.Contains("// GetToken"));
+            Assert.IsTrue(traceText.Contains("// "));
             Assert.IsTrue(traceText.Contains("-> GET"));
             Assert.IsTrue(traceText.Contains("<- OK 200 (OK)"));
         }
@@ -60,6 +63,7 @@ namespace FairMark.TrueApi.Tests
                 CertificateThumbprint = TestCertificateThumbprint,
                 OmsID = TestOmsID, // it's case sensitive, to my surprise
                 OmsConnectionID = TestOmsConnectionID,
+                SessionToken = LoadOmsApiToken(),
             });
 
             // test tracing
@@ -84,6 +88,9 @@ namespace FairMark.TrueApi.Tests
                 var omsId = client.Ping(); // ($"milk/ping?omsId={TestOmsID}");
                 Assert.NotNull(omsId);
                 Assert.AreEqual(omsId, client.OmsCredentials.OmsID);
+
+                // save the token for later reuse
+                SaveOmsApiToken(client.Authenticator.AuthToken.Token);
             }
             finally
             {
@@ -95,8 +102,7 @@ namespace FairMark.TrueApi.Tests
 
             var traceText = trace.ToString();
             Assert.IsTrue(traceText.Length > 0, "OmsApiClient trace is empty");
-            Assert.IsTrue(traceText.Contains("// Authenticate"));
-            Assert.IsTrue(traceText.Contains("// GetToken"));
+            Assert.IsTrue(traceText.Contains("// GetVersion"));
             Assert.IsTrue(traceText.Contains("-> GET"));
             Assert.IsTrue(traceText.Contains("<- OK 200 (OK)"));
         }

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="OmsApi\DataContracts\DataContracts.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="CommonApiClient.Tracing.cs" />
   </ItemGroup>
 

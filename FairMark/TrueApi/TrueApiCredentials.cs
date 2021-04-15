@@ -3,6 +3,7 @@ using System.Security;
 using System.Text;
 using FairMark.DataContracts;
 using FairMark.Toolbox;
+using RestSharp;
 
 namespace FairMark.TrueApi
 {
@@ -25,6 +26,13 @@ namespace FairMark.TrueApi
                 throw new InvalidOperationException("TrueApiCredentials requires TrueApiClient.");
             }
 
+            // check if session is valid
+            var authToken = CheckSessionToken(trueApiClient);
+            if (authToken != null)
+            {
+                return authToken;
+            }
+
             // load the certificate with a private key by userId
             var certificate = apiClient.UserCertificate;
             if (certificate == null)
@@ -43,6 +51,32 @@ namespace FairMark.TrueApi
 
             // get authentication token
             return GetToken(trueApiClient, authResponse, signedData);
+        }
+
+        private AuthToken CheckSessionToken(TrueApiClient apiClient)
+        {
+            if (string.IsNullOrWhiteSpace(SessionToken))
+            {
+                // session token is not specified
+                return null;
+            }
+
+            try
+            {
+                // try calling a simple authenticated API method
+                var authHeader = FormatAuthHeader(SessionToken);
+                var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
+                var result = apiClient.Get("auth/key", new[] { header });
+                return new AuthToken
+                {
+                    Token = SessionToken,
+                };
+            }
+            catch
+            {
+                // session token is not valid
+                return null;
+            }
         }
 
         /// <summary>

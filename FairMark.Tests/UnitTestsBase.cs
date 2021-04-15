@@ -1,10 +1,14 @@
 ﻿namespace FairMark.TrueApi.Tests
 {
     using System;
+    using System.IO;
+    using System.IO.IsolatedStorage;
     using System.Security.Cryptography.X509Certificates;
+    using FairMark.OmsApi;
     using NUnit.Framework;
     using Toolbox;
 
+    [TestFixture]
     public class UnitTestsBase
     {
         public const string TestCertificateSubjectName = "КС"; // "ООО \"БЕЛАЯ МЕБЕЛЬ\"";
@@ -26,6 +30,68 @@
             // for continuous integration: use certificates installed on the local machine
             // for unit tests run inside Visual Studio: use current user's certificates
             GostCryptoHelpers.DefaultStoreLocation = ci ? StoreLocation.LocalMachine : StoreLocation.CurrentUser;
+        }
+
+        protected void SaveSetting(string name, string value)
+        {
+            try
+            {
+                using (var store = IsolatedStorageFile.GetUserStoreForAssembly())
+                using (var stream = store.CreateFile(name))
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(value);
+                    TestContext.Progress.Write($"Saved setting {name}: {value}");
+                }
+            }
+            catch (Exception ex)
+            {
+                TestContext.Progress.Write($"Error writing setting file {name}: {ex}");
+            }
+        }
+
+        protected string LoadSetting(string name)
+        {
+            try
+            {
+                using (var store = IsolatedStorageFile.GetUserStoreForAssembly())
+                using (var stream = store.OpenFile(name, FileMode.Open, FileAccess.Read))
+                using (var reader = new StreamReader(stream))
+                {
+                    var result = reader.ReadToEnd();
+                    TestContext.Progress.Write($"Loaded setting {name}: {result}");
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                TestContext.Progress.Write($"Error loading setting file {name}: {ex}");
+                return null;
+            }
+        }
+
+        protected void SaveTrueApiToken(string token) => SaveSetting(nameof(TrueApiClient), token);
+
+        protected string LoadTrueApiToken() => LoadSetting(nameof(TrueApiClient));
+
+        protected void SaveOmsApiToken(string token) => SaveSetting(nameof(OmsApiClient), token);
+
+        protected string LoadOmsApiToken() => LoadSetting(nameof(OmsApiClient));
+
+        [Test]
+        public void TestSaveLoadSettings()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var unknownSetting = LoadSetting("Unknown");
+                Assert.IsNull(unknownSetting);
+
+                var value = Guid.NewGuid().ToString();
+                SaveSetting("TestSetting", value);
+
+                var loaded = LoadSetting("TestSetting");
+                Assert.AreEqual(value, loaded);
+            });
         }
     }
 }
