@@ -13,12 +13,23 @@ namespace FairMark.TrueApi.Tests
     public class AuthentificationTests : UnitTestsBase
     {
         [Test]
-        public void TrueApiClientAuthenticates()
+        public void TrueApiClientAuthenticatesUsingCertificate()
+        {
+            AuthenticateTrueApiClient();
+        }
+
+        [Test]
+        public void TrueApiClientAuthenticatesUsingSavedToken()
+        {
+            AuthenticateTrueApiClient(LoadTrueApiToken());
+        }
+
+        private void AuthenticateTrueApiClient(string savedToken = null)
         {
             var client = new TrueApiClient(TrueApiClient.SandboxApiUrl, new TrueApiCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
-                SessionToken = LoadTrueApiToken(),
+                SessionToken = savedToken,
             });
 
             // test tracing
@@ -55,15 +66,26 @@ namespace FairMark.TrueApi.Tests
             Assert.IsTrue(traceText.Contains("<- OK 200 (OK)"));
         }
 
+        [Test, Explicit("OMS API sandbox times out very often")]
+        public void OmsApiClientAuthenticatesUsingCertificate()
+        {
+            AuthenticateOmsApiClient();
+        }
+
         [Test]
-        public void OmsApiClientAuthenticates()
+        public void OmsApiClientAuthenticatesUsingSavedToken()
+        {
+            AuthenticateOmsApiClient(LoadOmsApiToken());
+        }
+
+        private void AuthenticateOmsApiClient(string savedToken = null)
         {
             var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, "milk", new OmsCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
                 OmsID = TestOmsID, // it's case sensitive, to my surprise
                 OmsConnectionID = TestOmsConnectionID,
-                SessionToken = LoadOmsApiToken(),
+                SessionToken = savedToken,
             });
 
             // test tracing

@@ -17,6 +17,10 @@ namespace FairMark.TrueApi.Tests
             CertificateThumbprint = TestCertificateThumbprint,
             OmsID = TestOmsID, // it's case sensitive, to my surprise
             OmsConnectionID = TestOmsConnectionID,
+
+            // SessionToken is not required in production code
+            // it is used here to skip authentication in unit tests
+            SessionToken = LoadOmsApiToken(),
         })
         {
             Tracer = TestContext.Progress.WriteLine,

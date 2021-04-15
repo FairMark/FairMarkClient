@@ -32,7 +32,7 @@
             GostCryptoHelpers.DefaultStoreLocation = ci ? StoreLocation.LocalMachine : StoreLocation.CurrentUser;
         }
 
-        protected void SaveSetting(string name, string value)
+        protected static void SaveSetting(string name, string value)
         {
             try
             {
@@ -50,7 +50,7 @@
             }
         }
 
-        protected string LoadSetting(string name)
+        protected static string LoadSetting(string name)
         {
             try
             {
@@ -70,13 +70,13 @@
             }
         }
 
-        protected void SaveTrueApiToken(string token) => SaveSetting(nameof(TrueApiClient), token);
+        protected static void SaveTrueApiToken(string token) => SaveSetting(nameof(TrueApiClient), token);
 
-        protected string LoadTrueApiToken() => LoadSetting(nameof(TrueApiClient));
+        protected static string LoadTrueApiToken() => LoadSetting(nameof(TrueApiClient));
 
-        protected void SaveOmsApiToken(string token) => SaveSetting(nameof(OmsApiClient), token);
+        protected static void SaveOmsApiToken(string token) => SaveSetting(nameof(OmsApiClient), token);
 
-        protected string LoadOmsApiToken() => LoadSetting(nameof(OmsApiClient));
+        protected static string LoadOmsApiToken() => LoadSetting(nameof(OmsApiClient));
 
         [Test]
         public void TestSaveLoadSettings()

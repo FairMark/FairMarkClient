@@ -15,6 +15,10 @@ namespace FairMark.TrueApi.Tests
         private TrueApiClient Client { get; } = new TrueApiClient(TrueApiClient.SandboxApiUrl, new TrueApiCredentials
         {
             CertificateThumbprint = TestCertificateThumbprint,
+
+            // SessionToken is not required in production code
+            // it is used here to skip authentication in unit tests
+            SessionToken = LoadTrueApiToken(),
         })
         {
             Tracer = TestContext.Progress.WriteLine,

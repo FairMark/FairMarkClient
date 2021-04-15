@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using FairMark.OmsApi.DataContracts;
 using RestSharp;
@@ -94,13 +95,22 @@ namespace FairMark.OmsApi
         /// Ping OMS to check if it's available.
         /// 4.5.11. Метод «Проверить доступность СУЗ»
         /// </summary>
-        public string Ping()
+        /// <param name="parameters">Optional RestSharp parameters.</param>
+        public string Ping(params Parameter[] parameters)
         {
             var omsId = OmsCredentials.OmsID;
-            var pong = Get<Pong>($"{Extension}/ping", new[]
+            var pongParameters = new List<Parameter>
             {
                 new Parameter("omsId", omsId, ParameterType.QueryString),
-            });
+            };
+
+            // add more parameters if specified
+            if (parameters != null && parameters.Length > 0)
+            {
+                pongParameters.AddRange(parameters);
+            }
+
+            var pong = Get<Pong>($"{Extension}/ping", pongParameters.ToArray());
 
             // looks like OMS ID is case sensitive
             if (pong.OmsID != omsId)
@@ -116,10 +126,9 @@ namespace FairMark.OmsApi
         /// Gets the current API and OMS versions.
         /// 4.5.13. Метод «Получить версию СУЗ и API»
         /// </summary>
-        /// <param name="parameters">Optional RestSharp parameters.</param>
-        public Versions GetVersion(params Parameter[] parameters)
+        public Versions GetVersion()
         {
-            return Get<Versions>($"{Extension}/version", parameters);
+            return Get<Versions>($"{Extension}/version");
         }
     }
 }

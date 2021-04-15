@@ -81,7 +81,7 @@ namespace FairMark.OmsApi
                 // try calling a simple authenticated API method
                 var authHeader = FormatAuthHeader(SessionToken);
                 var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
-                var result = omsClient.GetVersion(header);
+                var pong = omsClient.Ping(header);
                 return new AuthToken
                 {
                     Token = SessionToken,
