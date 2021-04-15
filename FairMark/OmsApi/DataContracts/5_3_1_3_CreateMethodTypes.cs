@@ -1,33 +1,40 @@
-﻿namespace FairMark.OmsApi.DataContracts
+﻿using System.Runtime.Serialization;
+
+namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// Список возможных значений справочника «Способ изготовления» createMethodType
+    /// 5.3.1.3. Справочник «Способ изготовления» (createMethodType)
     /// </summary>
-    public static class CreateMethodTypes
+    public enum CreateMethodTypes
     {
         /// <summary>
-        /// Самостоятельно
+        /// Самостоятельно.
         /// </summary>
-        public const string SELF_MADE = nameof(SELF_MADE);
+        [EnumMember(Value = @"SELF_MADE")]
+        SELF_MADE = 0,
 
         /// <summary>
-        /// ЦЭМ
+        /// ЦЭМ.
         /// </summary>
-        public const string CEM = nameof(CEM);
+        [EnumMember(Value = @"CEM")]
+        CEM = 1,
 
         /// <summary>
-        /// Контрактное производство
+        /// Контрактное производство.
         /// </summary>
-        public const string CM = nameof(CM);
+        [EnumMember(Value = @"CM")]
+        CM = 2,
 
         /// <summary>
-        /// Логистический склад
+        /// Логистический склад.
         /// </summary>
-        public const string CL = nameof(CL);
+        [EnumMember(Value = @"CL")]
+        CL = 3,
 
         /// <summary>
-        /// Комиссионная площадка
+        /// Комиссионная площадка.
         /// </summary>
-        public const string CA = nameof(CA);
+        [EnumMember(Value = @"CA")]
+        CA = 4,
     }
 }

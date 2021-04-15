@@ -27,7 +27,7 @@ namespace FairMark.OmsApi.DataContracts
         /// см. раздел 5.3.1.1.
         /// </summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-        public string ReleaseMethodType { get; set; }
+        public ReleaseMethodTypes ReleaseMethodType { get; set; }
 
         /// <summary>
         /// Способ изготовления СИ.
@@ -35,7 +35,7 @@ namespace FairMark.OmsApi.DataContracts
         /// см. раздел 5.3.1.3.
         /// </summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-        public string CreateMethodType { get; set; }
+        public CreateMethodTypes CreateMethodType { get; set; }
 
         /// <summary>
         /// Идентификатор производственного заказа.

@@ -1,38 +1,46 @@
-﻿namespace FairMark.OmsApi.DataContracts
+﻿using System.Runtime.Serialization;
+
+namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// Возможные значения справочника «Способ выпуска товаров в оборот»
+    /// 5.3.1.1. Справочник «Способ выпуска товаров в оборот» (releaseMethodType)
     /// </summary>
-    public static class ReleaseMethodTypes
+    public enum ReleaseMethodTypes
     {
         /// <summary>
         /// Производство в РФ
         /// </summary>
-        public const string PRODUCTION = nameof(PRODUCTION);
+        [EnumMember(Value = @"PRODUCTION")]
+        PRODUCTION = 0,
 
         /// <summary>
         /// Ввезен в РФ (Импорт)
         /// </summary>
-        public const string IMPORT = nameof(IMPORT);
+        [EnumMember(Value = @"IMPORT")]
+        IMPORT = 1,
 
         /// <summary>
         /// Маркировка остатков (доступно только для ТГ «Альтернативная табачная продукция», «Духи и туалетная вода», «Предметы одежды, белье постельное, столовое, туалетное и кухонное»)
         /// </summary>
-        public const string REMAINS = nameof(REMAINS);
+        [EnumMember(Value = @"REMAINS")]
+        REMAINS = 2,
 
         /// <summary>
         /// Доступен исключительно Операторам ЕАЭС для следующих товарных групп («Обувные товары», «Предметы одежды, белье постельное, столовое, туалетное и кухонное», «Шины и покрышки пневматические резиновые новые», «Духи и туалетная вода», «Фотокамеры (кроме кинокамер), фотовспышки и лампы-вспышки») в том числе «Молочная продукция»
         /// </summary>
-        public const string CROSSBORDER = nameof(CROSSBORDER);
+        [EnumMember(Value = @"CROSSBORDER")]
+        CROSSBORDER = 3,
 
         /// <summary>
         /// Перемаркировка (доступно только для ТГ «Предметы одежды, белье постельное, столовое, туалетное и кухонное», «Обувные товары», «Шины и покрышки пневматические резиновые новые», «Духи и туалетная вода», «Фотокамеры (кроме кинокамер), фотовспышки и лампывспышки», «Велосипеды и велосипедные рамы», «Кресла-коляски»).
         /// </summary>
-        public const string REMARK = nameof(REMARK);
+        [EnumMember(Value = @"REMARK")]
+        REMARK = 4,
 
         /// <summary>
         /// Принят на комиссию от физического лица (доступно для для ТГ «Предметы одежды, белье постельное, столовое, туалетное и кухонное», «Обувные товары»)
         /// </summary>
-        public const string COMMISSION = nameof(COMMISSION);
+        [EnumMember(Value = @"COMMISSION")]
+        COMMISSION = 5,
     }
 }

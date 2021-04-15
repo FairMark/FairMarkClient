@@ -1,18 +1,22 @@
-﻿namespace FairMark.OmsApi.DataContracts
+﻿using System.Runtime.Serialization;
+
+namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// Возможные значения справочника «Способ формирования индивидуального серийного номера» serialNumberType
+    /// 5.3.1.2. Справочник «Способ формирования индивидуального серийного номера» (serialNumberType)
     /// </summary>
-    public static class SerialNumberTypes
+    public enum SerialNumberTypes
     {
         /// <summary>
-        /// Самостоятельно
+        /// Самостоятельно.
         /// </summary>
-        public const string SELF_MADE = nameof(SELF_MADE);
+        [EnumMember(Value = @"SELF_MADE")]
+        SELF_MADE = 0,
 
         /// <summary>
-        /// Оператором ГИС МТ
+        /// Оператором ГИС МТ.
         /// </summary>
-        public const string OPERATOR = nameof(OPERATOR);
+        [EnumMember(Value = @"OPERATOR")]
+        OPERATOR = 1,
     }
 }

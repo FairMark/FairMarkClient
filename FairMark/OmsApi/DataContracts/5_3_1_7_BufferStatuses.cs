@@ -1,43 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// 5.3.1.7. Справочник «Статус буфера КМ» (bufferStatus)    /// </summary>
-    public static class BufferStatuses
+    /// 5.3.1.7. Справочник «Статус буфера КМ» (bufferStatus)
+    /// </summary>
+    public enum BufferStatuses
     {
         /// <summary>
         /// Буфер КМ находится в ожидании.
         /// </summary>
-        public const string PENDING = nameof(PENDING);
+        [EnumMember(Value = @"PENDING")]
+        PENDING = 0,
 
         /// <summary>
         /// Буфер создан.
         /// </summary>
-        public const string ACTIVE = nameof(ACTIVE);
+        [EnumMember(Value = @"ACTIVE")]
+        ACTIVE = 1,
 
         /// <summary>
         /// Буфер и пулы РЭ не содержат больше кодов.
         /// </summary>
-        public const string EXHAUSTED = nameof(EXHAUSTED);
+        [EnumMember(Value = @"EXHAUSTED")]
+        EXHAUSTED = 2,
 
         /// <summary>
         /// Буфер более не доступен для работы.
         /// </summary>
-        public const string REJECTED = nameof(REJECTED);
+        [EnumMember(Value = @"REJECTED")]
+        REJECTED = 3,
 
         /// <summary>
         /// Буфер закрыт.
         /// </summary>
-        public const string CLOSED = nameof(CLOSED);
+        [EnumMember(Value = @"CLOSED")]
+        CLOSED = 4,
 
         /// <summary>
         /// Буфер аннулирован (по истечению срока годности не использованных КМ).
         /// </summary>
-        public const string EXPIRED = nameof(EXPIRED);
+        [EnumMember(Value = @"EXPIRED")]
+        EXPIRED = 5,
     }
 }

@@ -1,48 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// 5.3.1.10. Справочник «Статус заказа» (orderStatus)    /// </summary>
-    public static class OrderStatuses
+    /// 5.3.1.10. Справочник «Статус заказа» (orderStatus)
+    /// </summary>
+    public enum OrderStatuses
     {
         /// <summary>
         /// Заказ создан.
         /// </summary>
-        public const string CREATED = nameof(CREATED);
+        [EnumMember(Value = @"CREATED")]
+        CREATED = 0,
 
         /// <summary>
         /// Заказ ожидает подтверждения ГИС МТ.
         /// </summary>
-        public const string PENDING = nameof(PENDING);
+        [EnumMember(Value = @"PENDING")]
+        PENDING = 1,
 
         /// <summary>
         /// Заказ не подтверждён в ГИС МТ.
         /// </summary>
-        public const string DECLINED = nameof(DECLINED);
+        [EnumMember(Value = @"DECLINED")]
+        DECLINED = 2,
 
         /// <summary>
         /// Заказ подтверждён в ГИС МТ.
         /// </summary>
-        public const string APPROVED = nameof(APPROVED);
+        [EnumMember(Value = @"APPROVED")]
+        APPROVED = 3,
 
         /// <summary>
         /// Заказ готов.
         /// </summary>
-        public const string READY = nameof(READY);
+        [EnumMember(Value = @"READY")]
+        READY = 4,
 
         /// <summary>
         /// Заказ закрыт.
         /// </summary>
-        public const string CLOSED = nameof(CLOSED);
+        [EnumMember(Value = @"CLOSED")]
+        CLOSED = 5,
 
         /// <summary>
         /// Заказ аннулирован (по истечению срока годности не использованных КМ).
         /// </summary>
-        public const string EXPIRED = nameof(EXPIRED);
+        [EnumMember(Value = @"EXPIRED")]
+        EXPIRED = 6,
     }
 }

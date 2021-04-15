@@ -26,7 +26,9 @@ namespace FairMark.Tests
 
         public enum FooBar
         {
-            FOO = 0, BAR = 3, QUUX = 4
+            FOO = 0, BAR = 3,
+            [EnumMember(Value = "QUUX")]
+            QUUX = 4
         }
 
         [DataContract]
@@ -46,6 +48,11 @@ namespace FairMark.Tests
 
             var deser = Deserialize<FooBarHolder>(ser);
             Assert.AreEqual(src.Baz, deser.Baz);
+
+            src.Baz = (FooBar)3;
+            ser = Serialize(src);
+            Assert.NotNull(ser);
+            Assert.AreEqual("{\"waldo\":\"BAR\"}", ser);
         }
 
         #region JSON иерархия — нет, такое мы использовать не будем:

@@ -1,48 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
-    /// 5.3.1.5. Справочник «Статус массива КМ» (status)    /// </summary>
-    public static class PoolStatuses
+    /// 5.3.1.5. Справочник «Статус массива КМ» (status)
+    /// </summary>
+    public enum PoolStatuses
     {
         /// <summary>
         /// Неверный формат запроса.
         /// </summary>
-        public const string REQUEST_ERROR = nameof(REQUEST_ERROR);
+        [EnumMember(Value = @"REQUEST_ERROR")]
+        REQUEST_ERROR = 0,
 
         /// <summary>
         /// Массив (пул) КМ был запрошен в РЭ.
         /// </summary>
-        public const string REQUESTED = nameof(REQUESTED);
+        [EnumMember(Value = @"REQUESTED")]
+        REQUESTED = 1,
 
         /// <summary>
         /// В процессе обработки.
         /// </summary>
-        public const string IN_PROCESS = nameof(IN_PROCESS);
+        [EnumMember(Value = @"IN_PROCESS")]
+        IN_PROCESS = 2,
 
         /// <summary>
         /// Массив (пул) КМ готов к использованию.
         /// </summary>
-        public const string READY = nameof(READY);
+        [EnumMember(Value = @"READY")]
+        READY = 3,
 
         /// <summary>
         /// Все КМ в массиве были использованы полностью.
         /// </summary>
-        public const string CLOSED = nameof(CLOSED);
+        [EnumMember(Value = @"CLOSED")]
+        CLOSED = 4,
 
         /// <summary>
         /// Массив КМ был исчерпан и закрыт.
         /// </summary>
-        public const string DELETED = nameof(DELETED);
+        [EnumMember(Value = @"DELETED")]
+        DELETED = 5,
 
         /// <summary>
         /// Заказ не был выполнен (неверные параметры заказа,
-        /// например, заказ содержит неуникальные серийные номера).        /// </summary>
-        public const string REJECTED = nameof(REJECTED);
+        /// например, заказ содержит неуникальные серийные номера).
+        /// </summary>
+        [EnumMember(Value = @"REJECTED")]
+        REJECTED = 6,
     }
 }

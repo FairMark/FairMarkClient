@@ -38,7 +38,7 @@ namespace FairMark.OmsApi.DataContracts
         /// определяемая атрибутом «serialNumberType», не может быть изменена в дальнейшем.
         /// </remarks>
         [DataMember(Name = "serialNumberType", IsRequired = true)]
-        public string SerialNumberType { get; set; }
+        public SerialNumberTypes SerialNumberType { get; set; }
 
         /// <summary>
         /// Массив серийных номеров.Это поле указывается в случае,
