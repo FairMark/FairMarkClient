@@ -571,30 +571,19 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoBicycleCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Bicycle> Products { get; set; } = new List<OrderProduct_Bicycle>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoBicycleReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Light
+    public partial class Order_Light // OrderProduct_Fashion!
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -602,34 +591,23 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoLightCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Fashion> Products { get; set; } = new List<OrderProduct_Fashion>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoLightReleaseMethodType ReleaseMethodType { get; set; }
 
         /// <summary>Признак того, что товар произведен/приобретен до даты запрета оборота немаркированных товаров по данной ТГ</summary>
         [DataMember(Name = "remainsAvailable", IsRequired = false)]
         public bool? RemainsAvailable { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Lp
+    public partial class Order_Lp // OrderProduct_Fashion
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -637,65 +615,23 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoLpCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Fashion> Products { get; set; } = new List<OrderProduct_Fashion>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoLpReleaseMethodType ReleaseMethodType { get; set; }
 
         /// <summary>Признак того, что товар произведен/приобретен до даты запрета оборота немаркированных товаров по данной ТГ</summary>
         [DataMember(Name = "remainsAvailable", IsRequired = false)]
         public bool? RemainsAvailable { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Milk
-    {
-        /// <summary>Contact Person (Контактное лицо)</summary>
-        [DataMember(Name = "contactPerson", IsRequired = false)]
-        public string ContactPerson { get; set; }
-
-        /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
-        [DataMember(Name = "createMethodType", IsRequired = true)]
-
-        public OrderDtoMilkCreateMethodType CreateMethodType { get; set; }
-
-        /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
-        [DataMember(Name = "productionOrderId", IsRequired = false)]
-        public string ProductionOrderID { get; set; }
-
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Milk> Products { get; set; } = new List<OrderProduct_Milk>();
-
-        /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
-        [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
-        public OrderDtoMilkReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
-    }
-
-    [DataContract]
-    public partial class Order_Ncp
+    public partial class Order_Ncp // OrderProduct_Ncp
     {
         /// <summary>Expected Start Date (Дата начала производства продукции по данному заказу)</summary>
         [DataMember(Name = "expectedStartDate", IsRequired = false)]
@@ -733,23 +669,13 @@ namespace FairMark.OmsApi.DataContracts
         [DataMember(Name = "productionLineId", IsRequired = true)]
         public string ProductionLineID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Ncp> Products { get; set; } = new List<OrderProduct_Ncp>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoNcpReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Otp
+    public partial class Order_Otp // OrderProduct_Otp
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -757,7 +683,6 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoOtpCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Start date for the production of this order (Дата начала производства продукции по данному заказу)</summary>
@@ -800,23 +725,13 @@ namespace FairMark.OmsApi.DataContracts
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Otp> Products { get; set; } = new List<OrderProduct_Otp>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoOtpReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Perfum
+    public partial class Order_Perfum // OrderProduct_Perfum
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -824,30 +739,19 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoPerfumCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Perfum> Products { get; set; } = new List<OrderProduct_Perfum>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoPerfumReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Pharma
+    public partial class Order_Pharma // OrderProduct_Pharma
     {
         /// <summary>Is code emission free (Признак оплаты эмиссии КМ: true - не подлежит оплате, false - подлежит оплате (значение по умолчанию)</summary>
         [DataMember(Name = "freeCode", IsRequired = false)]
@@ -857,22 +761,13 @@ namespace FairMark.OmsApi.DataContracts
         [DataMember(Name = "paymentType", IsRequired = false)]
         public OrderDtoPharmaPaymentType? PaymentType { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Pharma> Products { get; set; } = new List<OrderProduct_Pharma>();
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
         /// <summary>Subject ID (Субъект обращения)</summary>
         [DataMember(Name = "subjectId", IsRequired = true)]
         public string SubjectID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Photo
+    public partial class Order_Photo // OrderProduct_Photo
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -880,30 +775,19 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoPhotoCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Photo> Products { get; set; } = new List<OrderProduct_Photo>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoPhotoReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Shoes
+    public partial class Order_Shoes // OrderProduct_Fashion
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -911,34 +795,23 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoShoesCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Fashion> Products { get; set; } = new List<OrderProduct_Fashion>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoShoesReleaseMethodType ReleaseMethodType { get; set; }
 
         /// <summary>Признак того, что товар произведен/приобретен до даты запрета оборота немаркированных товаров по данной ТГ</summary>
         [DataMember(Name = "remainsAvailable", IsRequired = false)]
         public bool? RemainsAvailable { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Tires
+    public partial class Order_Tires // OrderProduct_Tires
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -946,30 +819,19 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoTiresCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Tires> Products { get; set; } = new List<OrderProduct_Tires>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoTiresReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Tobacco
+    public partial class Order_Tobacco // OrderProduct_Tobacco
     {
         /// <summary>Expected Start Date (Ожидаемая дата начала)</summary>
         [DataMember(Name = "expectedStartDate", IsRequired = false)]
@@ -1006,19 +868,10 @@ namespace FairMark.OmsApi.DataContracts
         /// <summary>Line Identifier (Идентификатор производственной линии)</summary>
         [DataMember(Name = "productionLineId", IsRequired = true)]
         public string ProductionLineID { get; set; }
-
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Tobacco> Products { get; set; } = new List<OrderProduct_Tobacco>();
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
-    public partial class Order_Water
+    public partial class Order_Water // OrderProduct_Water
     {
         /// <summary>Contact Person (Контактное лицо)</summary>
         [DataMember(Name = "contactPerson", IsRequired = false)]
@@ -1026,26 +879,15 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Marking Manufacturing Type (Способ изготовления)</summary>
         [DataMember(Name = "createMethodType", IsRequired = true)]
-
         public OrderDtoWaterCreateMethodType CreateMethodType { get; set; }
 
         /// <summary>Production Order ID (Идентификатор производственного заказа)</summary>
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Product list (Список товаров)</summary>
-        [DataMember(Name = "products", IsRequired = true)]
-        public List<OrderProduct_Water> Products { get; set; } = new List<OrderProduct_Water>();
-
         /// <summary>Product Release Type (Способ выпуска товаров в оборот)</summary>
         [DataMember(Name = "releaseMethodType", IsRequired = true)]
-
         public OrderDtoWaterReleaseMethodType ReleaseMethodType { get; set; }
-
-        [DataMember(Name = "serviceProviderId", IsRequired = false)]
-        public string ServiceProviderID { get; set; }
-
-
     }
 
     [DataContract]
