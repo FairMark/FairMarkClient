@@ -57,11 +57,26 @@ namespace FairMark.OmsApi
         //      Запрос, кажется, готов, но статусы всех последних заказов "Создан".
         //      Видимо, они ещё не обработаны до конца и метод всё время возвращает что заказа нет, или ГТИНа в заказе нет)
 
-        // 4.5.7. Метод «Получить статус массива КМ из заказа»
-        // postman: SUZ 4.5.7. milk/buffer/status
+        /// <summary>
+        /// 4.5.7. Метод «Получить статус массива КМ из заказа»
+        /// </summary>
+        /// <remarks>
+        /// postman: SUZ 4.5.7. milk/buffer/status
+        /// </remarks>
+        /// <param name="orderId">Идентификатор заказа на эмиссию КМ</param>
+        /// <param name="gtin">GTIN товара, по которому нужно получить статус заказа</param>
+        public BufferInfo GetBufferStatus(string orderId, string gtin)
+        {
+            return Get<BufferInfo>("{extension}/buffer/status", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("gtin", gtin, ParameterType.QueryString),
+            });
+        }
 
         /// <summary>
-        /// Get orders.
         /// 4.5.8. Метод «Получить статус заказов»
         /// </summary>
         /// <remarks>

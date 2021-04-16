@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using FairMark.OmsApi;
@@ -50,7 +51,7 @@ namespace FairMark.Tests
                         {
                             "asdfc", "asdfd", "asdfe", "asdff", "asdf0"
                         },
-                        TemplateID = 20,
+                        TemplateID = Templates.T20,
                         StickerID = 19, // or is it a string?
                     },
                 },
@@ -72,6 +73,26 @@ namespace FairMark.Tests
             var res = Client.CreateOrder(order);
             TestContext.Progress.WriteLine($"Signed order placed: {res.OrderID}");
             TestContext.Progress.WriteLine($"Expected to be ready in: {res.ExpectedCompleteTimestamp}");
+        }
+
+        [Test]
+        public void Chapter_4_5_7_GetBufferStatus()
+        {
+            // invalid order/gtin
+            var ex = Assert.Throws<FairMarkException>(() =>
+            {
+                Client.GetBufferStatus("unexisting-order-id", "invalid-gtin");
+            });
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
+            Assert.NotNull(ex.Message);
+
+            // valid order/gtin
+            var signedOrderId = "836cc65b-6b89-40f2-b074-0bcd22b998cd";
+            var milkGtin = "04635785586010";
+            var buffer = Client.GetBufferStatus(signedOrderId, milkGtin);
+            Assert.NotNull(buffer);
+            Assert.AreEqual(BufferStatuses.CLOSED, buffer.BufferStatus);
         }
 
         [Test]

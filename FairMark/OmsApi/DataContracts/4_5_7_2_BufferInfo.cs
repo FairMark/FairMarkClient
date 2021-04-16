@@ -27,7 +27,7 @@ namespace FairMark.OmsApi.DataContracts
         /// см. раздел 5.3.1.7: <see cref="BufferStatuses"/>.
         /// </summary>
         [DataMember(Name = "bufferStatus", IsRequired = true)]
-        public string BufferStatus { get; set; }
+        public BufferStatuses BufferStatus { get; set; }
 
         /// <summary>
         /// Код товара (GTIN) – по которому был сделан запрос.

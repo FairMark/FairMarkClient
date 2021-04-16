@@ -56,6 +56,6 @@ namespace FairMark.OmsApi.DataContracts
         /// см. раздел 5.3.1.5, <see cref="PoolStatuses"/>.
         /// </summary>
         [DataMember(Name = "status", IsRequired = true)]
-        public string Status { get; set; }
+        public PoolStatuses Status { get; set; }
     }
 }
