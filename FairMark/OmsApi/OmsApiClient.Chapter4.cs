@@ -109,12 +109,19 @@ namespace FairMark.OmsApi
         /// Ping OMS to check if it's available.
         /// 4.5.11. Метод «Проверить доступность СУЗ»
         /// </summary>
+        public string Ping() => Ping(new Parameter[0]);
+
+        /// <summary>
+        /// Internal version of Ping used by <see cref="OmsCredentials"/>
+        /// to check existing session token validity.
+        /// </summary>
         /// <param name="parameters">Optional RestSharp parameters.</param>
-        public string Ping(params Parameter[] parameters)
+        internal string Ping(params Parameter[] parameters)
         {
             var omsId = OmsCredentials.OmsID;
             var pongParameters = new List<Parameter>
             {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", omsId, ParameterType.QueryString),
             };
 
@@ -124,7 +131,7 @@ namespace FairMark.OmsApi
                 pongParameters.AddRange(parameters);
             }
 
-            var pong = Get<Pong>($"{Extension}/ping", pongParameters.ToArray());
+            var pong = Get<Pong>("{extension}/ping", pongParameters.ToArray());
 
             // looks like OMS ID is case sensitive
             if (pong.OmsID != omsId)
@@ -140,9 +147,9 @@ namespace FairMark.OmsApi
         /// Gets the current API and OMS versions.
         /// 4.5.13. Метод «Получить версию СУЗ и API»
         /// </summary>
-        public Versions GetVersion()
+        public AppVersion GetVersion() => Get<AppVersion>("{extension}/version", new[]
         {
-            return Get<Versions>($"{Extension}/version");
-        }
+            new Parameter("extension", Extension, ParameterType.UrlSegment),
+        });
     }
 }

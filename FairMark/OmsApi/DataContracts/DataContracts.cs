@@ -250,20 +250,6 @@ namespace FairMark.OmsApi.DataContracts
     }
 
     [DataContract]
-    public partial class AppVersion
-    {
-        /// <summary>OMS API Version (Версия API СУЗ)</summary>
-        [DataMember(Name = "apiVersion", IsRequired = false)]
-        public string ApiVersion { get; set; }
-
-        /// <summary>OMS Version (Версия СУЗ)</summary>
-        [DataMember(Name = "omsVersion", IsRequired = false)]
-        public string OmsVersion { get; set; }
-
-
-    }
-
-    [DataContract]
     public partial class BlockDto
     {
         /// <summary>Date, time of creation of the marking code package(Дата, время создания пакета кодов маркировки)</summary>

@@ -11,11 +11,13 @@ namespace FairMark.OmsApi.DataContracts
     /// 4.5.13. Метод «Получить версию СУЗ и API»
     /// </summary>
     [DataContract]
-    public class Versions
+    public class AppVersion
     {
+        /// <summary>OMS API Version (Версия API СУЗ)</summary>
         [DataMember(Name = "apiVersion")]
         public string ApiVersion { get; set; }
 
+        /// <summary>OMS Version (Версия СУЗ)</summary>
         [DataMember(Name = "omsVersion")]
         public string OmsVersion { get; set; }
     }
