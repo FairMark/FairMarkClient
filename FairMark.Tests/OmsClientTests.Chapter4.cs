@@ -26,6 +26,14 @@ namespace FairMark.Tests
             Tracer = TestContext.Progress.WriteLine,
         };
 
+        public OmsClientTests()
+        {
+            // enforce authentication and make sure 
+            // that the last OMS auth token is saved
+            Client.Ping();
+            SaveOmsApiToken(Client.Authenticator.AuthToken.Token);
+        }
+
         [Test, Explicit("OMS API has restrictions on emission orders")]
         public void Chapter_4_5_1_CreateOrder()
         {
@@ -83,9 +91,6 @@ namespace FairMark.Tests
             var omsId = Client.Ping();
             Assert.NotNull(omsId);
             Assert.AreEqual(omsId, TestOmsID);
-
-            // make sure that the last OMS auth token is saved
-            SaveOmsApiToken(Client.Authenticator.AuthToken.Token);
         }
 
         [Test]
