@@ -19,11 +19,16 @@ namespace FairMark.OmsApi.DataContracts
         [DataMember(Name = "cisType", IsRequired = false)]
         public CisTypes? CisType { get; set; }
 
-        /// <summary>Expiry date of the product (expiration date more than 72 hours) (Дата окончания срока годности продукции (срок хранения более 72 часов))</summary>
+        /// <summary>
+        /// Expiry date of the product (expiration date more than 72 hours)
+        /// Дата окончания срока годности продукции (срок хранения более 72 часов)
+        /// </summary>
         [DataMember(Name = "expDate", IsRequired = false)]
         public string ExpDate { get; set; }
 
-        /// <summary>Expiration date of the product (shelf life less than 72 hours) Дата окончания срока годности продукции (срок хранения менее 72 часов))</summary>
+        /// <summary>Expiration date of the product (shelf life less than 72 hours)
+        /// Дата окончания срока годности продукции (срок хранения менее 72 часов)
+        /// </summary>
         [DataMember(Name = "expDate72", IsRequired = false)]
         public string ExpDate72 { get; set; }
 
