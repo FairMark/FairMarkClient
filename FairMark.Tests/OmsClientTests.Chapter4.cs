@@ -76,6 +76,24 @@ namespace FairMark.Tests
         }
 
         [Test]
+        public void Chapter_4_5_2_Dropout_EmptyReportNotAllowed()
+        {
+            var ex = Assert.Throws<FairMarkException>(() =>
+            {
+                Client.Dropout(new DropoutReport
+                {
+                    DropoutReason = DropoutReasons.OTHER,
+                });
+            });
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
+            Assert.IsNotNull(ex.ErrorResponse);
+            Assert.IsFalse(ex.ErrorResponse.Success);
+            Assert.IsNotNull(ex.ErrorResponse.FieldErrors);
+            Assert.IsTrue(ex.ErrorResponse.FieldErrors.Count > 0);
+        }
+
+        [Test]
         public void Chapter_4_5_7_GetBufferStatus()
         {
             // invalid order/gtin

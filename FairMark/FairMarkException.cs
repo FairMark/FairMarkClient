@@ -1,10 +1,10 @@
-﻿namespace FairMark
-{
-    using System;
-    using System.Net;
-    using System.Runtime.Serialization;
-    using TrueApi.DataContracts;
+﻿using System;
+using System.Net;
+using System.Runtime.Serialization;
+using FairMark.DataContracts;
 
+namespace FairMark
+{
     /// <summary>
     /// FairMark API Exception.
     /// </summary>

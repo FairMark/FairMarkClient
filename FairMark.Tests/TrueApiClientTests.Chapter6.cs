@@ -12,7 +12,7 @@ namespace FairMark.Tests
     public partial class TrueApiClientTests : UnitTestsBase
     {
         [Test]
-        public void Chapter_5_1_2_GetCisesByOrderId()
+        public void Chapter_6_9_GetCisesByOrderId()
         {
             var verificationCises = new[]
             {
@@ -31,6 +31,16 @@ namespace FairMark.Tests
             var cises = Client.GetCisesByOrderId("a1769132-796e-47cb-8bc5-1053c4d7d6c5");
             Assert.NotNull(cises);
             CollectionAssert.AreEquivalent(verificationCises, cises);
+        }
+
+        [Test]
+        public void Chapter_6_9_GetCisesByOrderId_NotFound()
+        {
+            var ex = Assert.Throws<FairMarkException>(() =>
+            {
+                // "836cc65b-6b89-40f2-b074-0bcd22b998cd"
+                Client.GetCisesByOrderId("this-order-id-is-invalid");
+            });
         }
     }
 }

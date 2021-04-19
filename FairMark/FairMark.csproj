@@ -4,6 +4,7 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>FairMark</AssemblyName>
     <RootNamespace>FairMark</RootNamespace>
+    <Description>Честный Знак. Неофициальная клиентская библиотека для .NET.</Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -8,7 +8,6 @@ namespace FairMark.OmsApi
     partial class OmsApiClient
     {
         /// <summary>
-        /// Creates a new CIS emission order.
         /// 4.5.1. Метод «Создать заказ на эмиссию кодов маркировки»
         /// </summary>
         /// <remarks>
@@ -50,6 +49,25 @@ namespace FairMark.OmsApi
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
             },
             signed: true);
+        }
+
+        /// <summary>
+        /// 4.5.2. Метод «Отправить отчёт о выбытии/отбраковке КМ».
+        /// </summary>
+        /// <param name="report">
+        /// Экземпляр <see cref="DropoutReport"/> для отправки 
+        /// отчёта о выбытии/отбраковке КМ в СУЗ
+        /// </param>
+        /// <returns>Код отправленного отчета</returns>
+        public string Dropout(DropoutReport report)
+        {
+            var result = Post<DropoutReportResult>("{extension}/orders", report, new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+            });
+
+            return result.ReportID;
         }
 
         // 4.5.6. Метод «Получить КМ из заказа»
@@ -97,9 +115,9 @@ namespace FairMark.OmsApi
             });
         }
 
-        // 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
-        // postman: _SUZ 4.5.14. milk/codes/blocks
-        //      Тут муть подобная 4.4.6.
+        /// 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
+        /// postman: _SUZ 4.5.14. milk/codes/blocks
+        ///      Тут муть подобная 4.4.6.
 
         // 4.5.15 Метод «Получить повторно коды маркировки из заказа кодов маркировки»
         // postman: _SUZ 4.5.15. milk/codes/retry

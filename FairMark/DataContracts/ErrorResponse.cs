@@ -1,6 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
-namespace FairMark.TrueApi.DataContracts
+namespace FairMark.DataContracts
 {
     /// <summary>
     /// Структура, которая содержит поля, встречающиеся в сообщениях об ошибках.
@@ -56,10 +57,15 @@ namespace FairMark.TrueApi.DataContracts
 
         //// And sometimes it's like { success: false, violations: ["one", "two", "three"] }
 
-        //[DataMember(Name = "success")]
-        //public bool Success { get; set; }
+        [DataMember(Name = "success")]
+        public bool Success { get; set; }
 
         //[DataMember(Name = "violations")]
         //public string[] Violations { get; set; }
+
+        // And sometimes it's like { success: false, fieldErrors: [{ fieldError: "Too bad", fieldName: "one", errorCode: 123 }] }
+
+        [DataMember(Name = "fieldErrors")]
+        public List<ApiFieldError> FieldErrors { get; set; }
     }
 }

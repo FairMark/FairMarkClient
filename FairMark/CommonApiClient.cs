@@ -1,16 +1,16 @@
-﻿namespace FairMark
-{
-    using System;
-    using System.Linq;
-    using System.Runtime.CompilerServices;
-    using System.Security.Cryptography.X509Certificates;
-    using System.Text;
-    using System.Xml;
-    using TrueApi.DataContracts;//TODO Может отсда это надо убрать?
-    using RestSharp;
-    using RestSharp.Serialization;
-    using Toolbox;
+﻿using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Xml;
+using RestSharp;
+using RestSharp.Serialization;
+using FairMark.Toolbox;
+using FairMark.DataContracts;
 
+namespace FairMark
+{
     /// <summary>
     /// Common FairMark client used as a base class for True API, OMS API client, etc.
     /// </summary>
@@ -57,6 +57,17 @@
         }
 
         /// <summary>
+        /// Gets the client library name and version.
+        /// </summary>
+        private string ClientLibraryName { get; } =
+            $"FairMarkClient, v{typeof(CommonApiClient).Assembly.GetName().Version}";
+
+        /// <summary>
+        /// Gets or sets the application name.
+        /// </summary>
+        public string ApplicationName { get; set; }
+
+        /// <summary>
         /// Gets base API URL.
         /// </summary>
         public string BaseUrl { get; private set; }
@@ -98,15 +109,22 @@
         /// </summary>
         public int SignatureSize { get; set; }
 
+        private void AddHeaderIfNotEmpty(IRestRequest request, string headerName, string headerValue)
+        {
+            if (!string.IsNullOrWhiteSpace(headerValue))
+            {
+                request.AddHeader(headerName, headerValue);
+            }
+        }
+
         private void PrepareRequest(IRestRequest request, string apiMethodName, bool signed)
         {
             // use request parameters to store additional properties, not really used by the requests
             request.AddParameter(ApiTimestampParameterName, DateTime.Now.Ticks, ParameterType.UrlSegment);
             request.AddParameter(ApiTickCountParameterName, Environment.TickCount.ToString(), ParameterType.UrlSegment);
-            if (!string.IsNullOrWhiteSpace(apiMethodName))
-            {
-                request.AddHeader(ApiMethodNameHeaderName, apiMethodName);
-            }
+            AddHeaderIfNotEmpty(request, ApiMethodNameHeaderName, apiMethodName);
+            AddHeaderIfNotEmpty(request, ApiClientLibraryHeaderName, ClientLibraryName);
+            AddHeaderIfNotEmpty(request, ApiApplicationHeaderName, ApplicationName);
 
             // sign the request using detached signature
             if (signed)

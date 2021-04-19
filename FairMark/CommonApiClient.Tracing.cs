@@ -14,6 +14,8 @@ namespace FairMark
         private const string ApiMethodNameHeaderName = "X-ApiMethodName";
         private const string ApiTimestampParameterName = "X-ApiTimestamp";
         private const string ApiTickCountParameterName = "X-ApiTickCount";
+        private const string ApiClientLibraryHeaderName = "X-ApiClientLibrary";
+        private const string ApiApplicationHeaderName = "X-ApiApplicationName";
 
         /// <summary>
         /// Tracer function, such as <see cref="Console.WriteLine(string, object[])"/>.
