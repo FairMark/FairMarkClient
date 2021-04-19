@@ -87,12 +87,15 @@ namespace FairMark.Tests
             Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
             Assert.NotNull(ex.Message);
 
-            // valid order/gtin
-            var signedOrderId = "836cc65b-6b89-40f2-b074-0bcd22b998cd";
-            var milkGtin = "04635785586010";
-            var buffer = Client.GetBufferStatus(signedOrderId, milkGtin);
-            Assert.NotNull(buffer);
-            Assert.AreEqual(BufferStatuses.CLOSED, buffer.BufferStatus);
+            // valid order/gtin: already closed
+            ex = Assert.Throws<FairMarkException>(() =>
+            {
+                var signedOrderId = "836cc65b-6b89-40f2-b074-0bcd22b998cd";
+                var milkGtin = "04635785586010";
+                var buffer = Client.GetBufferStatus(signedOrderId, milkGtin);
+                Assert.NotNull(buffer);
+                Assert.AreEqual(BufferStatuses.CLOSED, buffer.BufferStatus);
+            });
         }
 
         [Test]
