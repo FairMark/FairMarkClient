@@ -35,6 +35,21 @@ namespace FairMark.Tests
             SaveOmsApiToken(Client.Authenticator.AuthToken.Token);
         }
 
+        [Test]
+        public void Chapter_4_5_1_CreateOrder_FailsOnInvalidData()
+        {
+            var ex = Assert.Throws<FairMarkException>(() =>
+            {
+                Client.CreateOrder(new Order_Milk());
+            });
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
+            Assert.IsNotNull(ex.ErrorResponse);
+            Assert.IsFalse(ex.ErrorResponse.Success);
+            Assert.IsNotNull(ex.ErrorResponse.FieldErrors);
+            Assert.IsTrue(ex.ErrorResponse.FieldErrors.Count > 0);
+        }
+
         [Test, Explicit("OMS API has restrictions on emission orders")]
         public void Chapter_4_5_1_CreateOrder()
         {
@@ -91,6 +106,21 @@ namespace FairMark.Tests
             Assert.IsFalse(ex.ErrorResponse.Success);
             Assert.IsNotNull(ex.ErrorResponse.FieldErrors);
             Assert.IsTrue(ex.ErrorResponse.FieldErrors.Count > 0);
+        }
+
+        [Test, Explicit("You can drop out a CIS code only once")]
+        public void Chapter_4_5_2_Dropout()
+        {
+            var reportId = Client.Dropout(new DropoutReport
+            {
+                DropoutReason = DropoutReasons.OTHER,
+                Sntins = new List<string>
+                {
+                    "0104635785586010215MRZpi",
+                }
+            });
+
+            Assert.IsNotNull(reportId);
         }
 
         [Test]

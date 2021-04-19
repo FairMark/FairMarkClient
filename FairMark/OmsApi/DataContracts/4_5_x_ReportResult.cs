@@ -9,9 +9,10 @@ namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
     /// 4.5.2.2. Метод «Отправить отчёт о выбытии/отбраковке КМ», Ответ на запрос Таблица 35.
+    /// 4.5.4.2. Метод «Отправить отчёт об использовании (нанесении) КМ», Таблица 51.
     /// </summary>
     [DataContract]
-    internal partial class DropoutReportResult
+    internal partial class ReportResult
     {
         /// <summary>Уникальный идентификатор СУЗ</summary>
         [DataMember(Name = "omsId", IsRequired = true)]

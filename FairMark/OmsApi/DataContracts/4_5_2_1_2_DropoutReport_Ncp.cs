@@ -9,16 +9,16 @@ namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
     /// 4.5.2.1. Метод «Отправить отчёт о выбытии/отбраковке КМ»
-    /// 4.5.2.1.1 Расширения для табачной промышленности, Таблица 33.
+    /// 4.5.2.1.2 Расширения для никотиносодержащей продукции, Таблица 34.
     /// </summary>
     /// <remarks>
-    /// Примечание*: В случае отсутствия полей sourceDocDate и sourceDocNum СУЗ
+    /// Примечание: В случае отсутствия полей sourceDocDate и sourceDocNum СУЗ
     /// заполняет их автоматически следующими значениями:
-    /// 1) sourceDocDate – текущая дата в unixTime UTC:0 в миллисекундах;
-    /// 2) sourceDocNum – текущая дата в unixTime UTC:0 в миллисекундах.
+    /// 3) sourceDocDate – текущая дата в unixTime UTC:0 в миллисекундах;
+    /// 4) sourceDocNum – текущая дата в unixTime UTC:0 в миллисекундах.
     /// </remarks>
     [DataContract]
-    public partial class DropoutReportTobacco : DropoutReport
+    public partial class DropoutReport_Ncp : DropoutReport
     {
         /// <summary>Address where the write-off was made (Адрес, где было произведено списание)</summary>
         [DataMember(Name = "address", IsRequired = true)]
@@ -36,11 +36,11 @@ namespace FairMark.OmsApi.DataContracts
         [DataMember(Name = "productionOrderId", IsRequired = false)]
         public string ProductionOrderID { get; set; }
 
-        /// <summary>Dropout document date (Дата первичного документа)</summary>
+        /// <summary>Dropout document date (Дата документа)</summary>
         [DataMember(Name = "sourceDocDate", IsRequired = false)]
         public string SourceDocDate { get; set; }
 
-        /// <summary>Dropout document number (Номер первичного документа)</summary>
+        /// <summary>Dropout document number (Идентификатор документа, на основании которого осуществляется списание)</summary>
         [DataMember(Name = "sourceDocNum", IsRequired = false)]
         public string SourceDocNum { get; set; }
 

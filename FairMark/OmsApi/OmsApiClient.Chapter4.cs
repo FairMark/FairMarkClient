@@ -61,7 +61,26 @@ namespace FairMark.OmsApi
         /// <returns>Код отправленного отчета</returns>
         public string Dropout(DropoutReport report)
         {
-            var result = Post<DropoutReportResult>("{extension}/orders", report, new[]
+            var result = Post<ReportResult>("{extension}/dropout", report, new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+            });
+
+            return result.ReportID;
+        }
+
+        /// <summary>
+        /// 4.5.4. Метод «Отправить отчёт об использовании (нанесении) КМ»
+        /// </summary>
+        /// <param name="report">
+        /// Экземпляр объекта <see cref="UtilisationReport"/> 
+        /// для отправки отчёта об использовании КМ в СУЗ.
+        /// </param>
+        /// <returns>Код отправленного отчета</returns>
+        public string Utilisation(UtilisationReport report)
+        {
+            var result = Post<ReportResult>("{extension}/utilisation", report, new[]
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
