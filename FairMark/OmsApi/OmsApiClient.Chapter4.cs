@@ -89,6 +89,37 @@ namespace FairMark.OmsApi
             return result.ReportID;
         }
 
+        /// <summary>
+        /// 4.5.5. Метод «Закрыть подзаказ/заказ»
+        /// </summary>
+        /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
+        /// <param name="gtin">GTIN товара, по которому требуется прекратить выдачу КМ</param>
+        /// <param name="lastBlockId">Идентификатор последнего полученного блока кодов (значение по умолчанию: 0)</param>
+        public string CloseOrder(string orderId, string gtin = null, string lastBlockId = null)
+        {
+            var parameters = new List<Parameter>
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("orderId", orderId, ParameterType.QueryString),
+            };
+
+            if (!string.IsNullOrWhiteSpace(gtin))
+            {
+                parameters.Add(new Parameter("gtin", gtin, ParameterType.QueryString));
+            }
+
+            if (!string.IsNullOrWhiteSpace(lastBlockId))
+            {
+                parameters.Add(new Parameter("lastBlockId", lastBlockId, ParameterType.QueryString));
+            }
+
+            var result = Post<EmptyResult>("{extension}/buffer/close",
+                new object(), parameters.ToArray());
+
+            return result.OmsID;
+        }
+
         // 4.5.6. Метод «Получить КМ из заказа»
         // postman: _SUZ 4.5.6. milk/codes
         //      Запрос, кажется, готов, но статусы всех последних заказов "Создан".
@@ -168,7 +199,7 @@ namespace FairMark.OmsApi
                 pongParameters.AddRange(parameters);
             }
 
-            var pong = Get<Pong>("{extension}/ping", pongParameters.ToArray());
+            var pong = Get<EmptyResult>("{extension}/ping", pongParameters.ToArray());
 
             // looks like OMS ID is case sensitive
             if (pong.OmsID != omsId)

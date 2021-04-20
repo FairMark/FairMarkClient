@@ -67,5 +67,8 @@ namespace FairMark.DataContracts
 
         [DataMember(Name = "fieldErrors")]
         public List<ApiFieldError> FieldErrors { get; set; }
+
+        [DataMember(Name = "globalErrors")]
+        public List<ApiGlobalError> GlobalErrors { get; set; }
     }
 }

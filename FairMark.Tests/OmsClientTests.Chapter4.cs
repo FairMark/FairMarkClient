@@ -124,6 +124,20 @@ namespace FairMark.Tests
         }
 
         [Test]
+        public void Chapter_4_5_5_CloseOrder()
+        {
+            var ex = Assert.Throws<FairMarkException>(() =>
+                Client.CloseOrder("836cc65b-6b89-40f2-b074-0bcd22b998cd"));
+
+            Assert.NotNull(ex.ErrorResponse);
+            Assert.IsFalse(ex.ErrorResponse.Success);
+            Assert.NotNull(ex.ErrorResponse.GlobalErrors);
+            Assert.IsTrue(ex.ErrorResponse.GlobalErrors.Count > 0);
+            Assert.IsTrue(ex.ErrorResponse.GlobalErrors.Count > 0);
+            Assert.AreEqual(3370, ex.ErrorResponse.GlobalErrors.First().ErrorCode);
+        }
+
+        [Test]
         public void Chapter_4_5_7_GetBufferStatus()
         {
             // invalid order/gtin
