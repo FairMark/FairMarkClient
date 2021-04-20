@@ -120,10 +120,40 @@ namespace FairMark.OmsApi
             return result.OmsID;
         }
 
-        // 4.5.6. Метод «Получить КМ из заказа»
-        // postman: _SUZ 4.5.6. milk/codes
-        //      Запрос, кажется, готов, но статусы всех последних заказов "Создан".
-        //      Видимо, они ещё не обработаны до конца и метод всё время возвращает что заказа нет, или ГТИНа в заказе нет)
+        /// <summary>
+        /// 4.5.6. Метод «Получить КМ из заказа»
+        /// </summary>
+        /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
+        /// <param name="gtin">GTIN товара, по которому требуется прекратить выдачу КМ</param>
+        /// <param name="quantity">Количество запрашиваемых кодов</param>
+        /// <param name="lastBlockId">
+        /// Идентификатор блока кодов, выданных в предыдущем запросе. 
+        /// Может быть равен 0 при первом запросе КМ из пула. Далее должен
+        /// передаваться идентификатор предыдущего пакета. Значение по
+        /// умолчанию: 0        /// </param>
+        /// <remarks>
+        /// postman: _SUZ 4.5.6. milk/codes
+        ///      Запрос, кажется, готов, но статусы всех последних заказов "Создан".
+        ///      Видимо, они ещё не обработаны до конца и метод всё время возвращает что заказа нет, или ГТИНа в заказе нет)
+        /// </remarks>
+        public CodesDto GetCodes(string orderId, string gtin, int quantity, string lastBlockId = null)
+        {
+            var parameters = new List<Parameter>
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("gtin", gtin, ParameterType.QueryString),
+                new Parameter("quantity", quantity, ParameterType.QueryString),
+            };
+
+            if (!string.IsNullOrWhiteSpace(lastBlockId))
+            {
+                parameters.Add(new Parameter("lastBlockId", lastBlockId, ParameterType.QueryString));
+            }
+
+            return Get<CodesDto>("{extension}/codes", parameters.ToArray());
+        }
 
         /// <summary>
         /// 4.5.7. Метод «Получить статус массива КМ из заказа»

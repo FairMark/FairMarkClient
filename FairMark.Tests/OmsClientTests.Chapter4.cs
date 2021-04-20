@@ -64,7 +64,7 @@ namespace FairMark.Tests
                         SerialNumberType = SerialNumberTypes.SELF_MADE,
                         SerialNumbers = new List<string>
                         {
-                            "asdfc", "asdfd", "asdfe", "asdff", "asdf0"
+                            "asde0", "asde1", "asde2", "asde3", "asde4"
                         },
                         TemplateID = Templates.T20,
                         StickerID = 19, // or is it a string?
@@ -84,6 +84,8 @@ namespace FairMark.Tests
 
             // Unsigned order placed: 9d420e24-38ea-401c-bf5b-4947bf25384b
             // Signed order placed: 836cc65b-6b89-40f2-b074-0bcd22b998cd
+            // Signed order placed: d2cfbb03-0ac1-498e-b1be-7918f49e45e6
+            // Signed order placed: d22797da-b3ae-4607-9170-22cd1da81806
             // Expected to be ready in: 120000
             var res = Client.CreateOrder(order);
             TestContext.Progress.WriteLine($"Signed order placed: {res.OrderID}");
@@ -124,8 +126,9 @@ namespace FairMark.Tests
         }
 
         [Test]
-        public void Chapter_4_5_5_CloseOrder()
+        public void Chapter_4_5_5_CloseOrder_Invalid()
         {
+            // Signed order placed: d2cfbb03-0ac1-498e-b1be-7918f49e45e6
             var ex = Assert.Throws<FairMarkException>(() =>
                 Client.CloseOrder("836cc65b-6b89-40f2-b074-0bcd22b998cd"));
 
@@ -138,7 +141,55 @@ namespace FairMark.Tests
         }
 
         [Test]
-        public void Chapter_4_5_7_GetBufferStatus()
+        public void Chapter_4_5_6_GetCodes_InvalidOrder()
+        {
+            var ex = Assert.Throws<FairMarkException>(() =>
+            {
+                var orderId = "836cc65b-6b89-40f2-b074-0bcd22b998cd";
+                var gtin = "04635785586010";
+                Client.GetCodes(orderId, gtin, 1000);
+            });
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
+            Assert.NotNull(ex.ErrorResponse);
+            Assert.NotNull(ex.ErrorResponse.GlobalErrors);
+            Assert.IsTrue(ex.ErrorResponse.GlobalErrors.Count > 0);
+        }
+
+        [Test, Explicit("GetCodes works only once for each order")]
+        public void Chapter_4_5_6_GetCodes()
+        {
+            // реквизиты заказа, из которого мы выкачиваем коды
+            var orderId = "d22797da-b3ae-4607-9170-22cd1da81806";
+            var gtin = "04635785586010";
+            var blockSize = 2;
+            var lastBlockId = default(string);
+
+            // получим состояние буфера кодов по данному товару, убедимся, что он активен
+            var blockStatus = Client.GetBufferStatus(orderId, gtin);
+            Assert.AreEqual(BufferStatuses.ACTIVE, blockStatus.BufferStatus);
+
+            // определим, сколько всего по данному товару осталось кодов
+            var totalQuantity = blockStatus.AvailableCodes;
+            blockSize = Math.Min(blockSize, totalQuantity);
+
+            // выкачиваем блоками все без остатка
+            while (totalQuantity > 0)
+            {
+                var codes = Client.GetCodes(orderId, gtin, blockSize, lastBlockId);
+                Assert.NotNull(codes);
+                Assert.NotNull(codes.Codes);
+                Assert.AreEqual(Client.OmsCredentials.OmsID, codes.OmsID);
+                lastBlockId = codes.BlockID;
+
+                // запрашивать можно не больше, чем осталось в буфере
+                totalQuantity -= blockSize;
+                blockSize = Math.Min(blockSize, totalQuantity);
+            }
+        }
+
+        [Test]
+        public void Chapter_4_5_7_GetBufferStatus_Invalid()
         {
             // invalid order/gtin
             var ex = Assert.Throws<FairMarkException>(() =>
@@ -158,6 +209,17 @@ namespace FairMark.Tests
                 Assert.NotNull(buffer);
                 Assert.AreEqual(BufferStatuses.CLOSED, buffer.BufferStatus);
             });
+        }
+
+        [Test] // TODO: Explicit("This data will render obsolete quickly")]
+        public void Chapter_4_5_7_GetBufferStatus_RejectedAsDuplicates()
+        {
+            // valid order/gtin: rejected 
+            var signedOrderId = "d2cfbb03-0ac1-498e-b1be-7918f49e45e6";
+            var milkGtin = "04635785586010";
+            var buffer = Client.GetBufferStatus(signedOrderId, milkGtin);
+            Assert.NotNull(buffer);
+            Assert.AreEqual(BufferStatuses.REJECTED, buffer.BufferStatus);
         }
 
         [Test]

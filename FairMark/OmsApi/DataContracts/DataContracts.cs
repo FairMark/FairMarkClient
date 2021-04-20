@@ -348,24 +348,6 @@ namespace FairMark.OmsApi.DataContracts
     }
 
     [DataContract]
-    public partial class CodesDto
-    {
-        /// <summary>Identifier of code block (Идентификатор блока кодов)</summary>
-        [DataMember(Name = "blockId", IsRequired = false)]
-        public string BlockID { get; set; }
-
-        /// <summary>Identification Codes (Список КМ)</summary>
-        [DataMember(Name = "codes", IsRequired = false)]
-        public List<string> Codes { get; set; }
-
-        /// <summary>Уникальный идентификатор СУЗ</summary>
-        [DataMember(Name = "omsId", IsRequired = true)]
-        public string OmsID { get; set; }
-
-
-    }
-
-    [DataContract]
     public partial class OMSIdentifier
     {
         /// <summary>Уникальный идентификатор СУЗ</summary>
