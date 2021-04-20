@@ -113,6 +113,11 @@ namespace FairMark.Tests
         [Test, Explicit("You can drop out a CIS code only once")]
         public void Chapter_4_5_2_Dropout()
         {
+            // порядок действий для обновления теста:
+            // 1. оформить заказ на коды маркировки, см. Chapter_4_5_1_CreateOrder
+            // 2. получить из заказа коды маркировки, см. Chapter_4_5_6_GetCodes
+            // 3. вставить код маркировки в этот тест
+            // 4. выполнить тест, сохранить полученный код отчета
             var reportId = Client.Dropout(new DropoutReport
             {
                 DropoutReason = DropoutReasons.CONFISCATION,
@@ -220,7 +225,7 @@ namespace FairMark.Tests
             });
         }
 
-        [Test, Explicit("This data became obsolete once the order got closed")]
+        [Test, Explicit("This data becomes obsolete once the order gets closed")]
         public void Chapter_4_5_7_GetBufferStatus_RejectedAsDuplicates()
         {
             // valid order/gtin: rejected 
@@ -264,6 +269,9 @@ namespace FairMark.Tests
         [Test]
         public void Chapter_4_5_10_GetReportStatus()
         {
+            // порядок обновления теста:
+            // 1. обновить и выполнить тест Chapter_4_5_2_Dropout
+            // 2. вставить в этот тест код отчета, полученый в п.1
             var status = Client.GetReportStatus("50a2d2a9-c508-4066-bc75-2f9568850e39");
             Assert.NotNull(status);
             Assert.AreEqual(TestOmsID, status.OmsID);
@@ -286,6 +294,19 @@ namespace FairMark.Tests
             Assert.NotNull(version);
             Assert.NotNull(version.ApiVersion);
             Assert.NotNull(version.OmsVersion);
+        }
+
+        [Test, Explicit("This data becomes obsolete once the order gets closed")]
+        public void Chapter_4_5_14_GetCodeBlocks_RejectedAsDuplicates()
+        {
+            // чтобы обновить этот тест, надо оформить новый заказ
+            // см. метод Chapter_4_5_1_CreateOrder
+            // valid order/gtin: rejected
+            var signedOrderId = "d2cfbb03-0ac1-498e-b1be-7918f49e45e6";
+            var milkGtin = "04635785586010";
+            var blocks = Client.GetCodeBlocks(signedOrderId, milkGtin);
+            Assert.NotNull(blocks);
+            Assert.NotNull(blocks.Blocks);
         }
     }
 }

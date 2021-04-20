@@ -227,14 +227,6 @@ namespace FairMark.OmsApi
             });
         }
 
-        /// 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
-        /// postman: _SUZ 4.5.14. milk/codes/blocks
-        ///      Тут муть подобная 4.4.6.
-
-        // 4.5.15 Метод «Получить повторно коды маркировки из заказа кодов маркировки»
-        // postman: _SUZ 4.5.15. milk/codes/retry
-        //      Тут муть подобная 4.4.6.
-
         /// <summary>
         /// Ping OMS to check if it's available.
         /// 4.5.11. Метод «Проверить доступность СУЗ»
@@ -281,5 +273,35 @@ namespace FairMark.OmsApi
         {
             new Parameter("extension", Extension, ParameterType.UrlSegment),
         });
+
+        /// <summary>
+        /// 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
+        /// </summary>
+        /// <remarks>
+        /// postman: _SUZ 4.5.14. milk/codes/blocks
+        /// </remarks>
+        /// <param name="orderId">
+        /// Идентификатор заказа кодов маркировки. Строковое значение.
+        /// Значение идентификатора в соответствии с ISO/IEC 9834-8.
+        /// Шаблон: [0-9a-fA-F]{ 8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fAF]{12}
+        /// </param>
+        /// <param name="gtin">
+        /// Код товара(GTIN), по которому запрашиваются идентификаторы
+        /// пакетов кодов маркировки. Шаблон: [0-9]{14}
+        /// </param>
+        public BlocksDto GetCodeBlocks(string orderId, string gtin)
+        {
+            return Get<BlocksDto>("{extension}/codes/blocks", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("gtin", gtin, ParameterType.QueryString),
+            });
+        }
+
+        // 4.5.15 Метод «Получить повторно коды маркировки из заказа кодов маркировки»
+        // postman: _SUZ 4.5.15. milk/codes/retry
+        //      Тут муть подобная 4.4.6.
     }
 }

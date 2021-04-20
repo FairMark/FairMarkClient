@@ -202,45 +202,6 @@ namespace FairMark.OmsApi.DataContracts
     }
 
     [DataContract]
-    public partial class BlockDto
-    {
-        /// <summary>Date, time of creation of the marking code package(Дата, время создания пакета кодов маркировки)</summary>
-        [DataMember(Name = "blockDateTime", IsRequired = false)]
-        public long? BlockDateTime { get; set; }
-
-        /// <summary>Unique identifier of a business order for issuing MC (Уникальный идентификатор бизнес-заказа на эмиссию КМ)</summary>
-        [DataMember(Name = "blockId", IsRequired = false)]
-        public string BlockID { get; set; }
-
-        /// <summary>Количество КМ/СИ</summary>
-        [DataMember(Name = "quantity", IsRequired = false)]
-        public int? Quantity { get; set; }
-
-
-    }
-
-    [DataContract]
-    public partial class BlocksDto
-    {
-        [DataMember(Name = "blocks", IsRequired = false)]
-        public List<BlockDto> Blocks { get; set; }
-
-        /// <summary>Product GTIN (GTIN товара)</summary>
-        [DataMember(Name = "gtin", IsRequired = true)]
-        public string Gtin { get; set; }
-
-        /// <summary>Уникальный идентификатор СУЗ</summary>
-        [DataMember(Name = "omsId", IsRequired = true)]
-        public string OmsID { get; set; }
-
-        /// <summary>Unique identifier of a business order for issuing MC (Уникальный идентификатор бизнес-заказа на эмиссию КМ)</summary>
-        [DataMember(Name = "orderId", IsRequired = false)]
-        public string OrderID { get; set; }
-
-
-    }
-
-    [DataContract]
     public partial class BufferInfo
     {
         /// <summary>Number of available codes in buffer and pools (Общее кол-во доступных КМ для товара в буфере и пулах регистратора)</summary>
