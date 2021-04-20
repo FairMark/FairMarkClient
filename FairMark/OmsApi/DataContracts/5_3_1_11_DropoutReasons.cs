@@ -77,6 +77,6 @@ namespace FairMark.OmsApi.DataContracts
         /// Конфискация товаров.
         /// </summary>
         [EnumMember(Value = @"CONFISCATION")]
-        CONFISCATION = 10,
+        CONFISCATION = 11,
     }
 }

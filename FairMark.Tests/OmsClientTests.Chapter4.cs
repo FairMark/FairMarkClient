@@ -115,14 +115,15 @@ namespace FairMark.Tests
         {
             var reportId = Client.Dropout(new DropoutReport
             {
-                DropoutReason = DropoutReasons.OTHER,
+                DropoutReason = DropoutReasons.CONFISCATION,
                 Sntins = new List<string>
                 {
-                    "0104635785586010215MRZpi",
+                    "0104635785586010215asde0\u001D93dGVz",
                 }
             });
 
             Assert.IsNotNull(reportId);
+            TestContext.Progress.WriteLine($"Dropout report: {reportId}");
         }
 
         [Test]
@@ -258,6 +259,16 @@ namespace FairMark.Tests
             ////var info = Client.GetAggregationInfo("0100000000777999213l1SMYX8005100000");
             ////Assert.IsNotNull(info);
             ////Assert.IsNotNull(info.AggregationUnit);
+        }
+
+        [Test]
+        public void Chapter_4_5_10_GetReportStatus()
+        {
+            var status = Client.GetReportStatus("50a2d2a9-c508-4066-bc75-2f9568850e39");
+            Assert.NotNull(status);
+            Assert.AreEqual(TestOmsID, status.OmsID);
+            Assert.AreEqual(ReportStatuses.SENT, status.ReportStatus);
+            Assert.IsNull(status.ErrorReason);
         }
 
         [Test]

@@ -764,20 +764,5 @@ namespace FairMark.OmsApi.DataContracts
     [DataContract]
     public partial class ReportStatusDto
     {
-        /// <summary>Причина отклонения отчета (обнаруженная ошибка)</summary>
-        [DataMember(Name = "errorReason", IsRequired = false)]
-        public string ErrorReason { get; set; }
-
-        /// <summary>Уникальный идентификатор СУЗ</summary>
-        [DataMember(Name = "omsId", IsRequired = true)]
-        public string OmsID { get; set; }
-
-        /// <summary>Report ID (Идентификатор отчета)</summary>
-        [DataMember(Name = "reportId", IsRequired = true)]
-        public string ReportID { get; set; }
-
-        /// <summary>Report status (Статус отчета)</summary>
-        [DataMember(Name = "reportStatus", IsRequired = true)]
-        public ReportStatusDtoReportStatus ReportStatus { get; set; }
     }
 }

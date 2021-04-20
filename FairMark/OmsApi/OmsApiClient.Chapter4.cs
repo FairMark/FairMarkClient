@@ -213,6 +213,20 @@ namespace FairMark.OmsApi
             });
         }
 
+        /// <summary>
+        /// 4.5.10. Метод «Получить статус обработки отчёта»
+        /// </summary>
+        /// <param name="reportId">Уникальный идентификатор отчёта СУЗ</param>
+        public ReportStatusDto GetReportStatus(string reportId)
+        {
+            return Get<ReportStatusDto>("{extension}/report/info", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("reportId", reportId, ParameterType.QueryString),
+            });
+        }
+
         /// 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
         /// postman: _SUZ 4.5.14. milk/codes/blocks
         ///      Тут муть подобная 4.4.6.
