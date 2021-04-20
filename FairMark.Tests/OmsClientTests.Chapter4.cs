@@ -140,6 +140,14 @@ namespace FairMark.Tests
             Assert.AreEqual(3370, ex.ErrorResponse.GlobalErrors.First().ErrorCode);
         }
 
+        [Test, Explicit("An order can be closed only once")]
+        public void Chapter_4_5_5_CloseOrder_Valid()
+        {
+            // чтобы выполнить этот тест, надо создать новый заказ и прописать его код
+            var omsId = Client.CloseOrder("d22797da-b3ae-4607-9170-22cd1da81806"); //  "d2cfbb03 -0ac1-498e-b1be-7918f49e45e6");
+            Assert.AreEqual(Client.OmsCredentials.OmsID, omsId);
+        }
+
         [Test]
         public void Chapter_4_5_6_GetCodes_InvalidOrder()
         {
@@ -173,7 +181,7 @@ namespace FairMark.Tests
             var totalQuantity = blockStatus.AvailableCodes;
             blockSize = Math.Min(blockSize, totalQuantity);
 
-            // выкачиваем блоками все без остатка
+            // выкачиваем блоками все коды без остатка
             while (totalQuantity > 0)
             {
                 var codes = Client.GetCodes(orderId, gtin, blockSize, lastBlockId);
@@ -211,7 +219,7 @@ namespace FairMark.Tests
             });
         }
 
-        [Test] // TODO: Explicit("This data will render obsolete quickly")]
+        [Test, Explicit("This data became obsolete once the order got closed")]
         public void Chapter_4_5_7_GetBufferStatus_RejectedAsDuplicates()
         {
             // valid order/gtin: rejected 
