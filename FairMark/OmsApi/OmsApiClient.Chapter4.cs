@@ -322,5 +322,19 @@ namespace FairMark.OmsApi
                 new Parameter("blockId", blockId, ParameterType.QueryString),
             });
         }
+
+        /// <summary>
+        /// 4.5.16. Метод «Получить квитанцию по уникальному идентификатору документа»
+        /// </summary>
+        /// <param name="docId">Уникальный идентификатор документа (заказа или отчета)</param>
+        public ReceiptsDto GetReceipts(string docId)
+        {
+            return Get<ReceiptsDto>("{extension}/receipts", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("docId", docId, ParameterType.QueryString),
+            });
+        }
     }
 }

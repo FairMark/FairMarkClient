@@ -278,7 +278,7 @@ namespace FairMark.Tests
             // порядок обновления теста:
             // 1. обновить и выполнить тест Chapter_4_5_2_Dropout
             // 2. вставить в этот тест код отчета, полученый в п.1
-            var status = Client.GetReportStatus("50a2d2a9-c508-4066-bc75-2f9568850e39");
+            var status = Client.GetReportStatus("e684142c-ff5e-492c-9864-c9c41a26cb7e"); // "50a2d2a9-c508-4066-bc75-2f9568850e39");
             Assert.NotNull(status);
             Assert.AreEqual(TestOmsID, status.OmsID);
             Assert.AreEqual(ReportStatuses.SENT, status.ReportStatus);
@@ -328,6 +328,20 @@ namespace FairMark.Tests
             var codes = Client.RetryCodes(signedOrderId, milkGtin, blockId);
             Assert.NotNull(codes);
             Assert.NotNull(codes.Codes);
+        }
+
+        [Test]
+        public void Chapter_4_5_16_GetReceipts()
+        {
+            // возьмем первый попавшийся активный документ
+            // var orders = Client.GetOrders();
+            // var firstOrderId = orders.OrderInfos.First().OrderID;
+            var firstOrderId = "f9d8006d-9906-481d-a16b-1f5de5bbb69b";
+
+            var receipts = Client.GetReceipts(firstOrderId);
+            Assert.NotNull(receipts);
+            Assert.NotNull(receipts.Receipts);
+            Assert.NotNull(receipts.Receipts.First());
         }
     }
 }

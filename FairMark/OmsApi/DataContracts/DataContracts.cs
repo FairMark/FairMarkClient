@@ -701,29 +701,4 @@ namespace FairMark.OmsApi.DataContracts
 
     }
 
-    [DataContract]
-    public partial class ReceiptDto
-    {
-        [DataMember(Name = "content", IsRequired = false)]
-        public string Content { get; set; }
-
-        [DataMember(Name = "signature", IsRequired = false)]
-        public string Signature { get; set; }
-
-
-    }
-
-    [DataContract]
-    public partial class ReceiptsDto
-    {
-        [DataMember(Name = "receipts", IsRequired = false)]
-        public List<ReceiptDto> Receipts { get; set; }
-
-
-    }
-
-    [DataContract]
-    public partial class ReportStatusDto
-    {
-    }
 }
