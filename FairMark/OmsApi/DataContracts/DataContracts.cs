@@ -13,27 +13,6 @@ namespace FairMark.OmsApi.DataContracts
     /// 4.5.1.1.8 Расширения для производителей молока, Таблица 21.
     /// </summary>
     [DataContract]
-    public partial class AggregationInfo
-    {
-        /// <summary>Aggregation unit (Единица агрегации)</summary>
-        [DataMember(Name = "aggregationUnit", IsRequired = true)]
-        public AggregationUnit AggregationUnit { get; set; } = new AggregationUnit();
-
-        /// <summary>Уникальный идентификатор СУЗ</summary>
-        [DataMember(Name = "omsId", IsRequired = true)]
-        public string OmsID { get; set; }
-
-        /// <summary>Taxpayer Identification Number (Идентификационный номер налогоплательщика)</summary>
-        [DataMember(Name = "participantId", IsRequired = false)]
-        public string ParticipantID { get; set; }
-
-        [DataMember(Name = "productsInfo", IsRequired = false)]
-        public List<ProductInfo> ProductsInfo { get; set; }
-
-
-    }
-
-    [DataContract]
     public partial class AggregationReportDtoBeer
     {
         /// <summary>Array of aggregation unit (Массив единиц агрегации)</summary>
@@ -218,33 +197,6 @@ namespace FairMark.OmsApi.DataContracts
         /// <summary>Taxpayer Identification Number (Идентификационный номер налогоплательщика)</summary>
         [DataMember(Name = "participantId", IsRequired = true)]
         public string ParticipantID { get; set; }
-
-
-    }
-
-    [DataContract]
-    public partial class AggregationUnit
-    {
-        /// <summary>Number of goods actually aggregated in the unit (Фактически упаковано)</summary>
-        [DataMember(Name = "aggregatedItemsCount", IsRequired = true)]
-        public int AggregatedItemsCount { get; set; }
-
-        /// <summary>Aggregation operation type (Тип агрегации)</summary>
-        [DataMember(Name = "aggregationType", IsRequired = true)]
-
-        public AggregationUnitAggregationType AggregationType { get; set; }
-
-        /// <summary>Aggregation Unit Capacity (Емкость упаковки)</summary>
-        [DataMember(Name = "aggregationUnitCapacity", IsRequired = true)]
-        public int AggregationUnitCapacity { get; set; }
-
-        /// <summary>List of the Aggregated Identification Codes (Список агрегированных КМ)</summary>
-        [DataMember(Name = "sntins", IsRequired = true)]
-        public List<string> Sntins { get; set; } = new List<string>();
-
-        /// <summary>Identification Code of Aggregation Unit (КМ агрегата)</summary>
-        [DataMember(Name = "unitSerialNumber", IsRequired = true)]
-        public string UnitSerialNumber { get; set; }
 
 
     }
@@ -732,17 +684,6 @@ namespace FairMark.OmsApi.DataContracts
 
     }
 
-    [DataContract]
-    public partial class ProductInfo
-    {
-        [DataMember(Name = "gtin", IsRequired = false)]
-        public string Gtin { get; set; }
-
-        [DataMember(Name = "name", IsRequired = false)]
-        public string Name { get; set; }
-
-
-    }
 
     [DataContract]
     public partial class ProvidersDto

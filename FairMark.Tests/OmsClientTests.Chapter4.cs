@@ -242,6 +242,25 @@ namespace FairMark.Tests
         }
 
         [Test]
+        public void Chapter_4_5_9_GetAggregationInfo()
+        {
+            // invalid serial number
+            var ex = Assert.Throws<FairMarkException>(() =>
+                Client.GetAggregationInfo("0100000000777999213l1SMYX8005100000"));
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, ex.StatusCode);
+            Assert.IsNotNull(ex.ErrorResponse);
+            Assert.IsNotNull(ex.ErrorResponse.GlobalErrors);
+            Assert.IsTrue(ex.ErrorResponse.GlobalErrors.Count > 0);
+            Assert.AreEqual(7270, ex.ErrorResponse.GlobalErrors.First().ErrorCode);
+
+            // TODO: find a valid serial number
+            ////var info = Client.GetAggregationInfo("0100000000777999213l1SMYX8005100000");
+            ////Assert.IsNotNull(info);
+            ////Assert.IsNotNull(info.AggregationUnit);
+        }
+
+        [Test]
         public void Chapter_4_5_11_Ping()
         {
             var omsId = Client.Ping();

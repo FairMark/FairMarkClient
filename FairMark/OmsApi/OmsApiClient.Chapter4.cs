@@ -195,6 +195,24 @@ namespace FairMark.OmsApi
             });
         }
 
+        /// <summary>
+        /// 4.5.9. Метод «Получить информацию об агрегации»
+        /// </summary>
+        /// <param name="unitSerialNumber">
+        /// Идентификатор агрегата. Так как код может содержать
+        /// спецсимволы, значение должно быть перекодировано в
+        /// действительный формат ASCII (URL Encoding)
+        /// </param>
+        public AggregationInfo GetAggregationInfo(string unitSerialNumber)
+        {
+            return Get<AggregationInfo>("{extension}/aggregation/info", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("unitSerialNumber", unitSerialNumber, ParameterType.QueryString),
+            });
+        }
+
         /// 4.5.14 Метод «Получить список идентификаторов пакетов кодов маркировки»
         /// postman: _SUZ 4.5.14. milk/codes/blocks
         ///      Тут муть подобная 4.4.6.
