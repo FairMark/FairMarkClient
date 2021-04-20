@@ -300,8 +300,27 @@ namespace FairMark.OmsApi
             });
         }
 
-        // 4.5.15 Метод «Получить повторно коды маркировки из заказа кодов маркировки»
-        // postman: _SUZ 4.5.15. milk/codes/retry
-        //      Тут муть подобная 4.4.6.
+        /// <summary>
+        /// 4.5.15 Метод «Получить повторно коды маркировки из заказа кодов маркировки»
+        /// </summary>
+        /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
+        /// <param name="gtin">GTIN товара, по которому требуется прекратить выдачу КМ</param>
+        /// <param name="lastBlockId">
+        /// Идентификатор блока кодов. Строковое значение.         /// Значение идентификатора в соответствии с ISO/IEC 9834-8.
+        /// Шаблон: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fAF]{12}        /// </param>
+        /// <remarks>
+        /// postman: _SUZ 4.5.15. milk/codes/retry
+        /// </remarks>
+        public CodesDto RetryCodes(string orderId, string gtin, string blockId)
+        {
+            return Get<CodesDto>("{extension}/codes/retry", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("gtin", gtin, ParameterType.QueryString),
+                new Parameter("blockId", blockId, ParameterType.QueryString),
+            });
+        }
     }
 }

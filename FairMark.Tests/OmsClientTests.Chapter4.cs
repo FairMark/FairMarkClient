@@ -64,7 +64,7 @@ namespace FairMark.Tests
                         SerialNumberType = SerialNumberTypes.SELF_MADE,
                         SerialNumbers = new List<string>
                         {
-                            "asde0", "asde1", "asde2", "asde3", "asde4"
+                            "asde5", "asde6", "asde7", "asde8", "asde9"
                         },
                         TemplateID = Templates.T20,
                         StickerID = 19, // or is it a string?
@@ -86,6 +86,7 @@ namespace FairMark.Tests
             // Signed order placed: 836cc65b-6b89-40f2-b074-0bcd22b998cd
             // Signed order placed: d2cfbb03-0ac1-498e-b1be-7918f49e45e6
             // Signed order placed: d22797da-b3ae-4607-9170-22cd1da81806
+            // Signed order placed: e76518d3-213a-477a-959d-d9962fc6d00d
             // Expected to be ready in: 120000
             var res = Client.CreateOrder(order);
             TestContext.Progress.WriteLine($"Signed order placed: {res.OrderID}");
@@ -174,7 +175,7 @@ namespace FairMark.Tests
         public void Chapter_4_5_6_GetCodes()
         {
             // реквизиты заказа, из которого мы выкачиваем коды
-            var orderId = "d22797da-b3ae-4607-9170-22cd1da81806";
+            var orderId = "e76518d3-213a-477a-959d-d9962fc6d00d";
             var gtin = "04635785586010";
             var blockSize = 2;
             var lastBlockId = default(string);
@@ -199,6 +200,11 @@ namespace FairMark.Tests
                 // запрашивать можно не больше, чем осталось в буфере
                 totalQuantity -= blockSize;
                 blockSize = Math.Min(blockSize, totalQuantity);
+
+                // остановиться после первого блока,
+                // если нужно поэкспериментировать с частично
+                // выполненным заказом:
+                // break;
             }
         }
 
@@ -297,16 +303,31 @@ namespace FairMark.Tests
         }
 
         [Test, Explicit("This data becomes obsolete once the order gets closed")]
-        public void Chapter_4_5_14_GetCodeBlocks_RejectedAsDuplicates()
+        public void Chapter_4_5_14_GetCodeBlocks()
         {
-            // чтобы обновить этот тест, надо оформить новый заказ
-            // см. метод Chapter_4_5_1_CreateOrder
-            // valid order/gtin: rejected
-            var signedOrderId = "d2cfbb03-0ac1-498e-b1be-7918f49e45e6";
+            // чтобы обновить этот тест, надо
+            // 1. оформить новый заказ, см. метод Chapter_4_5_1_CreateOrder
+            // 2. запросить блок кодов, см. метод Chapter_4_5_6_GetCodes, но до конца все коды не запрашивать
+            // 3. вставить в текст код недозапрошенного заказа
+            var signedOrderId = "e76518d3-213a-477a-959d-d9962fc6d00d";
             var milkGtin = "04635785586010";
             var blocks = Client.GetCodeBlocks(signedOrderId, milkGtin);
             Assert.NotNull(blocks);
             Assert.NotNull(blocks.Blocks);
+        }
+
+        [Test, Explicit("This data becomes obsolete once the order gets closed")]
+        public void Chapter_4_5_15_RetryCodes()
+        {
+            // чтобы обновить этот тест, надо
+            // 1. получить какой-нибудь код блока, см. метод Chapter_4_5_14_GetCodeBlocks
+            // 2. вставить в текст код любого уже запрошенного блока
+            var signedOrderId = "e76518d3-213a-477a-959d-d9962fc6d00d";
+            var milkGtin = "04635785586010";
+            var blockId = "b573db0b-1b40-4878-86f2-e7e95b2afbc8";
+            var codes = Client.RetryCodes(signedOrderId, milkGtin, blockId);
+            Assert.NotNull(codes);
+            Assert.NotNull(codes.Codes);
         }
     }
 }
