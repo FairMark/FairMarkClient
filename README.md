@@ -25,10 +25,6 @@
 
 ## Список реализованных методов
 
-### True API
+* [СУЗ Облако](https://github.com/FairMark/FairMarkClient/blob/master/FairMark.Docs/oms_methods.txt)
+* True API - TODO
 
-TODO
-
-### СУЗ Облако
-
-TODO

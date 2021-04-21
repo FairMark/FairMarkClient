@@ -21,6 +21,10 @@
     <PackageReference Include="ServiceStack.Text" Version="4.0.62" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>True</DebugSymbols>
