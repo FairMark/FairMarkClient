@@ -17,14 +17,17 @@
 
 Любые дополнения приветствуются, пулл-реквесты с благодарностью принимаются.
 
+## Список реализованных методов
+
+* [СУЗ Облако](FairMark.Docs/oms_methods.txt)
+* True API - TODO
+
 ## Официальная документация Честного Знака
 
 * [Краткое руководство по работе с API](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/Краткое_руководство_по_работе_с_API.pdf)
 * [СУЗ Облако. Руководство программиста](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/iblock/07f/ru_API_OMS-CLOUD.pdf)
 * [True API. Руководство программиста](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/TRUE_API.pdf)
 
-## Список реализованных методов
+## Прочая документация
 
-* [СУЗ Облако](https://github.com/FairMark/FairMarkClient/blob/master/FairMark.Docs/oms_methods.txt)
-* True API - TODO
-
+* [Форматы документов ЭДО](FairMark.Docs/DocumentFormats.md)
