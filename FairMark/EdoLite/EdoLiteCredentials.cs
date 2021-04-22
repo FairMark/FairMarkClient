@@ -8,25 +8,13 @@ using FairMark.DataContracts;
 using FairMark.Toolbox;
 using RestSharp;
 
-namespace FairMark.OmsApi
+namespace FairMark.EdoLite
 {
     /// <summary>
-    /// OMS API authentication credentials.
+    /// EDO Lite authentication credentials.
     /// </summary>
-    public class OmsCredentials : CommonCredentials
+    public class EdoLiteCredentials : CommonCredentials
     {
-        /// <summary>
-        /// Gets or sets the OMS Identity, taken from the user's profile,
-        /// see https://intuot.crpt.ru:12011/configuration/profile
-        /// </summary>
-        public string OmsID { get; set; }
-
-        /// <summary>
-        /// Gets or sets the OMS Connection Identity, taken from the user's profile,
-        /// see https://intuot.crpt.ru:12011/configuration/profile
-        /// </summary>
-        public string OmsConnectionID { get; set; }
-
         /// <summary>
         /// Performs authentication, returns access token with a limited lifetime.
         /// </summary>
@@ -35,14 +23,14 @@ namespace FairMark.OmsApi
         public override AuthToken Authenticate(CommonApiClient apiClient)
         {
             // make sure it's an OMS client
-            var omsClient = apiClient as OmsApiClient;
-            if (omsClient == null)
+            var edoLiteClient = apiClient as EdoLiteClient;
+            if (edoLiteClient == null)
             {
-                throw new InvalidOperationException("OmsCredentials requires OmsApiClient.");
+                throw new InvalidOperationException("EdoLiteCredentials requires EdoLiteClient.");
             }
 
             // check if the token is already available
-            var authToken = CheckSessionToken(omsClient);
+            var authToken = CheckSessionToken(edoLiteClient);
             if (authToken != null)
             {
                 return authToken;
@@ -58,17 +46,17 @@ namespace FairMark.OmsApi
             }
 
             // get authentication code
-            var authResponse = Authenticate(omsClient);
+            var authResponse = Authenticate(edoLiteClient);
 
             // compute the signature and save the size
             var signedData = GostCryptoHelpers.ComputeAttachedSignature(certificate, authResponse.Data);
             apiClient.SignatureSize = Encoding.UTF8.GetByteCount(signedData);
 
             // get authentication token
-            return GetToken(omsClient, authResponse, signedData);
+            return GetToken(edoLiteClient, authResponse, signedData);
         }
 
-        private AuthToken CheckSessionToken(OmsApiClient omsClient)
+        private AuthToken CheckSessionToken(EdoLiteClient edoLiteClient)
         {
             if (string.IsNullOrWhiteSpace(SessionToken))
             {
@@ -81,7 +69,7 @@ namespace FairMark.OmsApi
                 // try calling a simple authenticated API method
                 var authHeader = FormatAuthHeader(SessionToken);
                 var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
-                var pong = omsClient.Ping(header);
+                var pong = edoLiteClient.Get<AuthToken>("session");
                 return new AuthToken
                 {
                     Token = SessionToken,
@@ -96,35 +84,28 @@ namespace FairMark.OmsApi
 
         /// <summary>
         /// Authentication Step 1.
-        /// 10.3.2.1. Запрос авторизации при единой аутентификации
+        /// 2.1. Запрос авторизации
         /// </summary>
-        private AuthResponse Authenticate(OmsApiClient omsClient)
+        private AuthResponse Authenticate(EdoLiteClient omsClient)
         {
-            var url = omsClient.AuthUrl + "auth/cert/key";
-            return omsClient.Get<AuthResponse>(url);
+            return omsClient.Get<AuthResponse>("session");
         }
 
         /// <summary>
         /// Authentication Step 2.
-        /// 10.3.2.2. Получение аутентификационного токена
+        /// 2.2. Получение ключа сессии
         /// </summary>
-        private AuthToken GetToken(OmsApiClient omsClient, AuthResponse authResponse, string signedData)
+        private AuthToken GetToken(EdoLiteClient omsClient, AuthResponse authResponse, string signedData)
         {
-            var url = omsClient.AuthUrl + "auth/cert/{OmsConnectionID}";
-
-            return omsClient.Post<AuthToken>(url, new
+            return omsClient.Post<AuthToken>("session", new
             {
                 uuid = authResponse.UUID,
                 data = signedData,
-            },
-            new[]
-            {
-                new Parameter("OmsConnectionID", OmsConnectionID, ParameterType.UrlSegment),
             });
         }
 
         /// <summary>
-        /// Not supported by OMS Cloud API.
+        /// Not supported by EDO Lite API.
         /// </summary>
         public override void Logout(CommonApiClient client)
         {

@@ -6,6 +6,8 @@
     /// <summary>
     /// Fair Mark API authentication token.
     /// True Api 1.5.2. Получение ключа сессии при единой аутентификации
+    /// OMS API 10.3.2.2. Получение аутентификационного токена
+    /// Edo Lite API 2.2. Получение ключа сессии
     /// </summary>
     [DataContract]
     public class AuthToken
@@ -37,8 +39,14 @@
         /// <summary>
         /// Gets or sets the authentication token.
         /// </summary>
-        [DataMember(Name = "token")]
+        [DataMember(Name = "token", IsRequired = true)]
         public string Token { get; set; }
+
+        /// <summary>
+        /// Gets or sets the token type (EDO-specific property).
+        /// </summary>
+        [DataMember(Name = "token", IsRequired = false)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets the token lifetime, in minutes.
