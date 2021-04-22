@@ -334,9 +334,9 @@ namespace FairMark.Tests
         public void Chapter_4_5_16_GetReceipts()
         {
             // возьмем первый попавшийся активный документ
-            // var orders = Client.GetOrders();
-            // var firstOrderId = orders.OrderInfos.First().OrderID;
-            var firstOrderId = "e76518d3-213a-477a-959d-d9962fc6d00d";
+            var orders = Client.GetOrders();
+            var firstOrderId = orders.OrderInfos.First().OrderID;
+            //var firstOrderId = "e76518d3-213a-477a-959d-d9962fc6d00d";
 
             var receipts = Client.GetReceipts(firstOrderId);
             Assert.NotNull(receipts);
