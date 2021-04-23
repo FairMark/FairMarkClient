@@ -226,9 +226,9 @@ namespace FairMark
         /// </summary>
         /// <typeparam name="T">Response type.</typeparam>
         /// <param name="request">The request to execute.</param>
-        /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
         /// <param name="signed">Sign the request path or body (for POST requests).</param>
-        internal T Execute<T>(IRestRequest request, string apiMethodName, bool signed)
+        /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
+        internal T Execute<T>(IRestRequest request, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             PrepareRequest(request, apiMethodName, signed);
             var response = Client.Execute<T>(request);
@@ -285,7 +285,7 @@ namespace FairMark
                 request.AddOrUpdateParameters(parameters);
             }
 
-            return Execute<T>(request, apiMethodName, signed);
+            return Execute<T>(request, signed, apiMethodName);
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace FairMark
                 request.AddOrUpdateParameters(parameters);
             }
 
-            return Execute<T>(request, apiMethodName, signed);
+            return Execute<T>(request, signed, apiMethodName);
         }
 
         /// <summary>

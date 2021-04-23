@@ -20,8 +20,8 @@
 ## Список реализованных методов
 
 * [СУЗ Облако](FairMark.Docs/oms_methods.txt)
-* True API - TODO
-* ЭДО Lite - TODO
+* [True API](FairMark.Docs/true_methods.txt)
+* [ЭДО Lite](FairMark.Docs/edo_methods.txt)
 
 ## Официальная документация Честного Знака
 

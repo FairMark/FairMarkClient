@@ -33,6 +33,7 @@
 
 * Неформальное описание УПД, УКД и др., примеры: https://sbis.ru/help/edo/primary/formats_doc
 * Примеры готовых XML-документов: https://bi-cons.ru/xml/materials/vat-invoice-xml-xsd.html
+* УПД и УКД. Найдите отличия: https://www.buhgalteria.ru/article/upd-i-ukd-naydite-otlichiya
 
 ## Универсальный передаточный документ (УПД)
 
