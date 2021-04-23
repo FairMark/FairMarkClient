@@ -58,7 +58,7 @@ namespace FairMark.EdoLite
 
         private AuthToken CheckSessionToken(EdoLiteClient edoLiteClient)
         {
-            if (string.IsNullOrWhiteSpace(SessionToken))
+            if (string.IsNullOrWhiteSpace(SessionToken?.Token))
             {
                 // session token is not specified
                 return null;
@@ -70,10 +70,7 @@ namespace FairMark.EdoLite
                 var authHeader = FormatAuthHeader(SessionToken);
                 var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
                 var pong = edoLiteClient.Get<AuthToken>("session");
-                return new AuthToken
-                {
-                    Token = SessionToken,
-                };
+                return SessionToken;
             }
             catch
             {
@@ -116,10 +113,10 @@ namespace FairMark.EdoLite
         /// Formats the authentication header.
         /// </summary>
         /// <param name="authToken">Authentication token.</param>
-        public override Tuple<string, string> FormatAuthHeader(string authToken)
+        public override Tuple<string, string> FormatAuthHeader(AuthToken authToken)
         {
-            // OMS API uses simple GUID as a client token
-            return Tuple.Create("clientToken", authToken);
+            // EDO Lite API uses different authorization header formats for MDLP and GIS MT documents
+            return Tuple.Create("Authorization", $"{authToken.Type} {authToken.Token}");
         }
     }
 }

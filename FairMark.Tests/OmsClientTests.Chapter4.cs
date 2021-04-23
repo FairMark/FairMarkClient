@@ -32,7 +32,7 @@ namespace FairMark.Tests
             // enforce authentication and make sure 
             // that the last OMS auth token is saved
             Client.Ping();
-            SaveOmsApiToken(Client.Authenticator.AuthToken.Token);
+            SaveOmsApiToken(Client.Authenticator.AuthToken);
         }
 
         [Test]

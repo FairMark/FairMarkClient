@@ -1,10 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using FairMark.DataContracts;
+using FairMark.EdoLite;
 using FairMark.OmsApi;
 using FairMark.Toolbox;
 using FairMark.TrueApi;
 using NUnit.Framework;
+using ServiceStack.Text;
 
 namespace FairMark.Tests
 {
@@ -60,6 +63,9 @@ namespace FairMark.Tests
             }
         }
 
+        protected static void SaveSetting<T>(string name, T value) =>
+            SaveSetting(name, JsonSerializer.SerializeToString(value));
+
         protected static string LoadSetting(string name)
         {
             try
@@ -81,12 +87,41 @@ namespace FairMark.Tests
             }
         }
 
-        protected static void SaveTrueApiToken(string token) => SaveSetting(nameof(TrueApiClient), token);
+        protected static T LoadSetting<T>(string name)
+        {
+            var value = LoadSetting(name);
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return default(T);
+            }
 
-        protected static string LoadTrueApiToken() => LoadSetting(nameof(TrueApiClient));
+            try
+            {
+                return JsonSerializer.DeserializeFromString<T>(value);
+            }
+            catch (Exception ex)
+            {
+                if (typeof(T) == typeof(AuthToken))
+                {
+                    WriteLine($"Old format of the setting file {name}: {ex.Message}");
+                    return (T)(new AuthToken { Token = value } as object);
+                }
 
-        protected static void SaveOmsApiToken(string token) => SaveSetting(nameof(OmsApiClient), token);
+                WriteLine($"Error deserializing setting file {name}: {ex.Message}");
+                return default(T);
+            }
+        }
 
-        protected static string LoadOmsApiToken() => LoadSetting(nameof(OmsApiClient));
+        protected static void SaveTrueApiToken(AuthToken token) => SaveSetting(nameof(TrueApiClient), token);
+
+        protected static AuthToken LoadTrueApiToken() => LoadSetting<AuthToken>(nameof(TrueApiClient));
+
+        protected static void SaveOmsApiToken(AuthToken token) => SaveSetting(nameof(OmsApiClient), token);
+
+        protected static AuthToken LoadOmsApiToken() => LoadSetting<AuthToken>(nameof(OmsApiClient));
+
+        protected static void SaveEdoLiteToken(AuthToken token) => SaveSetting(nameof(EdoLiteClient), token);
+
+        protected static AuthToken LoadEdoLiteToken() => LoadSetting<AuthToken>(nameof(EdoLiteClient));
     }
 }

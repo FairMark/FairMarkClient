@@ -24,7 +24,7 @@
         /// <summary>
         /// Gets the creation date.
         /// </summary>
-        [IgnoreDataMember]
+        [DataMember(Name = "$creation_date$", IsRequired = false)]
         public DateTime CreationDate { get; private set; }
 
         /// <summary>
@@ -45,7 +45,7 @@
         /// <summary>
         /// Gets or sets the token type (EDO-specific property).
         /// </summary>
-        [DataMember(Name = "token", IsRequired = false)]
+        [DataMember(Name = "type", IsRequired = false)]
         public string Type { get; set; }
 
         /// <summary>

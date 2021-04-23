@@ -70,7 +70,7 @@ namespace FairMark.OmsApi
 
         private AuthToken CheckSessionToken(OmsApiClient omsClient)
         {
-            if (string.IsNullOrWhiteSpace(SessionToken))
+            if (string.IsNullOrWhiteSpace(SessionToken?.Token))
             {
                 // session token is not specified
                 return null;
@@ -82,10 +82,7 @@ namespace FairMark.OmsApi
                 var authHeader = FormatAuthHeader(SessionToken);
                 var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
                 var pong = omsClient.Ping(header);
-                return new AuthToken
-                {
-                    Token = SessionToken,
-                };
+                return SessionToken;
             }
             catch
             {
@@ -135,10 +132,10 @@ namespace FairMark.OmsApi
         /// Formats the authentication header.
         /// </summary>
         /// <param name="authToken">Authentication token.</param>
-        public override Tuple<string, string> FormatAuthHeader(string authToken)
+        public override Tuple<string, string> FormatAuthHeader(AuthToken authToken)
         {
             // OMS API uses simple GUID as a client token
-            return Tuple.Create("clientToken", authToken);
+            return Tuple.Create("clientToken", authToken.Token);
         }
     }
 }

@@ -36,9 +36,9 @@
 
         private Tuple<string, string> AuthHeader { get; set; }
 
-        protected virtual void SetAuthHeader(string authToken)
+        protected virtual void SetAuthHeader(AuthToken authToken)
         {
-            AuthHeader = string.IsNullOrWhiteSpace(authToken) ? null :
+            AuthHeader = string.IsNullOrWhiteSpace(authToken?.Token) ? null :
                 Credentials.FormatAuthHeader(authToken);
         }
 
@@ -49,7 +49,7 @@
             {
                 State = AuthState.InProgress;
                 AuthToken = Credentials.Authenticate(Client);
-                SetAuthHeader(AuthToken.Token);
+                SetAuthHeader(AuthToken);
                 State = AuthState.Authenticated;
             }
 

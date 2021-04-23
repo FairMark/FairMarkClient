@@ -22,7 +22,7 @@ namespace FairMark
         /// If session token is specified, the client will try to skip the authentication process.
         /// If session token is not specified or is not valid, the client will proceed to log in as usual.
         /// </remarks>
-        public string SessionToken { get; set; }
+        public AuthToken SessionToken { get; set; }
 
         /// <summary>
         /// Performs authentication, returns access token with a limited lifetime.
@@ -41,6 +41,6 @@ namespace FairMark
         /// Formats the authentication header for REST requests.
         /// </summary>
         /// <param name="authToken">Authentication token.</param>
-        public abstract Tuple<string, string> FormatAuthHeader(string authToken);
+        public abstract Tuple<string, string> FormatAuthHeader(AuthToken authToken);
     }
 }

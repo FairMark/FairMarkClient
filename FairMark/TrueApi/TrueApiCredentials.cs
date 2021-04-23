@@ -55,7 +55,7 @@ namespace FairMark.TrueApi
 
         private AuthToken CheckSessionToken(TrueApiClient apiClient)
         {
-            if (string.IsNullOrWhiteSpace(SessionToken))
+            if (string.IsNullOrWhiteSpace(SessionToken?.Token))
             {
                 // session token is not specified
                 return null;
@@ -67,10 +67,7 @@ namespace FairMark.TrueApi
                 var authHeader = FormatAuthHeader(SessionToken);
                 var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
                 var result = apiClient.Get("auth/key", new[] { header });
-                return new AuthToken
-                {
-                    Token = SessionToken,
-                };
+                return SessionToken;
             }
             catch
             {
@@ -113,10 +110,10 @@ namespace FairMark.TrueApi
         /// Formats the authentication header.
         /// </summary>
         /// <param name="authToken">Authentication token.</param>
-        public override Tuple<string, string> FormatAuthHeader(string authToken)
+        public override Tuple<string, string> FormatAuthHeader(AuthToken authToken)
         {
             // True API uses JWT bearer token
-            return Tuple.Create("Authorization", $"Bearer {authToken}");
+            return Tuple.Create("Authorization", $"Bearer {authToken.Token}");
         }
     }
 }
