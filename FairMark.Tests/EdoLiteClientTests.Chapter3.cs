@@ -26,13 +26,13 @@ namespace FairMark.Tests
             Tracer = TestContext.Progress.WriteLine,
         };
 
-        [Test, Explicit("Doesn't seem to work")]
+        [Test, Explicit("Avoid creating duplicate documents")]
         public void Chapter_3_1_SendDocument()
         {
             var fileName = "ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4.xml"; // @"C:\Users\ON_NSCHFDOPPRMARK_2LT50_2LT-354_20200218_cc716325-e5b9-43b8-813d-8e70e7912272.xml";
             var xmlFileContents = Resources.ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4;
             var docId = Client.SendDocument(fileName, xmlFileContents);
-            Assert.NotNull(docId);
+            Assert.NotNull(docId); // 28dacc48-7fd2-4248-942b-2c8c210f2f40
         }
 
         [Test]
