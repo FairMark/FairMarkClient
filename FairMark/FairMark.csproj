@@ -4,7 +4,30 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>FairMark</AssemblyName>
     <RootNamespace>FairMark</RootNamespace>
-    <Description>Честный Знак. Неофициальная клиентская библиотека для .NET.</Description>
+    <Description>Честный Знак. ИС «Маркировка», СУЗ Облако. Неофициальная клиентская библиотека для .NET.</Description>
+
+    <Company>Alexey Yakovlev</Company>
+    <Copyright>Copyright © Alexey Yakovlev 2021</Copyright>
+    <Version>1.0.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Authors>Alexey Yakovlev;Aleksei Kudryakov;Contributors</Authors>
+
+    <PackageId>FairMarkClient</PackageId>
+    <PackageTags>REST;API;TrueAPI;Честный знак;ГИС МТ;СУЗ Облако;ЭДО Лайт</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/FairMark/FairMarkClient/master/FairMark.Docs/FairMarkGlitchyLogo.gif</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/FairMark/FairMarkClient</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/FairMark/FairMarkClient/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/FairMark/FairMarkClient.git</RepositoryUrl>
+    <!--PackageLicenseExpression>MIT</PackageLicenseExpression-->
+    <PackageReleaseNotes>Alpha release. What's new:
+
+      v1.0.0:
+      — Initial implementation of the OMS API client.
+      - Stub implementations of the True API and EDO Lite clients.
+    </PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
