@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FairMark.EdoLite.DataContracts;
 using FairMark.OmsApi.DataContracts;
+using FairMark.Toolbox;
 using RestSharp;
 
 namespace FairMark.EdoLite
@@ -13,17 +14,27 @@ namespace FairMark.EdoLite
         /// 3.1. Метод загрузки файла информации продавца УПД согласно приказу 820 от 19.12.2018 № ММВ-7-15/820@ в формате XML
         /// </summary>
         /// <remarks>
-        /// Сервер принимает только документы в кодировке windows-1251.
+        /// * Сервер принимает только документы в кодировке windows-1251.
+        /// * Трассировка этого метода неполная: multipart/form-data не отображается.
         /// </remarks>
         /// <param name="fileName">Имя файла, сформированное согласно стандарту формирования</param>
         /// <param name="xmlFileContents">Содержимое XML-файла, должно быть согласовано с именем</param>
-        public string SendDocument(string fileName, string xmlFileContents)
+        /// <param name="signed">Подписывать документ перед отсылкой</param>
+        public string SendSellerUpdDocument(string fileName, string xmlFileContents, bool signed = true)
         {
             var request = new RestRequest("outgoing-documents", Method.POST, DataFormat.Json);
             request.AlwaysMultipartFormData = true;
 
             // похоже, сервер принимает XML-документы только в кодировке windows-1251
-            request.AddFile("content", Encoding.GetEncoding(1251).GetBytes(xmlFileContents), fileName, "application/xml");
+            var content = Encoding.GetEncoding(1251).GetBytes(xmlFileContents);
+            request.AddFile("content", content, fileName, "application/xml");
+
+            // если документ подписывается, то в той же кодировке, что и отсылается
+            if (signed)
+            {
+                var signature = GostCryptoHelpers.ComputeDetachedSignature(UserCertificate, content);
+                request.Parameters.Add(new Parameter("signature", signature, ParameterType.RequestBody));
+            }
 
             var result = Execute<ResID>(request);
             return result.ID;

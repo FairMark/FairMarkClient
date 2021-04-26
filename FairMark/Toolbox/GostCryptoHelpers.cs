@@ -97,12 +97,20 @@ namespace FairMark.Toolbox
         /// </summary>
         public static string ComputeDetachedSignature(X509Certificate2 certificate, string textToSign)
         {
+            return ComputeDetachedSignature(certificate, Encoding.UTF8.GetBytes(textToSign));
+        }
+
+        /// <summary>
+        /// Signs the message with a GOST digital signature and returns the detached signature (CMS format, base64 encoding).
+        /// Detached signature is a CMS message, that doesn't contain the original signed data: only the signature and the certificates.
+        /// </summary>
+        public static string ComputeDetachedSignature(X509Certificate2 certificate, byte[] message)
+        {
             // The following line opens the private key.
             // It requires that the current user has permissions to use the private key.
             // Permissions are given using MMC console, Certificates snap-in.
             var privateKey = (GostAsymmetricAlgorithm)certificate.GetPrivateKeyAlgorithm();
             var publicKey = (GostAsymmetricAlgorithm)certificate.GetPublicKeyAlgorithm();
-            var message = Encoding.UTF8.GetBytes(textToSign);
 
             // Create GOST-compliant signature helper
             var signedCms = new GostSignedCms(new ContentInfo(message), true);
@@ -123,12 +131,19 @@ namespace FairMark.Toolbox
         /// </summary>
         public static string ComputeAttachedSignature(X509Certificate2 certificate, string textToSign)
         {
+            return ComputeAttachedSignature(certificate, Encoding.UTF8.GetBytes(textToSign));
+        }
+
+        /// <summary>
+        /// Signs the message with a GOST digital signature and returns the attached signature (CMS format, base64 encoding).
+        /// </summary>
+        public static string ComputeAttachedSignature(X509Certificate2 certificate, byte[] message)
+        {
             // The following line opens the private key.
             // It requires that the current user has permissions to use the private key.
             // Permissions are given using MMC console, Certificates snap-in.
             var privateKey = (GostAsymmetricAlgorithm)certificate.GetPrivateKeyAlgorithm();
             var publicKey = (GostAsymmetricAlgorithm)certificate.GetPublicKeyAlgorithm();
-            var message = Encoding.UTF8.GetBytes(textToSign);
 
             // Create GOST-compliant signature helper
             var signedCms = new GostSignedCms(new ContentInfo(message), detached: false);
