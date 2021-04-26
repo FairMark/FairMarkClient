@@ -130,7 +130,8 @@ namespace FairMark.OmsApi
         /// Идентификатор блока кодов, выданных в предыдущем запросе. 
         /// Может быть равен 0 при первом запросе КМ из пула. Далее должен
         /// передаваться идентификатор предыдущего пакета. Значение по
-        /// умолчанию: 0        /// </param>
+        /// умолчанию: 0
+        /// </param>
         /// <remarks>
         /// postman: _SUZ 4.5.6. milk/codes
         ///      Запрос, кажется, готов, но статусы всех последних заказов "Создан".
@@ -306,8 +307,10 @@ namespace FairMark.OmsApi
         /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
         /// <param name="gtin">GTIN товара, по которому требуется прекратить выдачу КМ</param>
         /// <param name="lastBlockId">
-        /// Идентификатор блока кодов. Строковое значение.         /// Значение идентификатора в соответствии с ISO/IEC 9834-8.
-        /// Шаблон: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fAF]{12}        /// </param>
+        /// Идентификатор блока кодов. Строковое значение. 
+        /// Значение идентификатора в соответствии с ISO/IEC 9834-8.
+        /// Шаблон: [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fAF]{12}
+        /// </param>
         /// <remarks>
         /// postman: _SUZ 4.5.15. milk/codes/retry
         /// </remarks>
@@ -334,6 +337,18 @@ namespace FairMark.OmsApi
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
                 new Parameter("docId", docId, ParameterType.QueryString),
+            });
+        }
+
+        /// <summary>
+        /// 4.5.17. Метод «Получить список сервис-провайдеров»
+        /// </summary>
+        public ProvidersDto GetServiceProviders()
+        {
+            return Get<ProvidersDto>("{extension}/providers", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
             });
         }
     }

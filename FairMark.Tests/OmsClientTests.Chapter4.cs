@@ -343,5 +343,14 @@ namespace FairMark.Tests
             Assert.NotNull(receipts.Receipts);
             Assert.NotNull(receipts.Receipts.First());
         }
+
+        [Test]
+        public void Chapter_4_5_17_GetServiceProviders()
+        {
+            var providers = Client.GetServiceProviders();
+            Assert.NotNull(providers);
+            Assert.NotNull(providers.Providers);
+            Assert.NotNull(providers.Providers.First());
+        }
     }
 }

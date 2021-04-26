@@ -15,44 +15,36 @@ namespace FairMark.OmsApi.DataContracts
     [DataContract]
     public class PoolInfo
     {
-        /// <summary>
-        /// Готовность РЭ .
-        /// </summary>
+        /// <summary>Logical flag that shows if the Emission Registrar is currently ready for orders (Готовность РЭ)</summary>
         [DataMember(Name = "isRegistrarReady", IsRequired = true)]
         public bool IsRegistrarReady { get; set; }
 
-        /// <summary>
-        /// Метка времени последней наблюдавшейся ошибки РЭ.
-        /// </summary>
-        [DataMember(Name = "lastRegistrarErrorTimestamp", IsRequired = false)]
+        /// <summary>Timestamp when the last Emission Registrar error occurred (Метка времени последней наблюдавшейся ошибки РЭ)</summary>
+        [DataMember(Name = "lastRegistrarErrorTimestamp", IsRequired = true)]
         public long LastRegistrarErrorTimestamp { get; set; }
 
-        /// <summary>
-        /// Заказанное количество КМ в пуле.
-        /// </summary>
-        [DataMember(Name = "quantity")]
+        /// <summary>Number of unused ICs in the pool (Оставшеесе кол-во КМ в пуле)</summary>
+        [DataMember(Name = "leftInRegistrar", IsRequired = true)]
+        public int LeftInRegistrar { get; set; }
+
+        /// <summary>Number of ICs ordered in the array (Заказанное кол-во КМ в пуле)</summary>
+        [DataMember(Name = "quantity", IsRequired = true)]
         public int Quantity { get; set; }
 
-        /// <summary>
-        /// Количество ошибок РЭ.
-        /// </summary>
-        [DataMember(Name = "registrarErrorCount")]
+        /// <summary>Number of Emission Registrar errors occurred (Количество ошибок РЭ)</summary>
+        [DataMember(Name = "registrarErrorCount", IsRequired = true)]
         public int RegistrarErrorCount { get; set; }
 
-        /// <summary>
-        /// Идентификатор РЭ (номер).
-        /// </summary>
-        [DataMember(Name = "registrarId")]
+        /// <summary>Emission Registrar Identifier (Номер РЭ)</summary>
+        [DataMember(Name = "registrarId", IsRequired = true)]
         public string RegistrarID { get; set; }
 
-        /// <summary>
-        /// Причина отказа.
-        /// </summary>
+        /// <summary>The IC array rejection reason returned by the Emission Registrar (Причина отказа)</summary>
         [DataMember(Name = "rejectionReason", IsRequired = false)]
         public string RejectionReason { get; set; }
 
         /// <summary>
-        /// Статус пула КМ. Справочное значение «Статус массива КМ».
+        /// IC array status (Статус пула КМ). Справочное значение «Статус массива КМ».
         /// см. раздел 5.3.1.5, <see cref="PoolStatuses"/>.
         /// </summary>
         [DataMember(Name = "status", IsRequired = true)]
