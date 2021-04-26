@@ -4,7 +4,8 @@
 
 [![FairMark Client v3.05](https://img.shields.io/badge/честный%20знак-v3.06.1-yellowgreen)](https://честныйзнак.рф/upload/iblock/07f/ru_API_OMS-CLOUD.pdf)
 [![.NET Framework 4.62](https://img.shields.io/badge/.net-v4.62-yellow)](https://www.microsoft.com/ru-RU/download/details.aspx?id=53321)
-[![NuGet](https://img.shields.io/nuget/v/FairMarkClient.svg)](https://www.nuget.org/packages/FairMarkClient)
+[![FairMarkClient on NuGet.org](https://img.shields.io/nuget/v/FairMarkClient.svg)](https://www.nuget.org/packages/FairMarkClient)
+[![FairMarkClient on fuget.org](https://www.fuget.org/packages/FairMarkClient/badge.svg)](https://www.fuget.org/packages/FairMarkClient)
 
 Неофициальная клиентская библиотека .NET для API-сервисов Честного Знака: True API, API СУЗ Облако и API ЭДО Lite.
 Список возможностей на текущий момент:
