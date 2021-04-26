@@ -25,7 +25,39 @@ namespace FairMark.EdoLite
             var request = new RestRequest("outgoing-documents", Method.POST, DataFormat.Json);
             request.AlwaysMultipartFormData = true;
 
-            // похоже, сервер принимает XML-документы только в кодировке windows-1251
+            // сервер принимает XML-документы только в кодировке windows-1251
+            var content = Encoding.GetEncoding(1251).GetBytes(xmlFileContents);
+            request.AddFile("content", content, fileName, "application/xml");
+
+            // если документ подписывается, то в той же кодировке, что и отсылается
+            if (signed)
+            {
+                var signature = GostCryptoHelpers.ComputeDetachedSignature(UserCertificate, content);
+                request.Parameters.Add(new Parameter("signature", signature, ParameterType.RequestBody));
+            }
+
+            var result = Execute<ResID>(request);
+            return result.ID;
+        }
+
+        /// <summary>
+        /// 3.2. Метод загрузки файла информации продавца УПДи согласно приказу 820 от 19.12.2018 № ММВ-7-15/820@ в формате XML
+        /// </summary>
+        /// <remarks>
+        /// * Сервер принимает только документы в кодировке windows-1251.
+        /// * Трассировка этого метода неполная: multipart/form-data не отображается.
+        /// </remarks>
+        /// <param name="fileName">Имя файла, сформированное согласно стандарту формирования</param>
+        /// <param name="xmlFileContents">Содержимое XML-файла, должно быть согласовано с именем</param>
+        /// <param name="parentId">Идентификатор родительского документа</param>
+        /// <param name="signed">Подписывать документ перед отсылкой</param>
+        public string SendSellerUpdiDocument(string fileName, string xmlFileContents, string parentId, bool signed = true)
+        {
+            var request = new RestRequest("outgoing-documents/xml/updi", Method.POST, DataFormat.Json);
+            request.AlwaysMultipartFormData = true;
+            request.Parameters.Add(new Parameter("parent_id", parentId, ParameterType.RequestBody));
+
+            // сервер принимает XML-документы только в кодировке windows-1251
             var content = Encoding.GetEncoding(1251).GetBytes(xmlFileContents);
             request.AddFile("content", content, fileName, "application/xml");
 
