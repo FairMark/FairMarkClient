@@ -266,6 +266,20 @@ namespace FairMark
             // there is no body deserialization step, so we need to trace
             Trace(response);
             ThrowOnFailure(response);
+
+            // try to handle windows-1251 encoding
+            if (response.ContentType.IndexOf("xml", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                response.ContentType.IndexOf("octet", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                var responseContent = response.Content;
+                if (responseContent.StartsWith("<?xml", StringComparison.OrdinalIgnoreCase) &&
+                    responseContent.IndexOf("encoding=\"windows-1251\"", 0, 200, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    var encoding = Encoding.GetEncoding(1251);
+                    response.Content = encoding.GetString(response.RawBytes);
+                }
+            }
+
             return response.Content;
         }
 

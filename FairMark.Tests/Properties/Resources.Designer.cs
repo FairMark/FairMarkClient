@@ -73,5 +73,35 @@ namespace FairMark.Tests.Properties {
                 return ResourceManager.GetString("EdoLite_Chapter_3_1_SampleUpd", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+        ///&lt;Файл ИдФайл=&quot;ON_NSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_afb6cce6-6cb9-4147-bc2f-689be4fd2198&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
+        ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600006439&quot; ИдПол=&quot;2LT-600003352&quot;&gt;
+        ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
+        ///    &lt;/СвУчДокОбор&gt;
+        ///    &lt;Документ КНД=&quot;1115131&quot; Функция=&quot;СЧФДОП&quot; ПоФактХЖ=&quot;Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ON_NSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_afb6cce6_6cb9_4147_bc2f_689be4fd2198 {
+            get {
+                return ResourceManager.GetString("ON_NSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_afb6cce6_6cb9_4147_bc2f_689be4" +
+                        "fd2198", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+        ///&lt;Файл ИдФайл=&quot;ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
+        ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600003352&quot; ИдПол=&quot;2LT-600006439&quot;&gt;
+        ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
+        ///    &lt;/СвУчДокОбор&gt;
+        ///    &lt;Документ КНД=&quot;1115131&quot; Функция=&quot;СЧФДОП&quot; ПоФактХЖ=&quot;Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4 {
+            get {
+                return ResourceManager.GetString("ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59" +
+                        "870ef4", resourceCulture);
+            }
+        }
     }
 }

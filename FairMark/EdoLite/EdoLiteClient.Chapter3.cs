@@ -14,10 +14,35 @@ namespace FairMark.EdoLite
             var request = new RestRequest("outgoing-documents", Method.POST, DataFormat.Json);
             request.AlwaysMultipartFormData = true;
             //request.AddHeader("Content-Type", "multipart/form-data");
-            request.AddFileBytes("content", Encoding.UTF8.GetBytes(xmlFileContents), fileName, "application/xml");
+            //request.AddFileBytes("content", Encoding.UTF8.GetBytes(xmlFileContents), fileName, "application/xml");
+            request.AddFile("content", Encoding.UTF8.GetBytes(xmlFileContents), fileName, "application/xml");
 
             var result = Execute<ResID>(request);
             return result.ID;
+        }
+
+        /// <summary>
+        /// 3.4. Получение содержимого входящего XML документа
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        public string GetIncomingDocument(string docId)
+        {
+            return Get("incoming-documents/{doc_id}/content", new[]
+            {
+                new Parameter("doc_id", docId, ParameterType.UrlSegment),
+            });
+        }
+
+        /// <summary>
+        /// 3.4. Получение содержимого иcходящего XML документа
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        public string GetOutgoingDocument(string docId)
+        {
+            return Get("outgoing-documents/{doc_id}/content", new[]
+            {
+                new Parameter("doc_id", docId, ParameterType.UrlSegment),
+            });
         }
 
         /*

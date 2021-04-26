@@ -33,7 +33,7 @@
 * [Краткое руководство по работе с API](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/Краткое_руководство_по_работе_с_API.pdf)
 * [СУЗ Облако. Руководство программиста](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/iblock/07f/ru_API_OMS-CLOUD.pdf)
 * [True API. Руководство программиста](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/TRUE_API.pdf)
-* [Описание API ЭДО Lite](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/API ЭДО lite.pdf)
+* [Описание API ЭДО Lite](https://xn--80ajghhoc2aj1c8b.xn--p1ai/upload/API%20ЭДО%20lite.pdf)
 
 ## Прочая документация
 
