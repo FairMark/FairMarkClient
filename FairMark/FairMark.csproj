@@ -25,7 +25,7 @@
 
       v1.0.0:
       — Initial implementation of the OMS API client.
-      - Stub implementations of the True API and EDO Lite clients.
+      — Stub implementations of the True API and EDO Lite clients.
     </PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
