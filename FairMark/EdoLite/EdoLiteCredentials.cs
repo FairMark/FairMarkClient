@@ -69,7 +69,7 @@ namespace FairMark.EdoLite
                 // try calling a simple authenticated API method
                 var authHeader = FormatAuthHeader(SessionToken);
                 var header = new Parameter(authHeader.Item1, authHeader.Item2, ParameterType.HttpHeader);
-                var pong = edoLiteClient.Get<AuthToken>("session");
+                var pong = edoLiteClient.Get("incoming-documents");
                 return SessionToken;
             }
             catch

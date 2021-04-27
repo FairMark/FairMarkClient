@@ -35,37 +35,48 @@ namespace FairMark.Tests
 
             // unsigned: 28dacc48-7fd2-4248-942b-2c8c210f2f40
             // signed: "d0f62b99-e823-4759-b22b-af57f86359d7"
+            // signed: "1771bf33-dbae-4973-af8d-a64ce4163623"
             Assert.NotNull(docId);
         }
 
         [Test, Explicit("Avoid creating lots of duplicate documents on each commit")]
         public void Chapter_3_2_SendSellerUpdiDocument()
         {
-            // похоже, УПДи имеет какую-то другую структуру
+            // УПДи по структуре отличается от УПД,
             // и обычный УПД вместо него послать невозможно
             // ошибка "DOC-0017: Неверный тип документа загружаемого xml файла"
-            var fileName = "ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4.xml"; // @"C:\Users\ON_NSCHFDOPPRMARK_2LT50_2LT-354_20200218_cc716325-e5b9-43b8-813d-8e70e7912272.xml";
-            var xmlFileContents = Resources.ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4;
+            // var fileName = "ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4.xml"; // @"C:\Users\ON_NSCHFDOPPRMARK_2LT50_2LT-354_20200218_cc716325-e5b9-43b8-813d-8e70e7912272.xml";
+            // var xmlFileContents = Resources.ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4;
+            var fileName = "ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_a5011718-844e-4bba-b15c-a1c15e49a691.xml";
+            var xmlFileContents = Resources.ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_a5011718_844e_4bba_b15c_a1c15e49a691_УПДи;
 
             // parentId от документа, загруженного в методе Chapter_3_1_SendSellerUpdDocument
             var parentId = "d0f62b99-e823-4759-b22b-af57f86359d7";
             var docId = Client.SendSellerUpdiDocument(fileName, xmlFileContents, parentId, true);
             Assert.NotNull(docId);
+
+            // unsigned: "60624793-cd64-4d2c-8c68-ce03544b66d7"
+            // signed: "900e35f8-9572-4256-b543-2aed40ee35ff"
+            // signed: "5d1d074d-c489-45b7-b6d3-e703c680eba4"
         }
 
         [Test, Explicit("Avoid creating lots of duplicate documents on each commit")]
         public void Chapter_3_3_SendSellerUkdDocument()
         {
-            // похоже, УКД имеет какую-то другую структуру
+            // УКД по структуре отличается от УПД,
             // и обычный УПД вместо него послать невозможно
             // ошибка "DOC-0017: Неверный тип документа загружаемого xml файла"
-            var fileName = "ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4.xml"; // @"C:\Users\ON_NSCHFDOPPRMARK_2LT50_2LT-354_20200218_cc716325-e5b9-43b8-813d-8e70e7912272.xml";
-            var xmlFileContents = Resources.ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4;
+            //var fileName = "ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4.xml"; // @"C:\Users\ON_NSCHFDOPPRMARK_2LT50_2LT-354_20200218_cc716325-e5b9-43b8-813d-8e70e7912272.xml";
+            //var xmlFileContents = Resources.ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4;
+            var fileName = "ON_KORSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_68426923-d1e2-4582-93f2-f690912d5161.xml";
+            var xmlFileContents = Resources.ON_KORSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_68426923_d1e2_4582_93f2_f690912d5161;
 
             // parentId от документа, загруженного в методе Chapter_3_1_SendSellerUpdDocument
             var parentId = "d0f62b99-e823-4759-b22b-af57f86359d7";
             var docId = Client.SendSellerUkdDocument(fileName, xmlFileContents, parentId, true);
             Assert.NotNull(docId);
+
+            // signed: "71dd59ac-2f88-4bfb-bacc-51fe3d55d404"
         }
 
         [Test]

@@ -121,10 +121,22 @@
   <data name="EdoLite_Chapter_3_1_SampleUpd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EdoLite_Chapter_3_1_SampleUpd.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="ON_KORSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_a4941fa7_9a53_4991_aa02_f1606b71142c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ON_KORSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_a4941fa7-9a53-4991-aa02-f1606b71142c.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ON_KORSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_68426923_d1e2_4582_93f2_f690912d5161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ON_KORSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_68426923-d1e2-4582-93f2-f690912d5161.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ON_NSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_00c4d099_a48f_47ed_8608_54d32890fe73_УПДи" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ON_NSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_00c4d099-a48f-47ed-8608-54d32890fe73.УПДи.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="ON_NSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_afb6cce6_6cb9_4147_bc2f_689be4fd2198" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ON_NSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_afb6cce6-6cb9-4147-bc2f-689be4fd2198.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
   <data name="ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59870ef4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_0dc17582-d11d-4a4d-8e25-816d59870ef4.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_a5011718_844e_4bba_b15c_a1c15e49a691_УПДи" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_a5011718-844e-4bba-b15c-a1c15e49a691.УПДи.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
 </root>

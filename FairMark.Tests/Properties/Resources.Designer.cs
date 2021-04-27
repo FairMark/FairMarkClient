@@ -76,6 +76,51 @@ namespace FairMark.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+        ///&lt;Файл ИдФайл=&quot;ON_KORSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_a4941fa7-9a53-4991-aa02-f1606b71142c&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
+        ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600006439&quot; ИдПол=&quot;2LT-600003352&quot;&gt;
+        ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
+        ///    &lt;/СвУчДокОбор&gt;
+        ///    &lt;Документ КНД=&quot;1115127&quot; Функция=&quot;КСЧФДИС&quot; ПоФактХЖ=&quot;Документ об изменении стоимости отгруженных товаров (выполненных работ, оказанных услуг), п [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ON_KORSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_a4941fa7_9a53_4991_aa02_f1606b71142c {
+            get {
+                return ResourceManager.GetString("ON_KORSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_a4941fa7_9a53_4991_aa02_f160" +
+                        "6b71142c", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+        ///&lt;Файл ИдФайл=&quot;ON_KORSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_68426923-d1e2-4582-93f2-f690912d5161&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
+        ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600003352&quot; ИдПол=&quot;2LT-600006439&quot;&gt;
+        ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
+        ///    &lt;/СвУчДокОбор&gt;
+        ///    &lt;Документ КНД=&quot;1115127&quot; Функция=&quot;КСЧФДИС&quot; ПоФактХЖ=&quot;Документ об изменении стоимости отгруженных товаров (выполненных работ, оказанных услуг), п [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ON_KORSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_68426923_d1e2_4582_93f2_f690912d5161 {
+            get {
+                return ResourceManager.GetString("ON_KORSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_68426923_d1e2_4582_93f2_f690" +
+                        "912d5161", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+        ///&lt;Файл ИдФайл=&quot;ON_NSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_00c4d099-a48f-47ed-8608-54d32890fe73&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
+        ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600006439&quot; ИдПол=&quot;2LT-600003352&quot;&gt;
+        ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
+        ///    &lt;/СвУчДокОбор&gt;
+        ///    &lt;Документ КНД=&quot;1115131&quot; Функция=&quot;СЧФДОП&quot; ПоФактХЖ=&quot;Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ON_NSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_00c4d099_a48f_47ed_8608_54d32890fe73_УПДи {
+            get {
+                return ResourceManager.GetString("ON_NSCHFDOPPR_2LT_600003352_2LT_600006439_20210426_00c4d099_a48f_47ed_8608_54d328" +
+                        "90fe73_УПДи", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
         ///&lt;Файл ИдФайл=&quot;ON_NSCHFDOPPR_2LT-600003352_2LT-600006439_20210426_afb6cce6-6cb9-4147-bc2f-689be4fd2198&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
         ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600006439&quot; ИдПол=&quot;2LT-600003352&quot;&gt;
         ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
@@ -101,6 +146,21 @@ namespace FairMark.Tests.Properties {
             get {
                 return ResourceManager.GetString("ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_0dc17582_d11d_4a4d_8e25_816d59" +
                         "870ef4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+        ///&lt;Файл ИдФайл=&quot;ON_NSCHFDOPPR_2LT-600006439_2LT-600003352_20210426_a5011718-844e-4bba-b15c-a1c15e49a691&quot; ВерсФорм=&quot;5.01&quot; ВерсПрог=&quot;EDOLite 1.0&quot;&gt;
+        ///    &lt;СвУчДокОбор ИдОтпр=&quot;2LT-600003352&quot; ИдПол=&quot;2LT-600006439&quot;&gt;
+        ///        &lt;СвОЭДОтпр НаимОрг=&quot;ООО &amp;quot;Оператор-ЦРПТ&amp;quot;&quot; ИННЮЛ=&quot;7731376812&quot; ИдЭДО=&quot;2LT&quot;/&gt;
+        ///    &lt;/СвУчДокОбор&gt;
+        ///    &lt;Документ КНД=&quot;1115131&quot; Функция=&quot;СЧФДОП&quot; ПоФактХЖ=&quot;Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_a5011718_844e_4bba_b15c_a1c15e49a691_УПДи {
+            get {
+                return ResourceManager.GetString("ON_NSCHFDOPPR_2LT_600006439_2LT_600003352_20210426_a5011718_844e_4bba_b15c_a1c15e" +
+                        "49a691_УПДи", resourceCulture);
             }
         }
     }
