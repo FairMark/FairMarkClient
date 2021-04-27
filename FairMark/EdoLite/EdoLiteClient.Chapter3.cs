@@ -127,5 +127,27 @@ namespace FairMark.EdoLite
                 new Parameter("doc_id", docId, ParameterType.UrlSegment),
             });
         }
+
+        /// <summary>
+        /// 3.5. Подписание исходящего документа
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        /// <param name="xmlFileContents">XML-содержимое документа (опционально: если не передать, документ будет запрошен через API).</param>
+        public void SignOutgoingDocument(string docId, string xmlFileContents = null)
+        {
+            // если документ не передан, получить содержимое документа и подписать его
+            xmlFileContents = xmlFileContents ?? GetOutgoingDocument(docId);
+            var docBytes = Encoding.GetEncoding(1251).GetBytes(xmlFileContents);
+            var signature = GostCryptoHelpers.ComputeDetachedSignature(UserCertificate, docBytes);
+
+            var url = "outgoing-documents/{doc_id}/signature";
+            var request = new RestRequest(url, Method.POST, DataFormat.Json);
+            request.AddParameter(new Parameter("doc_id", docId, ParameterType.UrlSegment));
+            request.AddParameter(new Parameter(string.Empty, signature, ParameterType.RequestBody));
+            request.AddHeader("Content-encoding", "base64");
+            request.AddHeader("Content-type", "text/plain");
+
+            Execute(request);
+        }
     }
 }

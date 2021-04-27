@@ -98,5 +98,15 @@ namespace FairMark.Tests
             Assert.NotNull(xmlFileContents);
             Assert.DoesNotThrow(() => XDocument.Parse(xmlFileContents));
         }
+
+        [Test, Explicit("A document can be signed only once")]
+        public void Chapter_3_5_SignOutgoingDocument()
+        {
+            // черновик можно подписать только один раз
+            // чтобы обновить тест, нужно загрузить новый документ
+            // и не подписывать его, см. Chapter_3_1_SendSellerUpdDocument
+            var draftDocId = "60624793-cd64-4d2c-8c68-ce03544b66d7";
+            Assert.DoesNotThrow(() => Client.SignOutgoingDocument(draftDocId));
+        }
     }
 }
