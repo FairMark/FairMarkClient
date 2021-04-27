@@ -242,7 +242,7 @@ namespace FairMark
         /// <param name="request">The request to execute.</param>
         /// <param name="signed">Sign the request path or body automatically.</param>
         /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
-        internal void Execute(IRestRequest request, bool signed = false, [CallerMemberName] string apiMethodName = null)
+        internal IRestResponse Execute(IRestRequest request, bool signed = false, [CallerMemberName] string apiMethodName = null)
         {
             PrepareRequest(request, apiMethodName, signed);
             var response = Client.Execute(request);
@@ -250,6 +250,7 @@ namespace FairMark
             // there is no body deserialization step, so we need to trace
             Trace(response);
             ThrowOnFailure(response);
+            return response;
         }
 
         /// <summary>

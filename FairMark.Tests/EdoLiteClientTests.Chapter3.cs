@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,6 +108,43 @@ namespace FairMark.Tests
             // и не подписывать его, см. Chapter_3_1_SendSellerUpdDocument
             var draftDocId = "60624793-cd64-4d2c-8c68-ce03544b66d7";
             Assert.DoesNotThrow(() => Client.SignOutgoingDocument(draftDocId));
+        }
+
+        private void AssertPdfFormat(byte[] data)
+        {
+            Assert.NotNull(data);
+            Assert.IsTrue(data.Length > 1000);
+
+            using (var ms = new MemoryStream(data))
+            using (var sr = new StreamReader(ms))
+            {
+                var firstLine = sr.ReadLine();
+                Assert.IsTrue(firstLine.StartsWith("%PDF"));
+            }
+        }
+
+        [Test]
+        public void Chapter_3_6_PrintIncomingDocument()
+        {
+            // чтобы обновить тест, скопируйте коды
+            // документов из личного кабинета демо-контура ГИС МТ,
+            // с закладки ЭДО Входящие
+            // https://milk.demo.crpt.tech/documents/incoming/list
+            AssertPdfFormat(Client.PrintIncomingDocument("afb6cce6-6cb9-4147-bc2f-689be4fd2198")); // УПД
+            AssertPdfFormat(Client.PrintIncomingDocument("a4941fa7-9a53-4991-aa02-f1606b71142c")); // УПДи
+            AssertPdfFormat(Client.PrintIncomingDocument("00c4d099-a48f-47ed-8608-54d32890fe73")); // УКД
+        }
+
+        [Test]
+        public void Chapter_3_6_PrintOutgoingDocument()
+        {
+            // чтобы обновить тест, скопируйте коды
+            // документов из личного кабинета демо-контура ГИС МТ,
+            // с закладки ЭДО Исходящие
+            // https://milk.demo.crpt.tech/documents/outgoing/list
+            AssertPdfFormat(Client.PrintOutgoingDocument("d0f62b99-e823-4759-b22b-af57f86359d7")); // УПД
+            AssertPdfFormat(Client.PrintOutgoingDocument("5d1d074d-c489-45b7-b6d3-e703c680eba4")); // УПДи
+            AssertPdfFormat(Client.PrintOutgoingDocument("71dd59ac-2f88-4bfb-bacc-51fe3d55d404")); // УКД
         }
     }
 }

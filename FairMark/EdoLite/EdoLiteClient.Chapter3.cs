@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using FairMark.EdoLite.DataContracts;
 using FairMark.OmsApi.DataContracts;
@@ -149,5 +150,30 @@ namespace FairMark.EdoLite
 
             Execute(request);
         }
+
+        private byte[] PrintDocument(string url, string docId)
+        {
+            var request = new RestRequest(url, Method.GET, DataFormat.Json);
+            request.AddParameter(new Parameter("doc_id", docId, ParameterType.UrlSegment));
+
+            var response = Execute(request);
+            return response.RawBytes;
+        }
+
+        /// <summary>
+        /// 3.6. Получение печатной формы УПД/УПДи/УКД
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        /// <returns>Содержимое PDF-файла</returns>
+        public byte[] PrintIncomingDocument(string docId) =>
+            PrintDocument("incoming-documents/{doc_id}/print", docId);
+
+        /// <summary>
+        /// 3.6. Получение печатной формы УПД/УПДи/УКД
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        /// <returns>Содержимое PDF-файла</returns>
+        public byte[] PrintOutgoingDocument(string docId) =>
+            PrintDocument("outgoing-documents/{doc_id}/print", docId);
     }
 }
