@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,6 +146,53 @@ namespace FairMark.Tests
             AssertPdfFormat(Client.PrintOutgoingDocument("d0f62b99-e823-4759-b22b-af57f86359d7")); // УПД
             AssertPdfFormat(Client.PrintOutgoingDocument("5d1d074d-c489-45b7-b6d3-e703c680eba4")); // УПДи
             AssertPdfFormat(Client.PrintOutgoingDocument("71dd59ac-2f88-4bfb-bacc-51fe3d55d404")); // УКД
+        }
+
+        private void AssertZipArchive(byte[] zip)
+        {
+            Assert.NotNull(zip);
+            Assert.IsTrue(zip.Length > 100);
+
+            using (var ms = new MemoryStream(zip))
+            using (var arc = new ZipArchive(ms))
+            {
+                foreach (var entry in arc.Entries)
+                {
+                    Assert.NotNull(entry);
+                    Assert.NotNull(entry.Name);
+                    Assert.NotZero(entry.CompressedLength);
+
+                    using (var data = entry.Open())
+                    using (var ems = new MemoryStream())
+                    {
+                        data.CopyTo(ems);
+                        data.Flush();
+                        ems.Flush();
+
+                        Assert.AreEqual(ems.Length, entry.Length);
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public void Chapter_3_7_DownloadIncomingZipArchive()
+        {
+            // чтобы обновить тест, скопируйте код
+            // документа из личного кабинета демо-контура ГИС МТ,
+            // с закладки ЭДО Входящие
+            // https://milk.demo.crpt.tech/documents/incoming/list
+            AssertZipArchive(Client.DownloadIncomingZipArchive("afb6cce6-6cb9-4147-bc2f-689be4fd2198")); // УПД+УПДи+УКД
+        }
+
+        [Test]
+        public void Chapter_3_7_DownloadOutgoingZipArchive()
+        {
+            // чтобы обновить тест, скопируйте код
+            // документа из личного кабинета демо-контура ГИС МТ,
+            // с закладки ЭДО Исходящие
+            // https://milk.demo.crpt.tech/documents/outgoing/list
+            AssertZipArchive(Client.DownloadOutgoingZipArchive("d0f62b99-e823-4759-b22b-af57f86359d7")); // УПД+УПДи+УКД
         }
     }
 }

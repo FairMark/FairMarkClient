@@ -8,6 +8,7 @@ using RestSharp;
 using RestSharp.Serialization;
 using FairMark.Toolbox;
 using FairMark.DataContracts;
+using System.Reflection;
 
 namespace FairMark
 {
@@ -60,7 +61,15 @@ namespace FairMark
         /// Gets the client library name and version.
         /// </summary>
         private string ClientLibraryName { get; } =
-            $"FairMarkClient, v{typeof(CommonApiClient).Assembly.GetName().Version}";
+            $"FairMarkClient, v{GetLibraryVersion()}";
+
+        private static string GetLibraryVersion()
+        {
+            var asm = typeof(CommonApiClient).Assembly;
+            var attr = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(asm,
+                typeof(AssemblyFileVersionAttribute), false));
+            return attr.Version;
+        }
 
         /// <summary>
         /// Gets or sets the application name.

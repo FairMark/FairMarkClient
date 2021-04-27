@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
 using FairMark.EdoLite.DataContracts;
 using FairMark.OmsApi.DataContracts;
@@ -175,5 +176,29 @@ namespace FairMark.EdoLite
         /// <returns>Содержимое PDF-файла</returns>
         public byte[] PrintOutgoingDocument(string docId) =>
             PrintDocument("outgoing-documents/{doc_id}/print", docId);
+
+        private byte[] DownloadZipArchive(string url, string docId)
+        {
+            var request = new RestRequest(url, Method.GET, DataFormat.Json);
+            request.AddParameter(new Parameter("doc_id", docId, ParameterType.UrlSegment));
+            request.AddHeader("Accept", "application/zip");
+
+            var response = Execute(request);
+            return response.RawBytes;
+        }
+
+        /// <summary>
+        /// 3.7. Получение входящего ZIP архива с документооборотом УПД/УПДи/УКД.
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        public byte[] DownloadIncomingZipArchive(string docId) =>
+            DownloadZipArchive("incoming-documents/{doc_id}", docId);
+
+        /// <summary>
+        /// 3.7. Получение исходящего ZIP архива с документооборотом УПД/УПДи/УКД.
+        /// </summary>
+        /// <param name="docId">Идентификатор документа</param>
+        public byte[] DownloadOutgoingZipArchive(string docId) =>
+            DownloadZipArchive("outgoing-documents/{doc_id}", docId);
     }
 }
