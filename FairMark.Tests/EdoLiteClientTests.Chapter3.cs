@@ -92,6 +92,11 @@ namespace FairMark.Tests
         [Test]
         public void Chapter_3_4_GetIncomingDocument()
         {
+            // для этого теста другой участник демо-стенда маркировки
+            // должен прислать нам документ, чтобы он появился
+            // в личном кабинете на закладке ЭДО Входящие.
+            // По клику на документе он откроется, и из адресной строки
+            // браузера можно будет скопировать код документа
             var docId = "afb6cce6-6cb9-4147-bc2f-689be4fd2198";
             var xmlFileContents = Client.GetIncomingDocument(docId);
 
@@ -102,6 +107,8 @@ namespace FairMark.Tests
         [Test]
         public void Chapter_3_4_GetOutgoingDocument()
         {
+            // для этого теста нужно создать документ в личном кабинете
+            // демо-стенда маркировки, на закладке ЭДО Исходящие
             var docId = "0dc17582-d11d-4a4d-8e25-816d59870ef4";
             var xmlFileContents = Client.GetOutgoingDocument(docId);
 
@@ -206,6 +213,9 @@ namespace FairMark.Tests
         [Test]
         public void Chapter_3_8_GetOutgoingDocuments()
         {
+            // для этого теста нужно создать хотя бы один
+            // исходящий документ в личном кабинете демо-стенда
+            // маркировки, на закладке ЭДО исходящие
             var result = Client.GetOutgoingDocuments();
             Assert.NotNull(result);
             Assert.IsTrue(result.Count > 0);
@@ -217,6 +227,9 @@ namespace FairMark.Tests
         [Test]
         public void Chapter_3_8_GetIncomingDocuments()
         {
+            // для этого теста нужно прислать хотя бы один
+            // входящий документ ЭДО Лайт от другого
+            // участника демо-стенда маркировки
             var result = Client.GetIncomingDocuments();
             Assert.NotNull(result);
             Assert.IsTrue(result.Count > 0);
@@ -228,6 +241,9 @@ namespace FairMark.Tests
         [Test, Explicit("Can't request a correction more than once")]
         public void Chapter_3_15_RequestCorrection()
         {
+            // чтобы обновить этот тест, нужно прислать через ЭДО документ
+            // и проставить здесь код этого входящего документа, у которого
+            // еще нет дочерних исправлений (УПДи или УКД)
             var eventId = Client.RequestCorrection("00c4d099-a48f-47ed-8608-54d32890fe73", "Что-то тут у вас фигня написана");
             Assert.NotNull(eventId);
         }
