@@ -211,6 +211,7 @@ namespace FairMark.Tests
             Assert.IsTrue(result.Count > 0);
             Assert.IsNull(result.First().Sender);
             Assert.IsNotNull(result.First().Recipient);
+            Assert.IsNotNull(result.First().Partner);
         }
 
         [Test]
@@ -221,6 +222,7 @@ namespace FairMark.Tests
             Assert.IsTrue(result.Count > 0);
             Assert.IsNotNull(result.First().Sender);
             Assert.IsNull(result.First().Recipient);
+            Assert.IsNotNull(result.First().Partner);
         }
     }
 }

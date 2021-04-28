@@ -71,16 +71,22 @@ namespace FairMark.EdoLite.DataContracts
         public int Type { get; set; } // 504
 
         /// <summary>
-        /// Информация о покупателе
+        /// Информация о партнере (для исходящих цепочек)
         /// </summary>
         [DataMember(Name = "recipient", IsRequired = false)]
         public DocumentAgent Recipient { get; set; }
 
         /// <summary>
-        /// Информация о покупателе
+        /// Информация о партнере (для входящих цепочек)
         /// </summary>
         [DataMember(Name = "sender", IsRequired = false)]
         public DocumentAgent Sender { get; set; }
+
+        /// <summary>
+        /// Информация о партнере (для любых цепочек)
+        /// </summary>
+        [IgnoreDataMember]
+        public DocumentAgent Partner => Sender ?? Recipient;
 
         /// <summary>
         /// Дата создания документа в формате timestamp

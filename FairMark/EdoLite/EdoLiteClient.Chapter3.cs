@@ -203,7 +203,33 @@ namespace FairMark.EdoLite
 
         private Parameter[] GetParameters(DocumentListFilter filter)
         {
-            return new Parameter[0];
+            if (filter == null)
+            {
+                return new Parameter[0];
+            }
+
+            var parameters = new List<Parameter>();
+            if (filter.Limit.HasValue)
+            {
+                parameters.Add(new Parameter("limit", filter.Limit.Value, ParameterType.QueryString));
+            }
+
+            if (filter.Offset.HasValue)
+            {
+                parameters.Add(new Parameter("offset", filter.Offset.Value, ParameterType.QueryString));
+            }
+
+            if (filter.CreatedFrom.HasValue)
+            {
+                parameters.Add(new Parameter("created_from", filter.CreatedFrom.Value.ToUnixTimeSeconds(), ParameterType.QueryString));
+            }
+
+            if (filter.CreatedTo.HasValue)
+            {
+                parameters.Add(new Parameter("created_to", filter.CreatedTo.Value.ToUnixTimeSeconds(), ParameterType.QueryString));
+            }
+
+            return parameters.ToArray();
         }
 
         private List<DocumentGroup> GetDocuments(string url, DocumentListFilter filter)
