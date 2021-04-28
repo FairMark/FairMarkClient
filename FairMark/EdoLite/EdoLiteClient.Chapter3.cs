@@ -251,5 +251,28 @@ namespace FairMark.EdoLite
         /// <param name="filter">Параметры фильтра</param>
         public List<DocumentGroup> GetIncomingDocuments(DocumentListFilter filter = null) =>
             GetDocuments("incoming-documents", filter);
+
+        /// <summary>
+        /// 3.15. Создание уведомления об уточнении
+        /// </summary>
+        /// <param name="docId">Идентификатор документа, на который необходимо отправить уведомление об уточнении</param>
+        /// <param name="comment">Комментарий уведомления об уточнении</param>
+        public string RequestCorrection(string docId, string comment)
+        {
+            var result = Post<ResID>("incoming-documents/{doc_id}/events", new
+            {
+                status = 8,
+                content = new
+                {
+                    comment,
+                }
+            },
+            new[]
+            {
+                new Parameter("doc_id", docId, ParameterType.UrlSegment),
+            });
+
+            return result.ID;
+        }
     }
 }

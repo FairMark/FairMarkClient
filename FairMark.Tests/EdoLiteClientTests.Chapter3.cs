@@ -224,5 +224,12 @@ namespace FairMark.Tests
             Assert.IsNull(result.First().Recipient);
             Assert.IsNotNull(result.First().Partner);
         }
+
+        [Test, Explicit("Can't request a correction more than once")]
+        public void Chapter_3_15_RequestCorrection()
+        {
+            var eventId = Client.RequestCorrection("00c4d099-a48f-47ed-8608-54d32890fe73", "Что-то тут у вас фигня написана");
+            Assert.NotNull(eventId);
+        }
     }
 }
