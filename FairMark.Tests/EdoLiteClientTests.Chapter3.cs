@@ -28,6 +28,14 @@ namespace FairMark.Tests
             Tracer = TestContext.Progress.WriteLine,
         };
 
+        public EdoLiteClientTests()
+        {
+            // enforce authentication and make sure 
+            // that the last OMS auth token is saved
+            Client.GetOutgoingDocuments();
+            SaveEdoLiteToken(Client.Authenticator.AuthToken);
+        }
+
         [Test, Explicit("Avoid creating lots of duplicate documents on each commit")]
         public void Chapter_3_1_SendSellerUpdDocument()
         {
@@ -193,6 +201,26 @@ namespace FairMark.Tests
             // с закладки ЭДО Исходящие
             // https://milk.demo.crpt.tech/documents/outgoing/list
             AssertZipArchive(Client.DownloadOutgoingZipArchive("d0f62b99-e823-4759-b22b-af57f86359d7")); // УПД+УПДи+УКД
+        }
+
+        [Test]
+        public void Chapter_3_8_GetOutgoingDocuments()
+        {
+            var result = Client.GetOutgoingDocuments();
+            Assert.NotNull(result);
+            Assert.IsTrue(result.Count > 0);
+            Assert.IsNull(result.First().Sender);
+            Assert.IsNotNull(result.First().Recipient);
+        }
+
+        [Test]
+        public void Chapter_3_8_GetIncomingDocuments()
+        {
+            var result = Client.GetIncomingDocuments();
+            Assert.NotNull(result);
+            Assert.IsTrue(result.Count > 0);
+            Assert.IsNotNull(result.First().Sender);
+            Assert.IsNull(result.First().Recipient);
         }
     }
 }

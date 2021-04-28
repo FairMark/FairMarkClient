@@ -200,5 +200,30 @@ namespace FairMark.EdoLite
         /// <param name="docId">Идентификатор документа</param>
         public byte[] DownloadOutgoingZipArchive(string docId) =>
             DownloadZipArchive("outgoing-documents/{doc_id}", docId);
+
+        private Parameter[] GetParameters(DocumentListFilter filter)
+        {
+            return new Parameter[0];
+        }
+
+        private List<DocumentGroup> GetDocuments(string url, DocumentListFilter filter)
+        {
+            var result = Get<GetDocumentsResponse>(url, GetParameters(filter));
+            return result.Items;
+        }
+
+        /// <summary>
+        /// 3.8. Получение списка исходящих документов
+        /// </summary>
+        /// <param name="filter">Параметры фильтра</param>
+        public List<DocumentGroup> GetOutgoingDocuments(DocumentListFilter filter = null) =>
+            GetDocuments("outgoing-documents", filter);
+
+        /// <summary>
+        /// 3.8. Получение списка входящих документов
+        /// </summary>
+        /// <param name="filter">Параметры фильтра</param>
+        public List<DocumentGroup> GetIncomingDocuments(DocumentListFilter filter = null) =>
+            GetDocuments("incoming-documents", filter);
     }
 }
