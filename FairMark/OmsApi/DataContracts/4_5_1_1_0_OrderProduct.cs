@@ -45,7 +45,7 @@ namespace FairMark.OmsApi.DataContracts
         /// если значение «serialNumber = SELF_MADE» (см. раздел.5.3.1.2).
         /// </summary>
         [DataMember(Name = "serialNumbers", IsRequired = false)]
-        public List<string> SerialNumbers { get; set; } = new List<string>();
+        public List<string> SerialNumbers { get; set; }
 
         /// <summary>
         /// Идентификатор шаблона КМ. Справочное значение
