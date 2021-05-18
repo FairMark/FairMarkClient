@@ -18,10 +18,10 @@
         {
             InitializeComponent();
             
-            Credentials = new TrueApiCredentials() { CertificateThumbprint = "aa0444c6d47220d9e77558e88c763543cd9773e2" };
+            Credentials = new TrueApiCredentials() { CertificateThumbprint = "bd7aa30aed4e856fc68b05eda8ae85d7888b2da6" };
             TrueApiClient = new TrueApiClient("https://int01.gismt.crpt.tech/api/v3/true-api/", Credentials);
 
-            var cises = TrueApiClient.GetCisesByOrderId("a1769132-796e-47cb-8bc5-1053c4d7d6c5");
+            //var cises = TrueApiClient.GetCisesByOrderId("a1769132-796e-47cb-8bc5-1053c4d7d6c5");
             return;
             //var t = TrueApiClient.Post("cises/list", , new[] { new Parameter("values","010463578558601021U6vlokgzAt0K!", ParameterType.RequestBody) });
             var t = TrueApiClient.Get("elk/product-groups/balance/all");

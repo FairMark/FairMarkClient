@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace FairMark.EdoLite.DataContracts
 {
+    using System;
+
     /// <summary>
     /// 3.8. Получение списка документов.
     /// Информация о документе.
@@ -23,7 +25,7 @@ namespace FairMark.EdoLite.DataContracts
         /// Дата создания документа в формате timestamp
         /// </summary>
         [DataMember(Name = "created_at", IsRequired = false)]
-        public int CreatedAt { get; set; } // 1582090925
+        public long CreatedAt { get; set; } // 1582090925
 
         /// <summary>
         /// Дата документа в формате timestamp
@@ -41,7 +43,7 @@ namespace FairMark.EdoLite.DataContracts
         /// Дата последней обработки документа в формате timestamp
         /// </summary>
         [DataMember(Name = "processed_at", IsRequired = false)]
-        public int ProcessedAt { get; set; } // 1582059600
+        public long ProcessedAt { get; set; } // 1582059600
 
         /// <summary>
         /// Числовой статус документа

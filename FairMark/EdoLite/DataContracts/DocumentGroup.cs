@@ -24,13 +24,13 @@ namespace FairMark.EdoLite.DataContracts
         /// Дата создания последнего документа цепочки в формате timestamp
         /// </summary>
         [DataMember(Name = "created_at", IsRequired = false)]
-        public int CreatedAt { get; set; } // 1582090925
+        public long CreatedAt { get; set; } // 1582090925
 
         /// <summary>
         /// Дата последнего документа цепочки в формате timestamp
         /// </summary>
         [DataMember(Name = "date", IsRequired = false)]
-        public int Date { get; set; } // 1582059600
+        public long Date { get; set; } // 1582059600
 
         /// <summary>
         /// Номер последнего документа в цепочке
@@ -92,13 +92,13 @@ namespace FairMark.EdoLite.DataContracts
         /// Дата создания документа в формате timestamp
         /// </summary>
         [DataMember(Name = "create_time_stamp", IsRequired = false)]
-        public int CreateTimestamp { get; set; } // 1582059600
+        public long CreateTimestamp { get; set; } // 1582059600
 
         /// <summary>
         /// Дата последней обработки документа в секундах
         /// </summary>
         [DataMember(Name = "export_time_stamp", IsRequired = false)]
-        public int ExportTimestamp { get; set; } // 1582097248
+        public long ExportTimestamp { get; set; } // 1582097248
 
         /// <summary>
         /// Информация о документах в системе ЭДО оператора

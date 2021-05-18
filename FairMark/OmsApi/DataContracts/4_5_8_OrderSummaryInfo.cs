@@ -3,6 +3,8 @@ using System.Runtime.Serialization;
 
 namespace FairMark.OmsApi.DataContracts
 {
+    using System;
+
     /// <summary>
     /// Current orders and their statuses.
     /// 4.5.8. Метод «Получить статус заказов»
@@ -34,7 +36,7 @@ namespace FairMark.OmsApi.DataContracts
         /// Время создания заказа.
         /// </summary>
         [DataMember(Name = "createdTimestamp", IsRequired = true)]
-        public int CreatedTimestamp { get; set; }
+        public long CreatedTimestamp { get; set; }
 
         /// <summary>
         /// Причина отклонения заказа.
