@@ -338,7 +338,7 @@ namespace FairMark.Tests
             var firstOrderId = orders.OrderInfos.First().OrderID;
             //var firstOrderId = "e76518d3-213a-477a-959d-d9962fc6d00d";
 
-            var receipts = Client.GetReceipts(firstOrderId);
+            var receipts = Client.GetReceipts(firstOrderId.ToString());
             Assert.NotNull(receipts);
             Assert.NotNull(receipts.Receipts);
             Assert.NotNull(receipts.Receipts.First());

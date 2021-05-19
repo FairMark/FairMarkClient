@@ -98,6 +98,6 @@ namespace FairMark.OmsApi.DataContracts
         /// Формат: UnixTime(в миллисекундах).
         /// </summary>
         [DataMember(Name = "expiredDate", IsRequired = false)]
-        public string ExpiredDate { get; set; }
+        public long ExpiredDate { get; set; }
     }
 }

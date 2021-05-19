@@ -17,14 +17,14 @@ namespace FairMark.OmsApi.DataContracts
         /// Идентификатор заказа на эмиссию КМ.
         /// </summary>
         [DataMember(Name = "orderId", IsRequired = true)]
-        public string OrderID { get; set; }
+        public Guid OrderID { get; set; }
 
         /// <summary>
         /// Статус заказа. Справочное значение «Статус заказа»
         /// см. раздел 5.3.1.10: <see cref="OrderStatuses"/>.
         /// </summary>
         [DataMember(Name = "orderStatus", IsRequired = true)]
-        public string OrderStatus { get; set; }
+        public OrderStatuses OrderStatus { get; set; }
 
         /// <summary>
         /// Массив информации о статусе буферов.
