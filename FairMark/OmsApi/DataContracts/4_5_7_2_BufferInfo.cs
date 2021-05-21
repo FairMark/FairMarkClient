@@ -51,7 +51,7 @@ namespace FairMark.OmsApi.DataContracts
         /// Уникальный идентификатор СУЗ.
         /// </summary>
         [DataMember(Name = "orderId", IsRequired = true)]
-        public string OrderID { get; set; }
+        public Guid OrderID { get; set; }
 
         /// <summary>
         /// Массив пулов, созданных для буфера.

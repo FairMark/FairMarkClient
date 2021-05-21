@@ -101,7 +101,7 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("orderId", orderId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
             };
 
             if (!string.IsNullOrWhiteSpace(gtin))
@@ -143,7 +143,7 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("orderId", orderId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
                 new Parameter("gtin", gtin, ParameterType.QueryString),
                 new Parameter("quantity", quantity, ParameterType.QueryString),
             };
@@ -170,7 +170,7 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("orderId", orderId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
                 new Parameter("gtin", gtin, ParameterType.QueryString),
             });
         }
@@ -296,7 +296,7 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("orderId", orderId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
                 new Parameter("gtin", gtin, ParameterType.QueryString),
             });
         }
@@ -320,7 +320,7 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-                new Parameter("orderId", orderId, ParameterType.QueryString),
+                new Parameter("orderId", orderId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
                 new Parameter("gtin", gtin, ParameterType.QueryString),
                 new Parameter("blockId", blockId, ParameterType.QueryString),
             });
