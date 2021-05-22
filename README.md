@@ -41,3 +41,8 @@
 ## Прочая документация
 
 * [Форматы документов ЭДО](FairMark.Docs/DocumentFormats.md)
+
+## Участники и спонсоры разработки
+
+| [![image](https://user-images.githubusercontent.com/672878/119223004-cb968c00-baff-11eb-9758-338f7763d5f3.png)](https://www.met.ru/) | [![image](https://user-images.githubusercontent.com/672878/119222534-8bcea500-bafd-11eb-875a-b6268998e93d.png)](http://k-solutions.ru/) | [![image](https://user-images.githubusercontent.com/672878/119222970-9722d000-baff-11eb-9cfb-ce003e44e963.png)](https://diasparbusiness.com/) |
+| ------------- | ------------- | ------------- |
