@@ -156,6 +156,11 @@ namespace FairMark.OmsApi
             return Get<CodesDto>("{extension}/codes", parameters.ToArray());
         }
 
+        public CodesDto GetCodes(Guid orderId, string gtin, int quantity, Guid lastBlockId)
+        {
+            return GetCodes(orderId.ToString(), gtin, quantity, lastBlockId.ToString());
+        }
+
         /// <summary>
         /// 4.5.7. Метод «Получить статус массива КМ из заказа»
         /// </summary>
@@ -324,6 +329,10 @@ namespace FairMark.OmsApi
                 new Parameter("gtin", gtin, ParameterType.QueryString),
                 new Parameter("blockId", blockId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
             });
+        }
+        public CodesDto RetryCodes(Guid orderId, string gtin, Guid blockId)
+        {
+            return RetryCodes(orderId.ToString(), gtin, blockId.ToString());
         }
 
         /// <summary>

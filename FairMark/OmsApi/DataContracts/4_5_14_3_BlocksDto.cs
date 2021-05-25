@@ -27,6 +27,6 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Unique identifier of a business order for issuing MC (Уникальный идентификатор бизнес-заказа на эмиссию КМ)</summary>
         [DataMember(Name = "orderId", IsRequired = false)]
-        public string OrderID { get; set; }
+        public Guid OrderID { get; set; }
     }
 }
