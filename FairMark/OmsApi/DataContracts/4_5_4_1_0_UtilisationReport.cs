@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FairMark.OmsApi.DataContracts
+﻿namespace FairMark.OmsApi.DataContracts
 {
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// 4.5.4.1. Метод «Отправить отчёт об использовании (нанесении) КМ», Таблица 44.
     /// </summary>
@@ -36,7 +32,8 @@ namespace FairMark.OmsApi.DataContracts
     /// По итогам отправки отчета об использовании КМ в СУЗ необходимо получить статус
     /// обработки отчета(используя Метод «Получить статус обработки отчёта»), после
     /// получения ответа предоставляется возможным использование мотода «Получить
-    /// квитанцию по уникальному идентификатору документа (см.раздел 4.5.16).    /// </remarks>
+    /// квитанцию по уникальному идентификатору документа (см.раздел 4.5.16).
+    /// </remarks>
     [DataContract]
     public partial class UtilisationReport
     {

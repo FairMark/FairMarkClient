@@ -19,7 +19,7 @@ namespace FairMark.OmsApi.DataContracts
         public string OmsID { get; set; }
 
         [DataMember(Name = "orderId")]
-        public string OrderID { get; set; }
+        public Guid OrderID { get; set; }
 
         [DataMember(Name = "expectedCompleteTimestamp")]
         public long ExpectedCompleteTimestamp { get; set; }
