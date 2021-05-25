@@ -18,7 +18,7 @@ namespace FairMark.OmsApi.DataContracts
     {
         /// <summary>Identifier of code block (Идентификатор блока кодов)</summary>
         [DataMember(Name = "blockId", IsRequired = false)]
-        public Guid BlockID { get; set; }
+        public string BlockID { get; set; }
 
         /// <summary>Identification Codes (Список КМ)</summary>
         [DataMember(Name = "codes", IsRequired = false)]
