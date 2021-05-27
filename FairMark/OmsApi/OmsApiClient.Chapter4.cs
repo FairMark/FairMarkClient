@@ -95,7 +95,7 @@ namespace FairMark.OmsApi
         /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
         public string CloseOrder(string orderId)
         {
-            return CloseOrder(orderId);
+            return _closeOrder(orderId, null, null);
         }
         public string CloseOrder(Guid orderId)
         {
@@ -110,13 +110,13 @@ namespace FairMark.OmsApi
         /// <param name="lastBlockId">Идентификатор последнего полученного блока кодов (значение по умолчанию: 0)</param>
         public string CloseSubOrder(Guid orderId, string gtin, string lastBlockId)
         {
-            return CloseOrder(orderId.ToString(), gtin, lastBlockId);
+            return _closeOrder(orderId.ToString(), gtin, lastBlockId);
         }
         public string CloseSubOrder(Guid orderId, string gtin, Guid lastBlockId)
         {
-            return CloseOrder(orderId.ToString(), gtin, lastBlockId.ToString());
+            return _closeOrder(orderId.ToString(), gtin, lastBlockId.ToString());
         }
-        private string CloseOrder(string orderId, string gtin = null, string lastBlockId = null)
+        private string _closeOrder(string orderId, string gtin = null, string lastBlockId = null)
         {
             var parameters = new List<Parameter>
             {
