@@ -108,7 +108,11 @@ namespace FairMark.OmsApi
         /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
         /// <param name="gtin">GTIN товара, по которому требуется прекратить выдачу КМ</param>
         /// <param name="lastBlockId">Идентификатор последнего полученного блока кодов (значение по умолчанию: 0)</param>
-        public string CloseSubOrder(Guid orderId, string gtin, string lastBlockId)
+        public string CloseSubOrder(string orderId, string gtin, string lastBlockId)
+        {
+            return _closeOrder(orderId, gtin, lastBlockId);
+        }
+    public string CloseSubOrder(Guid orderId, string gtin, string lastBlockId)
         {
             return _closeOrder(orderId.ToString(), gtin, lastBlockId);
         }
