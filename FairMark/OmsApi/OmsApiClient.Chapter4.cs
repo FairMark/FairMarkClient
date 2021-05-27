@@ -90,12 +90,33 @@ namespace FairMark.OmsApi
         }
 
         /// <summary>
-        /// 4.5.5. Метод «Закрыть подзаказ/заказ»
+        /// 4.5.5. Метод «Закрыть заказ»
+        /// </summary>
+        /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
+        public string CloseOrder(string orderId)
+        {
+            return CloseOrder(orderId);
+        }
+        public string CloseOrder(Guid orderId)
+        {
+            return CloseOrder(orderId.ToString());
+        }
+        /// <summary>
+        /// 4.5.5. Метод «Закрыть подзаказ»
+        /// Подзаказ – массив КМ в рамках одного GTIN в бизнеc-заказе. После закрытия последнего подзаказа заказ закрывается автоматически.
         /// </summary>
         /// <param name="orderId">Идентификатор заказа на эмиссию КМ СУЗ</param>
         /// <param name="gtin">GTIN товара, по которому требуется прекратить выдачу КМ</param>
         /// <param name="lastBlockId">Идентификатор последнего полученного блока кодов (значение по умолчанию: 0)</param>
-        public string CloseOrder(string orderId, string gtin = null, string lastBlockId = null)
+        public string CloseSubOrder(Guid orderId, string gtin, string lastBlockId)
+        {
+            return CloseOrder(orderId.ToString(), gtin, lastBlockId);
+        }
+        public string CloseSubOrder(Guid orderId, string gtin, Guid lastBlockId)
+        {
+            return CloseOrder(orderId.ToString(), gtin, lastBlockId.ToString());
+        }
+        private string CloseOrder(string orderId, string gtin = null, string lastBlockId = null)
         {
             var parameters = new List<Parameter>
             {
@@ -119,6 +140,7 @@ namespace FairMark.OmsApi
 
             return result.OmsID;
         }
+
 
         /// <summary>
         /// 4.5.6. Метод «Получить КМ из заказа»
