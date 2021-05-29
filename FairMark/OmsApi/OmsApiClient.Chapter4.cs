@@ -255,7 +255,16 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
-                new Parameter("reportId", reportId, ParameterType.QueryString),
+                new Parameter("reportId", reportId.ToLower(), ParameterType.QueryString),//To lower is added because FM is case sensitive here. For example ADECDCA0-EA70-4B83-A7FD-A8E4E937E0C5=error; adecdca0-ea70-4b83-a7fd-a8e4e937e0c5=ok
+            });
+        }
+        public ReportStatusDto GetReportStatus(Guid reportId)
+        {
+            return Get<ReportStatusDto>("{extension}/report/info", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("reportId", reportId.ToString(), ParameterType.QueryString),
             });
         }
 
