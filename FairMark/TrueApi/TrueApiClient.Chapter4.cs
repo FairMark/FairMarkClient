@@ -9,9 +9,9 @@
     public partial class TrueApiClient
     {
         /// <summary>
-        /// 4.2.5. Ввод в оборот
+        /// 4.2.5.1 Ввод в оборот
         /// </summary>
-        public string IntroduceGoods(IntroduceGoodsDocument organizationInfo)
+        public string IntroduceGoodsRF(IntroduceGoodsDocumentRF organizationInfo)
         {
             throw new NotImplementedException();
             var json = Serializer.Serialize(organizationInfo);
