@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace FairMark.OmsApi.DataContracts
 {
     /// <summary>
+    /// 4.5.3. Метод «Отправить отчёт об агрегации КМ»
     /// 4.5.9. Метод «Получить информацию об агрегации»
     /// 4.5.9.2. Ответ на запрос, Таблица 38.
     /// </summary>

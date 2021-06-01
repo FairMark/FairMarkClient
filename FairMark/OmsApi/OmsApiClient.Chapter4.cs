@@ -70,6 +70,17 @@ namespace FairMark.OmsApi
             return result.ReportID;
         }
 
+        public string CreateAggregation(AggregationReport report)
+        {
+            var result = Post<ReportResult>("{extension}/aggregation", report, new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+            });
+
+            return result.ReportID;
+        }
+
         /// <summary>
         /// 4.5.4. Метод «Отправить отчёт об использовании (нанесении) КМ»
         /// </summary>
@@ -112,7 +123,7 @@ namespace FairMark.OmsApi
         {
             return _closeOrder(orderId, gtin, lastBlockId);
         }
-    public string CloseSubOrder(Guid orderId, string gtin, string lastBlockId)
+        public string CloseSubOrder(Guid orderId, string gtin, string lastBlockId)
         {
             return _closeOrder(orderId.ToString(), gtin, lastBlockId);
         }
@@ -181,7 +192,6 @@ namespace FairMark.OmsApi
 
             return Get<CodesDto>("{extension}/codes", parameters.ToArray());
         }
-
         public CodesDto GetCodes(Guid orderId, string gtin, int quantity, Guid lastBlockId)
         {
             return GetCodes(orderId.ToString(), gtin, quantity, lastBlockId.ToString());
