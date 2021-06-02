@@ -11,8 +11,8 @@ namespace FairMark.TrueApi.DataContracts
     /// <summary>
     /// 4.2.5.1. Ввод в оборот
     /// </summary>
-    //[DataContract(Name = "bank_details")]   
-    public class IntroduceGoodsDocumentRF
+    [DataContract]
+    public class LP_INTRODUCE_GOODS
     {
         /// <summary>
         /// ИНН участника, осуществившего эмиссию КИ

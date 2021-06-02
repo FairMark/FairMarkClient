@@ -23,7 +23,7 @@
 
             //var cises = TrueApiClient.GetCisesByOrderId("a1769132-796e-47cb-8bc5-1053c4d7d6c5");
             return;
-            //var t = TrueApiClient.Post("cises/list", , new[] { new Parameter("values","010463578558601021U6vlokgzAt0K!", ParameterType.RequestBody) });
+            //var t = TrueApiClient.PostVoid("cises/list", , new[] { new Parameter("values","010463578558601021U6vlokgzAt0K!", ParameterType.RequestBody) });
             var t = TrueApiClient.Get("elk/product-groups/balance/all");
             var tt = TrueApiClient.Get<ProductGroupBalance[]>("elk/product-groups/balance/all");
         }
