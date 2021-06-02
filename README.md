@@ -49,6 +49,6 @@
 
 ### Информационный партнёр проекта 
 
-Компания Альянс Форта (telegram-канал: @markirovka_solutions)
+Ассоциация Альянс Форта (telegram-канал: @markirovka_solutions)
 
 [![image](https://user-images.githubusercontent.com/79666979/120494970-f10b7b80-c3c4-11eb-941e-9ab810583d7d.png)](https://fourta.org/)
