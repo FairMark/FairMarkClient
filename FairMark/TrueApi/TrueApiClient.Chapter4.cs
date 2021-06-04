@@ -8,21 +8,42 @@
 
     public partial class TrueApiClient
     {
+        public UniformDocument PrepareUniformDocument(IUniformDocumentBase document)
+        {
+            var Serializer = new ServiceStackSerializer();
+            var json = Serializer.Serialize(document);
+            var signature = GostCryptoHelpers.ComputeDetachedSignature(UserCertificate, json);
+            var jsonBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
+            return new UniformDocument() { DocumentBase64 = jsonBase64, Signature = signature, Type = document.DocumentApiName };
+        }
+
+        /// <summary>
+        /// 4.1. Send unified document method
+        /// </summary>
+        public string SendUniformDocument(IUniformDocumentBase document)
+        {
+            var response = Post("/lk/documents/create",
+                PrepareUniformDocument(document),
+                new Parameter[] { new RestSharp.Parameter("pg", document.ProductGroup, ParameterType.QueryString) });
+
+            return response;
+        }
+
+
         /// <summary>
         /// 4.2.2.1 Аггрегация
         /// </summary>
-        //TODO Можно сделать единый метод отправки доументов
+        [Obsolete("Use SendUniformDocument() method")]
         public string Aggregation(AggregationDocument Document)
         {
             var json = Serializer.Serialize(Document);
             var signature = GostCryptoHelpers.ComputeDetachedSignature(UserCertificate, json);
             var jsonBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
-            var response = Post("/lk/documents/create", new DocumentBase()
+            var response = Post("/lk/documents/create", new UniformDocument()
             {
-                DocumentFormat = Registration.DocumentFormatJson,
-                Document = jsonBase64,
+                DocumentBase64 = jsonBase64,
                 Signature = signature,
-                Type = Document.DocumentName
+                Type = "AGGREGATION_DOCUMENT"
             },
             new Parameter[] { new RestSharp.Parameter("pg", "milk", ParameterType.QueryString) });
 

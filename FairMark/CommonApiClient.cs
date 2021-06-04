@@ -352,7 +352,7 @@ namespace FairMark
         }
 
         /// <summary>
-        /// Performs POST request.
+        /// Performs POST request with string return value.
         /// </summary>
         /// <param name="url">Resource url.</param>
         /// <param name="body">Request body, to be serialized as JSON.</param>
@@ -371,14 +371,14 @@ namespace FairMark
             return ExecuteString(request, apiMethodName, signed);
         }
 
-        /// <summary>
-        /// Performs POST request.
-        /// </summary>
-        /// <param name="url">Resource url.</param>
-        /// <param name="body">Request body, to be serialized as JSON.</param>
-        /// <param name="parameters">IRestRequest parameters.</param>
-        /// <param name="signed">Sign the request body automatically.</param>
-        /// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
+        ///// <summary>
+        ///// Performs POST request.
+        ///// </summary>
+        ///// <param name="url">Resource url.</param>
+        ///// <param name="body">Request body, to be serialized as JSON.</param>
+        ///// <param name="parameters">IRestRequest parameters.</param>
+        ///// <param name="signed">Sign the request body automatically.</param>
+        ///// <param name="apiMethodName">Strong-typed REST API method name, for tracing.</param>
         //public void PostVoid(string url, object body, Parameter[] parameters = null, bool signed = false, [CallerMemberName] string apiMethodName = null)
         //{
         //    var request = new RestRequest(url, Method.POST, DataFormat.Json);

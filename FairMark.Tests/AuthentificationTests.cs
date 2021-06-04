@@ -100,7 +100,7 @@ namespace FairMark.Tests
 
         private void AuthenticateOmsApiClient(AuthToken savedToken = null)
         {
-            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, ProductGroups.milk, new OmsCredentials
+            var client = new OmsApiClient(OmsApiClient.SandboxApiUrl, OmsApiClient.SandboxAuthUrl, ProductGroupsOMS.milk, new OmsCredentials
             {
                 CertificateThumbprint = TestCertificateThumbprint,
                 OmsID = TestOmsID, // it's case sensitive, to my surprise

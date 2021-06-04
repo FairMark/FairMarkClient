@@ -37,13 +37,13 @@ namespace FairMark.OmsApi
         /// </summary>
         /// <param name="apiUrl">OMS API endpoint.</param>
         /// <param name="authUrl">OMS Auth endpoint.</param>
-        /// <param name="productGroup">Product group, such as milk, tobacco, etc.</param>
+        /// <param name="productGroupOMS">Product group, such as milk, tobacco, etc.</param>
         /// <param name="credentials">Authentication credentials.</param>
-        public OmsApiClient(string apiUrl, string authUrl, ProductGroups productGroup, OmsCredentials credentials)
+        public OmsApiClient(string apiUrl, string authUrl, ProductGroupsOMS productGroupOMS, OmsCredentials credentials)
             : base(apiUrl, credentials)
         {
             AuthUrl = authUrl.AppendMissing("/");
-            Extension = productGroup;
+            Extension = productGroupOMS;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FairMark.OmsApi
         /// <summary>
         /// Product group, or extension type, such as milk, tobacco, etc.
         /// </summary>
-        public ProductGroups Extension { get; set; }
+        public ProductGroupsOMS Extension { get; set; }
 
         /// <summary>
         /// OMS-specific credentials.

@@ -36,7 +36,7 @@ namespace FairMark.OmsApi.DataContracts
 
         /// <summary>Contractor role (Service Provider Role)</summary>
         [DataMember(Name = "productGroups", IsRequired = true)]
-        public List<ProductGroups> ProductGroups { get; set; } = new List<ProductGroups>();
+        public List<ProductGroupsOMS> ProductGroups { get; set; } = new List<ProductGroupsOMS>();
 
         /// <summary>Service provider name (Наименование сервис-провайдера)</summary>
         [DataMember(Name = "providerName", IsRequired = true)]

@@ -6,7 +6,7 @@ namespace FairMark.OmsApi.DataContracts
     /// 11.3.4. Справочник «Категории товарных групп» (ProductGroupCrptType)
     /// </summary>
     [DataContract]
-    public enum ProductGroups
+    public enum ProductGroupsOMS
     {
         /// <summary>
         /// Предметы одежды, белье постельное, столовое, туалетное и кухонное.
