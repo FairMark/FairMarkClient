@@ -4,7 +4,13 @@
 
     public interface IUniformDocumentBase
     {
+        /// <summary>
+        /// Document name according to TrueApi uniform documents list (see attachment 1)
+        /// </summary>
         string DocumentApiName { get; }
+        /// <summary>
+        /// TrueApi Product group
+        /// </summary>
         ProductGroupsTrueApi ProductGroup { get; set; }
 
     }
