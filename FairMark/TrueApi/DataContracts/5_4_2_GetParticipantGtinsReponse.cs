@@ -25,6 +25,6 @@ namespace FairMark.TrueApi.DataContracts
         /// Список Gtin`ов
         /// </summary>
         [DataMember(Name = "gtins")]
-        private List<string> Gtins { get; set; }
+        public List<string> Gtins { get; set; }
     }
 }

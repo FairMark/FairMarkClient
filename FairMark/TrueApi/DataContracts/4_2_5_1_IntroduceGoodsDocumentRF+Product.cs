@@ -54,7 +54,7 @@ namespace FairMark.TrueApi.DataContracts
         /// Перечень товаров
         /// </summary>
         [DataMember(Name = "products")]
-        private List<IntroduceGoodsProduct> Products { get; set; }
+        public List<IntroduceGoodsProduct> Products { get; set; }
     }
 
     [DataContract]
@@ -80,26 +80,26 @@ namespace FairMark.TrueApi.DataContracts
         /// </summary>
         [DataMember(Name = "uitu_code")]
         public string UituCode { get; set; }
-        
+
         /// <summary>
         /// Код ТН ВЭД(10 знаков)
         /// </summary>
         [DataMember(Name = "tnved_code")]
         public string TnvedCode { get; set; }
-        
+
         /// <summary>
         /// Код вида документа обязательной сертификации.
         /// Возможные значения: CONFORMITY_CERTIFICATE – сертификат соответствия; CONFORMITY_DECLARATION – декларация соответствия
         /// </summary>
         [DataMember(Name = "certificate_document")]
         public string CertificateDocument { get; set; }
-        
+
         /// <summary>
         /// Номер документа обязательной сертификации
         /// </summary>
         [DataMember(Name = "certificate_document_number")]
         public string CertificateDocumentNumber { get; set; }
-        
+
         /// <summary>
         /// Дата документа обязательной сертификации
         /// Диапазон даты: начиная с 2000-01-01, по дату создания документа
@@ -112,7 +112,7 @@ namespace FairMark.TrueApi.DataContracts
         /// </summary>
         [DataMember(Name = "certificate_document_date")]
         public string CertificateDocumentDate { get; set; }
-        
+
         /// <summary>
         /// Номер ВСД Указывается для товарной группы "Молочная продукция". Параметр обязательный, если в карточке НК "veterinaryControl" ("Признак подконтрольности") = true.
         /// 

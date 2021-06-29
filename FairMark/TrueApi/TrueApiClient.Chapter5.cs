@@ -6,6 +6,28 @@
     public partial class TrueApiClient
     {
         /// <summary>
+        /// 5.4.1. Метод получения информации о товаре по GTIN товара
+        /// </summary>
+        /// <param name="gtins">Массив кодов товаров. Через запятую можно отправить несколько кодов!</param>
+        /// <param name="productGroup">Товарная группа</param>
+        /// <param name="includeSubaccount">Признак субаккаунта
+        /// Если значение = true, то в ответе возвращаются данные по всем GTIN и принадлежащим участнику и предоставленным ему через суббакаунт. Если значение = false, то в ответе возвращаются данные только по GTIN, принадлежащим участнику. Значение по умолчанию = false </param>
+        /// <returns></returns>
+        public GetProductsInfoResponse GetProductsInfo(string gtins, ProductGroupsTrueApi productGroup, bool includeSubaccount)
+        {
+            var response = Get<GetProductsInfoResponse>("/product/info",
+                new Parameter[]
+                {
+                    new RestSharp.Parameter("gtins", gtins, ParameterType.QueryString),
+                    new RestSharp.Parameter("pg", productGroup, ParameterType.QueryString),
+                    new RestSharp.Parameter("includeSubaccount", includeSubaccount, ParameterType.QueryString),
+                });
+            return response;
+        }
+
+
+
+        /// <summary>
         /// 5.4.2. Get products Gtins for participant
         /// Note: Response doesn`t corresponds to the documentation
         /// </summary>
