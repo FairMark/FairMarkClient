@@ -125,7 +125,7 @@ namespace FairMark.TrueApi.DataContracts
         /// Примечание: Возвращается в ответе при условии указания сведений в карточке товара в КМТ
         /// </summary>
         [DataMember(Name = "tnVed10")]
-        public string TnVed10 { get; set; }
+        public string TnVedCode10 { get; set; }
 
         /// <summary>
         /// Признак "Комплект" в карточке товара

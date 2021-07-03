@@ -15,10 +15,11 @@
         /// <param name="productGroup">Товарная групп
         /// Примечание: Параметр обязательный для товарных групп: milk – Молочная продукция; water – Упакованная вода</param>
         /// <returns></returns>
-        public string[] GetDocumentInfo(Guid docId, int limit, ProductGroupsTrueApi productGroup)
+        public DocumentInfo GetDocumentInfo(Guid docId, int limit, ProductGroupsTrueApi productGroup)
         {
             return GetDocumentInfo(docId.ToString(), limit, productGroup);
         }
+
         /// <summary>
         /// 6.4. Метод получения содержимого документа по идентификатору
         /// </summary>
@@ -28,15 +29,14 @@
         /// <param name="productGroup">Товарная групп
         /// Примечание: Параметр обязательный для товарных групп: milk – Молочная продукция; water – Упакованная вода</param>
         /// <returns></returns>
-        public string[] GetDocumentInfo(string docId, int limit, ProductGroupsTrueApi productGroup)
+        public DocumentInfo GetDocumentInfo(string docId, int limit, ProductGroupsTrueApi productGroup)
         {
-            return Get<string[]>("/doc/{docId}/info", new[]
+            return Get<DocumentInfo>("/doc/{docId}/info", new[]
             {
-                new Parameter("docId", docId, ParameterType.UrlSegment),
+                new Parameter("docId", docId.ToLower(), ParameterType.UrlSegment),
                 new Parameter("limit", limit.ToString(), ParameterType.QueryString),
                 new Parameter("pg", productGroup.ToString(), ParameterType.UrlSegment)
             });
-
         }
 
 
