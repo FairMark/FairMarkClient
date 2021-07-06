@@ -20,7 +20,7 @@
 * TrueApi: Создание аггрегаций (через метод единой подачи документов)
 * TrueApi: Отправка отчёта о вводе в оборот (через метод единой подачи документов)
 
-[Примеры исопльзования](https://github.com/FairMark/FairMarkClient/wiki/Examples)
+[Примеры использования](https://github.com/FairMark/FairMarkClient/wiki/Examples)
 
 ## Disclaimer
 
