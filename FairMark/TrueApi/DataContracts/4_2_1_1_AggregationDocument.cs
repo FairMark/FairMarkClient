@@ -1,15 +1,10 @@
 ﻿namespace FairMark.TrueApi.DataContracts
 {
-    using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using System.Security.Cryptography.X509Certificates;
-    using System.Text;
-    using RestSharp;
-    using Toolbox;
 
     /// <summary>
-    /// 4.2.2.1. Агрегация
+    /// 4.2.1.1. Агрегация
     /// </summary>
     [DataContract]
     public class AggregationDocument : IUniformDocumentBase
@@ -21,7 +16,7 @@
         /// ИНН участника оборота товаров
         /// </summary>
         [DataMember(Name = "participantId")]
-        public string ParticipantId { get; set; }
+        public string ParticipantInn { get; set; }
 
         /// <summary>
         /// Список формируемых агрегатов

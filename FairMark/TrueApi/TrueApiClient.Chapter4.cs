@@ -14,6 +14,7 @@
             var json = Serializer.Serialize(document);
             var signature = GostCryptoHelpers.ComputeDetachedSignature(UserCertificate, json);
             var jsonBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
+            Tracer.Invoke("Кодирование универсального документа в DocumentBase64", new[] { json });
             return new UniformDocument() { DocumentBase64 = jsonBase64, Signature = signature, Type = document.DocumentApiName };
         }
 

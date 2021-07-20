@@ -138,7 +138,7 @@
         /// Ошибки
         /// Примечание: Значение параметра возвращается при наличии ошибки. Если ошибки отсутствуют, то возвращается значение "null". Для УД ошибки в ответе не возвращаются
         /// </summary>
-        [DataMember(Name = "*errors")]
+        [DataMember(Name = "errors")]
         public string[] Errors { get; set; }
 
         /// <summary>
@@ -187,23 +187,23 @@
         /// <summary>
         /// Наименование
         /// </summary>
-        [DataMember(Name = "*name")]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
         /// <summary>
         /// Адрес
         /// </summary>
-        [DataMember(Name = "*address")]
+        [DataMember(Name = "address")]
         public string Address { get; set; }
         /// <summary>
         /// ИНН
         /// </summary>
-        [DataMember(Name = "*inn")]
+        [DataMember(Name = "inn")]
         public string Inn { get; set; }
         /// <summary>
         /// КПП
         /// Примечание: Код причины постановки на учёт
         /// </summary>
-        [DataMember(Name = "*kpp")]
+        [DataMember(Name = "kpp")]
         public string Kpp { get; set; }
     }
     [DataContract]
@@ -212,23 +212,23 @@
         /// <summary>
         /// Наименование
         /// </summary>
-        [DataMember(Name = "*name")]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
         /// <summary>
         /// Адрес
         /// </summary>
-        [DataMember(Name = "*address")]
+        [DataMember(Name = "address")]
         public string Address { get; set; }
         /// <summary>
         /// ИНН
         /// </summary>
-        [DataMember(Name = "*inn")]
+        [DataMember(Name = "inn")]
         public string Inn { get; set; }
         /// <summary>
         /// КПП
         /// Примечание: Код причины постановки на учёт
         /// </summary>
-        [DataMember(Name = "*kpp")]
+        [DataMember(Name = "kpp")]
         public string Kpp { get; set; }
     }
 }
