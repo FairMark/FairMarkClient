@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace FairMark.OmsApi.DataContracts
 {
@@ -10,31 +11,31 @@ namespace FairMark.OmsApi.DataContracts
         /// <summary>
         /// Самостоятельно.
         /// </summary>
-        [EnumMember(Value = @"SELF_MADE")]
+        [Description("Самостоятельно")]
         SELF_MADE = 0,
 
         /// <summary>
         /// ЦЭМ.
         /// </summary>
-        [EnumMember(Value = @"CEM")]
+        [Description("ЦЭМ")]
         CEM = 1,
 
         /// <summary>
         /// Контрактное производство.
         /// </summary>
-        [EnumMember(Value = @"CM")]
+        [Description("Контрактное производство")]
         CM = 2,
 
         /// <summary>
         /// Логистический склад.
         /// </summary>
-        [EnumMember(Value = @"CL")]
+        [Description("Логистический склад")]
         CL = 3,
 
         /// <summary>
         /// Комиссионная площадка.
         /// </summary>
-        [EnumMember(Value = @"CA")]
+        [Description("Комиссионная площадка")]
         CA = 4,
     }
 }
