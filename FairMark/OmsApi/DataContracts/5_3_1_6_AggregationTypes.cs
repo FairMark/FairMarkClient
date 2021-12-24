@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace FairMark.OmsApi.DataContracts
 {
@@ -10,6 +11,7 @@ namespace FairMark.OmsApi.DataContracts
         /// <summary>
         /// Новая агрегация.
         /// </summary>
+        [Description("Новая агрегация")]
         [EnumMember(Value = @"AGGREGATION")]
         AGGREGATION = 0,
 
@@ -27,6 +29,7 @@ namespace FairMark.OmsApi.DataContracts
         /// существующей агрегации, рекомендуется
         /// использовать значение AGGREGATION.
         /// </remarks>
+        [Description("Обновление существующей агрегации")]
         [EnumMember(Value = @"UPDATE")]
         UPDATE = 1,
     }
