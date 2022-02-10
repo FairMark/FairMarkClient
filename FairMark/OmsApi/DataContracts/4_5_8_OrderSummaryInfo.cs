@@ -43,5 +43,11 @@ namespace FairMark.OmsApi.DataContracts
         /// </summary>
         [DataMember(Name = "declineReason", IsRequired = false)]
         public string DeclineReason { get; set; }
+
+        /// <summary>
+        /// Идентификатор производственного заказа.
+        /// </summary>
+        [DataMember(Name = "productionOrderId", IsRequired = false)]
+        public string ProductionOrderId { get; set; }
     }
 }
