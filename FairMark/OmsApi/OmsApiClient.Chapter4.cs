@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FairMark.OmsApi.DataContracts;
 using RestSharp;
+using FairMark.TrueApi;
 
 namespace FairMark.OmsApi
 {
@@ -403,6 +404,19 @@ namespace FairMark.OmsApi
             {
                 new Parameter("extension", Extension, ParameterType.UrlSegment),
                 new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+            });
+        }
+
+        /// <summary>
+        /// 4.5.18. Метод «Получить список атрибутов продуктов заказа»
+        /// </summary>
+        public Dictionary<string, ProductsInfo> GetCardsInfo(string orderId)
+        {
+            return Get<Dictionary<string, ProductsInfo>>("{extension}/order/product", new[]
+            {
+                new Parameter("extension", Extension, ParameterType.UrlSegment),
+                new Parameter("omsId", OmsCredentials.OmsID, ParameterType.QueryString),
+                new Parameter("orderId", orderId.ToLower(), ParameterType.QueryString)
             });
         }
     }
