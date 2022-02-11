@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FairMark.OmsApi.DataContracts;
 using RestSharp;
-using FairMark.TrueApi;
+using FairMark.TrueApi.DataContracts;
 
 namespace FairMark.OmsApi
 {
