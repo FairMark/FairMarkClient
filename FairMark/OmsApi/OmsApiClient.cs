@@ -43,6 +43,8 @@ namespace FairMark.OmsApi
             : base(apiUrl, credentials)
         {
             AuthUrl = authUrl.AppendMissing("/");
+            AuthKey = "auth/cert/key";
+            AuthSimpleSignIn = "auth/cert/{OmsConnectionID}";
             Extension = productGroupOMS;
         }
 
@@ -50,7 +52,14 @@ namespace FairMark.OmsApi
         /// Authentication endpoint.
         /// </summary>
         public string AuthUrl { get; set; }
-
+        /// <summary>
+        /// Tail for request authentication keys.
+        /// </summary>
+        public string AuthKey { get; set; }
+        /// <summary>
+        /// Tail for getting token via signed certificate request.
+        /// </summary>
+        public string AuthSimpleSignIn { get; set; }
         /// <summary>
         /// Product group, or extension type, such as milk, tobacco, etc.
         /// </summary>

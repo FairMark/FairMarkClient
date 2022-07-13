@@ -97,7 +97,7 @@ namespace FairMark.OmsApi
         /// </summary>
         private AuthResponse Authenticate(OmsApiClient omsClient)
         {
-            var url = omsClient.AuthUrl + "auth/cert/key";
+            var url = omsClient.AuthUrl + omsClient.AuthKey;
             return omsClient.Get<AuthResponse>(url);
         }
 
@@ -107,7 +107,7 @@ namespace FairMark.OmsApi
         /// </summary>
         private AuthToken GetToken(OmsApiClient omsClient, AuthResponse authResponse, string signedData)
         {
-            var url = omsClient.AuthUrl + "auth/cert/{OmsConnectionID}";
+            var url = omsClient.AuthUrl + omsClient.AuthSimpleSignIn;
 
             return omsClient.Post<AuthToken>(url, new
             {
